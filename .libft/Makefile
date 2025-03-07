@@ -1,13 +1,10 @@
+.SILENT:
+
 # Color
 RED = \033[0;31m
 GREEN = \033[0;32m
 YELLOW = \033[1;33m
 RESET = \033[0m
-
-# Ajouter des smileys
-SMILEY = 😊
-THUMBS_UP = 👍
-CHECK_MARK = ✅
 
 NAME = libft.a
 CC = gcc
@@ -32,9 +29,7 @@ FILES = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalpha.c ft_isalnum.c \
  all: $(NAME)
 
 $(NAME): $(OBJ)
-		@echo "$(YELLOW)Creating library $(NAME)... $(SMILEY)$(RESET)"
 		@ar rcs $(NAME) $(OBJ)
-		@echo "$(GREEN)$(NAME) successfully created! $(THUMBS_UP)$(RESET)"
 
  $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 		@mkdir -p $(OBJ_DIR)
