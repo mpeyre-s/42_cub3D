@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/07 12:02:28 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/07 17:08:11 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,63 @@
 # define WINDOW_WIDTH 1280
 # define WINDOW_HEIGHT 720
 
+/* ------------------------------- STRUCTURES --------------------------------*/
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*win;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_mlx;
+
+typedef struct s_map
+{
+	int		width;
+	int		height;
+	int		ceiling_color[3];
+	int		floor_color[3];
+	char	*NO_path;
+	char	*SO_path;
+	char	*WE_path;
+	char	*EA_path;
+	int		**grid;
+}				t_map;
+
+typedef struct s_game
+{
+	t_mlx	*mlx;
+	t_map	*map;
+}				t_game;
+
 /* -------------------------- FUNCTIONS PROTOTYPES ---------------------------*/
-int	msg(char *msg, int endl, int is_error, int value);
-int	print_ascii_art(void);
+int		msg(char *msg, int endl, int is_error, int value);
+int		print_ascii_art(void);
+
+int		parsing(int ac, char **av);
+
+t_game	*init(char *map_path);
+
+int		start_game(t_game *game);
+
+void	exit_program(t_game *game);
+
+int		key_hook(int keycode, t_game *game);
+int		close_hook(t_game *game);
+
+int		start_mlx(t_game *game);
+int		destroy_mlx(t_game *game);
 
 /* --------------------------- DEVELOPMENT MACROS ----------------------------*/
 # define TRUE 1
 # define FALSE 0
 # define ERROR -1
 # define SUCCES 0
+
+# define STR_PARSE1 "Use ./cub3D map_name.cub for running the game"
+# define STR_PARSE2 "Invalid map, use .cub extension + check the map syntax"
 
 /* --------------------------- KEY MAPPING (APPLE) ---------------------------*/
 # define FORWARD_KEY 13      /* W key */
