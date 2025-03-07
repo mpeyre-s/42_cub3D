@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/07 11:12:50 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/07 11:46:45 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define CUB3D_H
 
 /* --------------------------- LIBRAIRIES INCLUDES ---------------------------*/
+# include "../libft/libft.h"
+# include "../minilibx/mlx.h"
 # include <stdio.h>
 # include <stdlib.h>
 
