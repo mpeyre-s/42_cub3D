@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:43:29 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/07 12:22:13 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/07 12:24:36 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 int	main(void)
 {
-	void	*mlx;
-	void	*mlx_win;
-
 	print_ascii_art();
 	msg("Hello cub3D World !", TRUE, FALSE, 0);
 	return (msg("Exit...", TRUE, FALSE, EXIT_SUCCESS));
