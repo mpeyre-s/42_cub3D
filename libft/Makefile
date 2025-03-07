@@ -13,7 +13,7 @@ NAME = libft.a
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
- SRC_DIR = srcs
+SRC_DIR = srcs
 OBJ_DIR = objects
 
 FILES = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalpha.c ft_isalnum.c \
