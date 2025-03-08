@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:55:24 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/07 16:53:33 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/08 19:22:29 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,16 @@
 
 int	key_hook(int keycode, t_game *game)
 {
-	if (keycode == ESC_KEY)
-		exit_program(game);
+	if (game->mlx->os == LINUX)
+	{
+		if (keycode == LIN_ESC_KEY)
+			exit_program(game);
+	}
+	else if (game->mlx->os == MACOS)
+	{
+		if (keycode == MAC_ESC_KEY)
+			exit_program(game);
+	}
 	return (SUCCES);
 }
 

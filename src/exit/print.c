@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:41:30 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/07 11:12:33 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/08 18:46:56 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,24 @@ int	msg(char *msg, int endl, int is_error, int value)
 	printf("%s", RESET_COLOR);
 	if (is_error == TRUE)
 		printf("%sError : ", RED);
-	printf("%s (%d)", msg, value);
+	printf("%s", msg);
+	if (value != 0)
+		printf(" (%d)", value);
 	if (endl == TRUE)
 		printf("\n");
 	printf("%s", RESET_COLOR);
 	return (value);
+}
+
+int	print_keycode_config(t_game *game)
+{
+	if (game->mlx->os == LINUX)
+		msg("Configuring linux keycodes", TRUE, FALSE, 0);
+	else if (game->mlx->os == MACOS)
+		msg("Configuring macOS keycodes", TRUE, FALSE, 0);
+	else if (game->mlx->os == UNKNOWN)
+		msg("Configuring linux keycodes because of unknown OS", TRUE, FALSE, 0);
+	return (SUCCES);
 }
 
 int	print_ascii_art(void)

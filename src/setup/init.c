@@ -6,11 +6,37 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:55:12 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/07 17:05:27 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/08 18:48:03 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
+
+t_os	detect_os(void)
+{
+	int		fd;
+	char	buffer[256];
+	ssize_t	bytes_read;
+
+	fd = open("/etc/os-release", O_RDONLY);
+	if (fd == -1)
+	{
+		msg("Non-linux environment detected, assuming macOS", TRUE, FALSE, 0);
+		return (MACOS);
+	}
+	while ((bytes_read = read(fd, buffer, sizeof(buffer) - 1)) > 0)
+	{
+		buffer[bytes_read] = '\0';
+		if (strstr(buffer, "PRETTY_NAME")) {
+			close(fd);
+			msg("Linux environment detected", TRUE, FALSE, 0);
+			return (LINUX);
+		}
+	}
+	close(fd);
+	msg("Unknown environment detected, assuming linux", TRUE, FALSE, 0);
+	return (UNKNOWN);
+}
 
 t_mlx	*init_mlx(void)
 {
@@ -24,6 +50,7 @@ t_mlx	*init_mlx(void)
 	mlx->img = mlx_new_image(mlx->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bits_per_pixel,
 			&mlx->line_length, &mlx->endian);
+	mlx->os = detect_os();
 	return (mlx);
 }
 
@@ -245,6 +272,7 @@ t_game	*init(char *map_path)
 {
 	t_game	*game;
 
+	msg("Program initialization has started", TRUE, FALSE, SUCCES);
 	game = malloc(sizeof(t_game) * 1);
 	if (!game)
 		return (NULL);

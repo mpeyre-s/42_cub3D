@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/07 17:08:11 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/08 19:22:24 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,21 @@
 # include "../.minilibx_opengl/mlx.h"
 # include <stdio.h>
 # include <stdlib.h>
+# include <fcntl.h>
+# include <string.h>
 
 /* ----------------------------- PROGRAM MACROS ------------------------------*/
 # define WINDOW_WIDTH 1280
 # define WINDOW_HEIGHT 720
 
 /* ------------------------------- STRUCTURES --------------------------------*/
+typedef enum e_os
+{
+	LINUX,
+	MACOS,
+	UNKNOWN
+}				t_os;
+
 typedef struct s_mlx
 {
 	void	*mlx;
@@ -33,6 +42,7 @@ typedef struct s_mlx
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	t_os	os;
 }				t_mlx;
 
 typedef struct s_map
@@ -57,10 +67,12 @@ typedef struct s_game
 /* -------------------------- FUNCTIONS PROTOTYPES ---------------------------*/
 int		msg(char *msg, int endl, int is_error, int value);
 int		print_ascii_art(void);
+int		print_keycode_config(t_game *game);
 
 int		parsing(int ac, char **av);
 
 t_game	*init(char *map_path);
+
 
 int		start_game(t_game *game);
 
@@ -81,12 +93,18 @@ int		destroy_mlx(t_game *game);
 # define STR_PARSE1 "Use ./cub3D map_name.cub for running the game"
 # define STR_PARSE2 "Invalid map, use .cub extension + check the map syntax"
 
-/* --------------------------- KEY MAPPING (APPLE) ---------------------------*/
-# define FORWARD_KEY 13      /* W key */
-# define BACKWARD_KEY 1      /* S key */
-# define LEFT_KEY 0         /* A key */
-# define RIGHT_KEY 2        /* D key */
-# define ESC_KEY 53         /* ESC key */
+/* ------------------------------- KEY MAPPING -------------------------------*/
+# define MAC_FORWARD_KEY 13
+# define MAC_BACKWARD_KEY 1
+# define MAC_LEFT_KEY 0
+# define MAC_RIGHT_KEY 2
+# define MAC_ESC_KEY 53
+
+# define LIN_FORWARD_KEY 119
+# define LIN_BACKWARD_KEY 115
+# define LIN_LEFT_KEY 97
+# define LIN_RIGHT_KEY 100
+# define LIN_ESC_KEY 65307
 
 /* --------------------------- ASCII ART / COLORS ----------------------------*/
 # define RESET_COLOR "\033[0m"

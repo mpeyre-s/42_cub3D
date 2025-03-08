@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:39:35 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/07 17:33:12 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/07 18:02:04 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,14 @@ static void	free_map(t_game *game)
 
 void	exit_program(t_game *game)
 {
+	if (!game)
+		return ;
 	if (game->map)
 		free_map(game);
-	if (game && game->mlx)
-		destroy_mlx(game);
 	if (game->mlx)
+	{
+		destroy_mlx(game);
 		free(game->mlx);
+	}
 	free(game);
 }
