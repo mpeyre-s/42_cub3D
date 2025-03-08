@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/08 19:22:24 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/09 00:54:56 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ typedef struct s_map
 {
 	int		width;
 	int		height;
+	int		cell_width;
+	int		cell_height;
 	int		ceiling_color[3];
 	int		floor_color[3];
 	char	*NO_path;
@@ -75,6 +77,9 @@ t_game	*init(char *map_path);
 
 
 int		start_game(t_game *game);
+void	fill_white_background(t_game *game);
+void	color_fill(t_game *game, unsigned int color);
+void	print_grid(t_game *game);
 
 void	exit_program(t_game *game);
 
@@ -83,6 +88,9 @@ int		close_hook(t_game *game);
 
 int		start_mlx(t_game *game);
 int		destroy_mlx(t_game *game);
+
+void	color_fill(t_game *game, unsigned int color);
+int		update_window(t_game *game, void (*func)(t_game *));
 
 /* --------------------------- DEVELOPMENT MACROS ----------------------------*/
 # define TRUE 1

@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 16:20:52 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/08 19:16:43 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/08 22:53:16 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,15 @@ int	start_mlx(t_game *game)
 	mlx_hook(game->mlx->win, 2, 1L << 0, key_hook, &game);
 	mlx_hook(game->mlx->win, 17, 1L << 17, close_hook, &game);
 	msg("Game started...", TRUE, FALSE, 0);
-	mlx_loop(game->mlx);
+	return (SUCCES);
+}
+
+int	update_window(t_game *game, void (*func)(t_game *))
+{
+	if (func)
+		(*func)(game);
+	mlx_put_image_to_window(game->mlx->mlx, game->mlx->win,
+		game->mlx->img, 0, 0);
 	return (SUCCES);
 }
 
