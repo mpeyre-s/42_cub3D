@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:55:24 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/09 17:56:20 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/09 19:22:53 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	key_hook(int keycode, t_game *game)
 void	linux_key_hook(int keycode, t_game *game)
 {
 	if (keycode == LIN_ESC_KEY)
-		exit_program(game);
+		close_hook(game);
 	else if (keycode == LIN_FORWARD_KEY)
 		move_player(game, FOWARD);
 	else if (keycode == LIN_BACKWARD_KEY)
@@ -38,7 +38,7 @@ void	linux_key_hook(int keycode, t_game *game)
 void	macos_key_hook(int keycode, t_game *game)
 {
 	if (keycode == MAC_ESC_KEY)
-		exit_program(game);
+	close_hook(game);
 	else if (keycode == MAC_FORWARD_KEY)
 		move_player(game, FOWARD);
 	else if (keycode == MAC_BACKWARD_KEY)
@@ -52,5 +52,6 @@ void	macos_key_hook(int keycode, t_game *game)
 int	close_hook(t_game *game)
 {
 	exit_program(game);
-	return (SUCCES);
+	msg("Exit...", TRUE, FALSE, EXIT_SUCCESS);
+	exit(SUCCES);
 }
