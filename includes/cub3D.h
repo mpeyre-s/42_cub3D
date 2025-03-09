@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/09 00:54:56 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/09 13:40:53 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ int		start_game(t_game *game);
 void	fill_white_background(t_game *game);
 void	color_fill(t_game *game, unsigned int color);
 void	print_grid(t_game *game);
+void	draw_square(t_game *game, int start_x, int start_y, int size);
+void	fill_grid_with_map(t_game *game);
 
 void	exit_program(t_game *game);
 
