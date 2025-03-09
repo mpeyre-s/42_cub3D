@@ -6,15 +6,15 @@
 #    By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/07 09:35:02 by mathispeyre       #+#    #+#              #
-#    Updated: 2025/03/08 16:06:32 by mathispeyre      ###   ########.fr        #
+#    Updated: 2025/03/09 16:37:19 by mathispeyre      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC = main.c \
 	  exit/print.c exit/exit.c \
-	  game/game.c \
+	  game/game.c game/map.c game/player.c \
 	  setup/init.c setup/parsing.c \
-	  window/hooks.c window/mlx.c
+	  window/hooks.c window/mlx.c window/draw.c
 
 SRCDIR = src/
 OBJDIR = objects/

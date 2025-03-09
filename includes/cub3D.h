@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/09 13:40:53 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/09 18:46:44 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@
 /* ----------------------------- PROGRAM MACROS ------------------------------*/
 # define WINDOW_WIDTH 1280
 # define WINDOW_HEIGHT 720
+# define FOV 60
+# define MOVE_SPEED 0.05
+# define ROTATION_SPEED 0.05
 
 /* ------------------------------- STRUCTURES --------------------------------*/
 typedef enum e_os
@@ -32,6 +35,16 @@ typedef enum e_os
 	MACOS,
 	UNKNOWN
 }				t_os;
+
+typedef enum e_action
+{
+	FOWARD,
+	BACKWARD,
+	LEFT,
+	RIGHT,
+	TURN_LEFT,
+	TURN_RIGHT
+}				t_action;
 
 typedef struct s_mlx
 {
@@ -51,6 +64,8 @@ typedef struct s_map
 	int		height;
 	int		cell_width;
 	int		cell_height;
+	int		px_width;
+	int		px_height;
 	int		ceiling_color[3];
 	int		floor_color[3];
 	char	*NO_path;
@@ -60,10 +75,20 @@ typedef struct s_map
 	int		**grid;
 }				t_map;
 
+typedef struct s_player
+{
+	double	x;
+	double	y;
+	double	dir_x;
+	double	dir_y;
+	double	rotation;
+}				t_player;
+
 typedef struct s_game
 {
-	t_mlx	*mlx;
-	t_map	*map;
+	t_mlx		*mlx;
+	t_map		*map;
+	t_player	*player;
 }				t_game;
 
 /* -------------------------- FUNCTIONS PROTOTYPES ---------------------------*/
@@ -75,24 +100,32 @@ int		parsing(int ac, char **av);
 
 t_game	*init(char *map_path);
 
-
 int		start_game(t_game *game);
-void	fill_white_background(t_game *game);
-void	color_fill(t_game *game, unsigned int color);
+void	update_map(t_game *game);
+
 void	print_grid(t_game *game);
-void	draw_square(t_game *game, int start_x, int start_y, int size);
 void	fill_grid_with_map(t_game *game);
+void	spawn_player(t_game *game);
+
+void	move_player(t_game *game, t_action action);
+int		is_move_possible(t_game *game, t_action action);
 
 void	exit_program(t_game *game);
 
 int		key_hook(int keycode, t_game *game);
 int		close_hook(t_game *game);
+void	linux_key_hook(int keycode, t_game *game);
+void	macos_key_hook(int keycode, t_game *game);
 
 int		start_mlx(t_game *game);
 int		destroy_mlx(t_game *game);
 
 void	color_fill(t_game *game, unsigned int color);
-int		update_window(t_game *game, void (*func)(t_game *));
+void	draw_ellipse(t_game *game, int start_x, int start_y, int size);
+void	draw_square(t_game *game, int start_x, int start_y, int size);
+void	draw_line(t_game *game, int pixel_x, int pixel_y, int dir_end_x, int dir_end_y, unsigned int color);
+void	fill_white_background(t_game *game);
+void	color_fill(t_game *game, unsigned int color);
 
 /* --------------------------- DEVELOPMENT MACROS ----------------------------*/
 # define TRUE 1

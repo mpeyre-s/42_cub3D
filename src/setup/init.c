@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:55:12 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/09 00:37:50 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/09 18:22:16 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ t_map	*init_map(char *map_path)
 		map->cell_width = map->cell_height;
 	else
 		map->cell_height = map->cell_width;
+	map->px_width = map->width * map->cell_width;
+	map->px_height = map->height * map->cell_height;
 	map->ceiling_color[0] = 99;
 	map->ceiling_color[1] = 99;
 	map->ceiling_color[2] = 99;
@@ -115,6 +117,21 @@ t_map	*init_map(char *map_path)
 	return (map);
 }
 
+t_player	*init_player(int map_width, int map_height)
+{
+	t_player	*player;
+
+	player = malloc(sizeof(t_player) * 1);
+	if (!player)
+		return (NULL);
+	player->x = map_width / 2;
+	player->y = map_height / 2;
+	player->rotation = 0;
+	player->dir_x = 1.0;
+	player->dir_y = 0.0;
+	return (player);
+}
+
 t_game	*init(char *map_path)
 {
 	t_game	*game;
@@ -125,7 +142,8 @@ t_game	*init(char *map_path)
 		return (NULL);
 	game->mlx = init_mlx();
 	game->map = init_map(map_path);
-	if (!game->mlx || !game->map)
+	game->player = init_player(game->map->width, game->map->height);
+	if (!game->mlx || !game->map || !game->player)
 		return (NULL);
 	return (game);
 }
