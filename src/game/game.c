@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 16:18:21 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/09 13:48:13 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/09 14:00:17 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	draw_square(t_game *game, int start_x, int start_y, int size)
 			*(unsigned int *)pixel = 0x000000;
 			x++;
 		}
-	y++;
+		y++;
 	}
 }
 
