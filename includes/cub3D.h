@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/10 15:06:49 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/10 16:56:29 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 # define WINDOW_HEIGHT 650
 # define CELL_LENGTH 64
 # define FOV 60
-# define MOVE_SPEED 0.05
-# define ROTATION_SPEED 0.005
+# define MOVE_SPEED 0.01
+# define ROTATION_SPEED 0.001
 # define PI 3.1415926535897932384626437872
 
 /* ------------------------------- STRUCTURES --------------------------------*/
@@ -88,11 +88,22 @@ typedef struct s_player
 	double	rotation;
 }				t_player;
 
+typedef struct s_keys
+{
+	int	forward;
+	int	backward;
+	int	left;
+	int	right;
+	int	rotate_left;
+	int	rotate_right;
+}				t_keys;
+
 typedef struct s_game
 {
 	t_mlx		*mlx;
 	t_map		*map;
 	t_player	*player;
+	t_keys		*keys;
 }				t_game;
 
 /* -------------------------- FUNCTIONS PROTOTYPES ---------------------------*/
@@ -117,10 +128,10 @@ void	rotate_player(t_game *game, t_action action);
 
 void	exit_program(t_game *game);
 
-int		key_hook(int keycode, t_game *game);
+int		key_press(int keycode, t_game *game);
+int		key_release(int keycode, t_game *game);
+int		loop_hook(t_game *game);
 int		close_hook(t_game *game);
-void	linux_key_hook(int keycode, t_game *game);
-void	macos_key_hook(int keycode, t_game *game);
 
 int		start_mlx(t_game *game);
 int		destroy_mlx(t_game *game);
@@ -131,6 +142,9 @@ void	draw_square(t_game *game, int start_x, int start_y, int size);
 void	draw_line(t_game *game, int pixel_x, int pixel_y, int dir_end_x, int dir_end_y, unsigned int color);
 void	fill_white_background(t_game *game);
 void	color_fill(t_game *game, unsigned int color);
+
+char	*ft_strstr(const char *haystack, const char *needle);
+t_os	detect_os(void);
 
 /* --------------------------- DEVELOPMENT MACROS ----------------------------*/
 # define TRUE 1

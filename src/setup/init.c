@@ -6,37 +6,11 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:55:12 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/10 14:28:10 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/10 16:46:12 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
-
-t_os	detect_os(void)
-{
-	int		fd;
-	char	buffer[256];
-	ssize_t	bytes_read;
-
-	fd = open("/etc/os-release", O_RDONLY);
-	if (fd == -1)
-	{
-		msg("Non-linux environment detected, assuming macOS", TRUE, FALSE, 0);
-		return (MACOS);
-	}
-	while ((bytes_read = read(fd, buffer, sizeof(buffer) - 1)) > 0)
-	{
-		buffer[bytes_read] = '\0';
-		if (strstr(buffer, "PRETTY_NAME")) {
-			close(fd);
-			msg("Linux environment detected", TRUE, FALSE, 0);
-			return (LINUX);
-		}
-	}
-	close(fd);
-	msg("Unknown environment detected, assuming linux", TRUE, FALSE, 0);
-	return (UNKNOWN);
-}
 
 t_mlx	*init_mlx(void)
 {
@@ -128,6 +102,22 @@ t_player	*init_player(int map_width, int map_height)
 	return (player);
 }
 
+t_keys	*init_keys(void)
+{
+	t_keys	*keys;
+
+	keys = malloc(sizeof(t_keys) * 1);
+	if (!keys)
+		return (NULL);
+	keys->forward = 0;
+	keys->backward = 0;
+	keys->left = 0;
+	keys->right = 0;
+	keys->rotate_left = 0;
+	keys->rotate_right = 0;
+	return (keys);
+}
+
 t_game	*init(char *map_path)
 {
 	t_game	*game;
@@ -139,7 +129,8 @@ t_game	*init(char *map_path)
 	game->mlx = init_mlx();
 	game->map = init_map(map_path);
 	game->player = init_player(game->map->width, game->map->height);
-	if (!game->mlx || !game->map || !game->player)
+	game->keys = init_keys();
+	if (!game->mlx || !game->map || !game->player || !game->keys)
 		return (NULL);
 	return (game);
 }

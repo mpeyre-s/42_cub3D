@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 16:20:52 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/10 15:47:59 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/10 16:51:49 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 int	start_mlx(t_game *game)
 {
 	print_keycode_config(game);
+	mlx_hook(game->mlx->win, 2, 1L<<0, key_press, game);
+	mlx_hook(game->mlx->win, 3, 1L<<1, key_release, game);
+	mlx_loop_hook(game->mlx->mlx, loop_hook, game);
 	mlx_hook(game->mlx->win, 17, 1L << 17, close_hook, game);
-	mlx_key_hook(game->mlx->win, key_hook, game);
 	msg("Game started...", TRUE, FALSE, 0);
 	return (SUCCES);
 }
