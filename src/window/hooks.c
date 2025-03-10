@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:55:24 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/09 19:22:53 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/10 14:54:02 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ void	linux_key_hook(int keycode, t_game *game)
 		move_player(game, LEFT);
 	else if (keycode == LIN_RIGHT_KEY)
 		move_player(game, RIGHT);
+	else if (keycode == LIN_LEFT_ARROW)
+		rotate_player(game, TURN_LEFT);
+	else if (keycode == LIN_RIGHT_ARROW)
+		rotate_player(game, TURN_RIGHT);
 }
 
 void	macos_key_hook(int keycode, t_game *game)
@@ -47,6 +51,10 @@ void	macos_key_hook(int keycode, t_game *game)
 		move_player(game, LEFT);
 	else if (keycode == MAC_RIGHT_KEY)
 		move_player(game, RIGHT);
+	else if (keycode == MAC_LEFT_ARROW)
+		rotate_player(game, TURN_LEFT);
+	else if (keycode == MAC_RIGHT_ARROW)
+		rotate_player(game, TURN_RIGHT);
 }
 
 int	close_hook(t_game *game)

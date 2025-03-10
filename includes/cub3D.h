@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/10 13:23:01 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/10 14:58:16 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@
 # define CELL_LENGTH 64
 # define FOV 60
 # define MOVE_SPEED 0.05
-# define ROTATION_SPEED 0.05
+# define ROTATION_SPEED 0.005
+# define PI 3.1415926535897932384626437872
 
 /* ------------------------------- STRUCTURES --------------------------------*/
 typedef enum e_os
@@ -111,6 +112,7 @@ void	spawn_player(t_game *game);
 
 void	move_player(t_game *game, t_action action);
 int		is_move_possible(t_game *game, t_action action);
+void	rotate_player(t_game *game, t_action action);
 
 void	exit_program(t_game *game);
 
@@ -144,12 +146,16 @@ void	color_fill(t_game *game, unsigned int color);
 # define MAC_LEFT_KEY 0
 # define MAC_RIGHT_KEY 2
 # define MAC_ESC_KEY 53
+# define MAC_LEFT_ARROW 123
+# define MAC_RIGHT_ARROW 124
 
 # define LIN_FORWARD_KEY 119
 # define LIN_BACKWARD_KEY 115
 # define LIN_LEFT_KEY 97
 # define LIN_RIGHT_KEY 100
 # define LIN_ESC_KEY 65307
+# define LIN_LEFT_ARROW 65361
+# define LIN_RIGHT_ARROW 65363
 
 /* --------------------------- ASCII ART / COLORS ----------------------------*/
 # define RESET_COLOR "\033[0m"

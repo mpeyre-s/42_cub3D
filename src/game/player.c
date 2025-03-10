@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 16:26:26 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/10 13:35:31 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/10 14:54:30 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,16 @@ void	move_player(t_game *game, t_action action)
 		game->player->x -= game->player->dir_y * MOVE_SPEED;
 		game->player->y += game->player->dir_x * MOVE_SPEED;
 	}
+	update_map(game);
+}
+
+void	rotate_player(t_game *game, t_action action)
+{
+	if (action == TURN_LEFT)
+		game->player->rotation -= (180 / PI) * ROTATION_SPEED;
+	else if (action == TURN_RIGHT)
+		game->player->rotation += (180 / PI) * ROTATION_SPEED;
+	game->player->dir_x = cos(game->player->rotation);
+	game->player->dir_y = sin(game->player->rotation);
 	update_map(game);
 }
