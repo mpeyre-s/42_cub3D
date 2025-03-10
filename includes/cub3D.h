@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/10 16:56:29 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/10 20:59:23 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,6 @@ void	fill_grid_with_map(t_game *game);
 void	spawn_player(t_game *game);
 
 void	move_player(t_game *game, t_action action);
-int		is_move_possible(t_game *game, t_action action);
 void	rotate_player(t_game *game, t_action action);
 
 void	exit_program(t_game *game);
