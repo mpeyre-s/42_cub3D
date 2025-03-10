@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/09 18:46:44 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/10 13:23:01 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <string.h>
+# include <math.h>
 
 /* ----------------------------- PROGRAM MACROS ------------------------------*/
-# define WINDOW_WIDTH 1280
-# define WINDOW_HEIGHT 720
+# define WINDOW_WIDTH 1220
+# define WINDOW_HEIGHT 650
+# define CELL_LENGTH 64
 # define FOV 60
 # define MOVE_SPEED 0.05
 # define ROTATION_SPEED 0.05

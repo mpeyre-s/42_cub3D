@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:55:12 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/09 19:41:09 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/10 13:11:10 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,8 @@ t_map	*init_map(char *map_path)
 		return (NULL);
 	map->width = 19;
 	map->height = 10;
-	map->cell_width = WINDOW_WIDTH / map->width;
-	map->cell_height = WINDOW_HEIGHT / map->height;
-	if (map->cell_width > map->cell_height)
-		map->cell_width = map->cell_height;
-	else
-		map->cell_height = map->cell_width;
+	map->cell_width = CELL_LENGTH;
+	map->cell_height = CELL_LENGTH;
 	map->px_width = map->width * map->cell_width;
 	map->px_height = map->height * map->cell_height;
 	map->ceiling_color[0] = 99;

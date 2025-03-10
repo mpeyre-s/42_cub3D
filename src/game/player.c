@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 16:26:26 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/09 18:43:36 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/10 13:35:31 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,9 @@ int	is_move_possible(t_game *game, t_action action)
 		new_x -= game->player->dir_y * MOVE_SPEED;
 		new_y += game->player->dir_x * MOVE_SPEED;
 	}
-	// map limits
 	if (new_x < 0 || new_y < 0 || new_x >= game->map->width || new_y >= game->map->height)
+		return (FALSE);
+	if (game->map->grid[(int)floor(new_y)][(int)floor(new_x)] == 1)
 		return (FALSE);
 	return (TRUE);
 }
