@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 16:18:21 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/09 16:17:41 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/10 15:42:14 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	start_game(t_game *game)
 	start_mlx(game);
 	// game here
 	update_map(game);
-	mlx_loop(game->mlx);
+	mlx_loop(game->mlx->mlx);
 	return (0);
 }
 
