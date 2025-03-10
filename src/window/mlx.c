@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 16:20:52 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/10 15:43:11 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/10 15:47:59 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	destroy_mlx(t_game *game)
 	if (game->mlx->img)
 		mlx_destroy_image(game->mlx->mlx, game->mlx->img);
 	if (game->mlx->win)
-		mlx_destroy_image(game->mlx->mlx, game->mlx->win);
+		mlx_destroy_window(game->mlx->mlx, game->mlx->win);
 	// if (game->mlx->os == LINUX)
 	// {
 	// 	if (game->mlx->mlx)
