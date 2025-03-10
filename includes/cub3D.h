@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/10 14:58:16 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/10 15:06:49 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 /* --------------------------- LIBRAIRIES INCLUDES ---------------------------*/
 # include "../.libft/libft.h"
 # include "../.minilibx_opengl/mlx.h"
+// # include "../.minilibx_linux/mlx.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>

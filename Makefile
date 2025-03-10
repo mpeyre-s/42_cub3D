@@ -6,7 +6,7 @@
 #    By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/07 09:35:02 by mathispeyre       #+#    #+#              #
-#    Updated: 2025/03/09 16:37:19 by mathispeyre      ###   ########.fr        #
+#    Updated: 2025/03/10 15:12:29 by mathispeyre      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,9 +27,20 @@ RM = rm -f
 
 LIBFT_DIR = .libft/
 LIBFT = $(LIBFT_DIR)libft.a
+
+# ==== FOR MACOS ====
+ifeq ($(shell uname), Darwin)
 MLX_DIR = .minilibx_opengl/
-MLX = $(MLX_DIR)libmlx.a
 LIBS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
+endif
+
+# ==== FOR LINUX ====
+ifeq ($(shell uname), Linux)
+MLX_DIR = .minilibx_linux/
+LIBS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
+endif
+
+MLX = $(MLX_DIR)libmlx.a
 
 ORANGE = \033[0;33m
 GREEN = \033[0;32m
