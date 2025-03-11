@@ -6,17 +6,28 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:49:26 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/09 18:50:24 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/11 13:17:31 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
+void	print_pixel(t_game *game, int x, int y, unsigned int color)
+{
+	char	*pixel;
+
+	if (x >= 0 && x < WINDOW_WIDTH && y >= 0 && y < WINDOW_HEIGHT)
+	{
+		pixel = game->mlx->addr + (y * game->mlx->line_length + x *
+				(game->mlx->bits_per_pixel / 8));
+		*(unsigned int *)pixel = color;
+	}
+}
+
 void	draw_square(t_game *game, int start_x, int start_y, int size)
 {
 	int		x;
 	int		y;
-	char	*pixel;
 	int		end_x;
 	int		end_y;
 
@@ -28,9 +39,7 @@ void	draw_square(t_game *game, int start_x, int start_y, int size)
 		end_x = start_x + size;
 		while (x < end_x)
 		{
-			pixel = game->mlx->addr + (y * game->mlx->line_length + x
-					* (game->mlx->bits_per_pixel / 8));
-			*(unsigned int *)pixel = 0x000000;
+			print_pixel(game, x, y, 0x000000);
 			x++;
 		}
 		y++;
@@ -41,7 +50,6 @@ void	draw_ellipse(t_game *game, int start_x, int start_y, int size)
 {
 	int		x;
 	int		y;
-	char	*pixel;
 	int		radius;
 	int		center_x;
 	int		center_y;
@@ -56,27 +64,17 @@ void	draw_ellipse(t_game *game, int start_x, int start_y, int size)
 		while (x < start_x + size)
 		{
 			if (((x - center_x) * (x - center_x) + (y - center_y) * (y - center_y)) <= (radius * radius))
-			{
-				pixel = game->mlx->addr + (y * game->mlx->line_length + x
-						* (game->mlx->bits_per_pixel / 8));
-				*(unsigned int *)pixel = 0x00FF00;
-			}
+				print_pixel(game, x, y, 0x00FF00);
 			x++;
 		}
 		y++;
 	}
 }
 
-void	fill_white_background(t_game *game)
-{
-	color_fill(game, 0xFFFFFF);
-}
-
 void	color_fill(t_game *game, unsigned int color)
 {
 	int		x;
 	int		y;
-	char	*pixel;
 
 	y = 0;
 	while (y < WINDOW_HEIGHT)
@@ -84,17 +82,15 @@ void	color_fill(t_game *game, unsigned int color)
 		x = 0;
 		while (x < WINDOW_WIDTH)
 		{
-			pixel = game->mlx->addr + (y * game->mlx->line_length + x
-					* (game->mlx->bits_per_pixel / 8));
-			*(unsigned int *)pixel = color;
+			print_pixel(game, x, y, color);
 			x++;
 		}
 		y++;
 	}
 }
 
-// c'est pas moi qui ait fait cette fonction c'était trop dur de toute ƒacon c'est que visuel et temporaire ˆˆ
-void	draw_line(t_game *game, int pixel_x, int pixel_y, int dir_end_x, int dir_end_y, unsigned int color)
+void	draw_line(t_game *game, int pixel_x, int pixel_y,
+		int dir_end_x, int dir_end_y, unsigned int color)
 {
 	int		dx;
 	int		dy;
@@ -104,7 +100,6 @@ void	draw_line(t_game *game, int pixel_x, int pixel_y, int dir_end_x, int dir_en
 	float	x;
 	float	y;
 	int		i;
-	char	*pixel;
 
 	dx = dir_end_x - pixel_x;
 	dy = dir_end_y - pixel_y;
@@ -117,11 +112,7 @@ void	draw_line(t_game *game, int pixel_x, int pixel_y, int dir_end_x, int dir_en
 	while (i <= steps)
 	{
 		if (x >= 0 && x < WINDOW_WIDTH && y >= 0 && y < WINDOW_HEIGHT)
-		{
-			pixel = game->mlx->addr + ((int)y * game->mlx->line_length + (int)x
-					* (game->mlx->bits_per_pixel / 8));
-			*(unsigned int *)pixel = color;
-		}
+			print_pixel(game, x, y, color);
 		x += x_increment;
 		y += y_increment;
 		i++;
