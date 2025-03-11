@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 16:26:26 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/10 20:59:53 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/11 11:10:47 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	calculate_move(t_game *game, t_action action)
 	}
 	else if (action == BACKWARD)
 	{
-		game->player->x -= game->player->dir_x * MOVE_SPEED;
-		game->player->y -= game->player->dir_y * MOVE_SPEED;
+		game->player->x -= game->player->dir_x * (MOVE_SPEED / 2);
+		game->player->y -= game->player->dir_y * (MOVE_SPEED / 2);
 	}
 	else if (action == LEFT)
 	{
