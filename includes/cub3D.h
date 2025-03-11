@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
+/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/10 20:59:23 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/11 18:10:25 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@
 # define ROTATION_SPEED 0.001
 # define PI 3.1415926535897932384626437872
 
+# define SKY 0x87CEEB
+# define WALL 0xFFFFFF
+# define FLOOR 0x008000
+
+
 /* ------------------------------- STRUCTURES --------------------------------*/
 typedef enum e_os
 {
@@ -56,11 +61,28 @@ typedef struct s_mlx
 	void	*win;
 	void	*img;
 	char	*addr;
+	char	*pixels;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
 	t_os	os;
 }				t_mlx;
+
+typedef struct s_print
+{
+	int		map_x;
+	int		map_y;
+	double	dir_x;
+	double	dir_y;
+	double	abs_dist_x;
+	double	abs_dist_y;
+	double	real_dist_x;
+	double	real_dist_y;
+	int		steps_x;
+	int		steps_y;
+	double	angle_increment;
+	double	correct_distance;
+}				t_print;
 
 typedef struct s_map
 {
@@ -144,6 +166,11 @@ void	color_fill(t_game *game, unsigned int color);
 
 char	*ft_strstr(const char *haystack, const char *needle);
 t_os	detect_os(void);
+
+
+
+
+void	raycast(t_mlx *img, t_player *player, int **grid);
 
 /* --------------------------- DEVELOPMENT MACROS ----------------------------*/
 # define TRUE 1
