@@ -6,11 +6,41 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 11:54:11 by spike             #+#    #+#             */
-/*   Updated: 2025/03/11 18:14:07 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/12 00:32:38 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
+
+void print_test(t_mlx *img)
+{
+    printf("print_test() called\n");
+
+    int x = 0;
+    int y;
+    char *pixel;
+
+    while (x < WINDOW_WIDTH)
+    {
+        printf("Processing column %d\n", x);  // Ajout de debug pour vérifier la colonne
+        y = 0;
+        while (y < WINDOW_HEIGHT)
+        {
+			printf("Processing line %d\n", y);
+            pixel = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
+            if (pixel >= img->addr + y * img->line_length + WINDOW_WIDTH * (img->bits_per_pixel / 8))
+            {
+                printf("Pixel out of bounds: %p\n", (void *)pixel);
+                return;
+            }
+            *(unsigned int *)pixel = 0x008000;
+            y++;
+        }
+        x++;
+    }
+    printf("print_test() completed\n");
+}
+
 
 void	print_column(t_mlx *img, int x, double wall_height)
 {

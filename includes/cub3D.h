@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/11 18:10:25 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/12 00:24:22 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include <math.h>
 
 /* ----------------------------- PROGRAM MACROS ------------------------------*/
-# define WINDOW_WIDTH 1220
-# define WINDOW_HEIGHT 650
+# define WINDOW_WIDTH 400
+# define WINDOW_HEIGHT 200
 # define CELL_LENGTH 64
 # define FOV 60
 # define MOVE_SPEED 0.01
@@ -171,6 +171,7 @@ t_os	detect_os(void);
 
 
 void	raycast(t_mlx *img, t_player *player, int **grid);
+void	print_test(t_mlx *img);
 
 /* --------------------------- DEVELOPMENT MACROS ----------------------------*/
 # define TRUE 1
