@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
+/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:49:26 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/09 18:50:24 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/12 17:13:01 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,5 +125,16 @@ void	draw_line(t_game *game, int pixel_x, int pixel_y, int dir_end_x, int dir_en
 		x += x_increment;
 		y += y_increment;
 		i++;
+	}
+}
+void	print_pixel(t_game *game, int x, int y, unsigned int color)
+{
+	char	*pixel;
+
+	if (x >= 0 && x < WINDOW_WIDTH && y >= 0 && y < WINDOW_HEIGHT)
+	{
+		pixel = game->mlx->addr + (y * game->mlx->line_length + x *
+				(game->mlx->bits_per_pixel / 8));
+		*(unsigned int *)pixel = color;
 	}
 }
