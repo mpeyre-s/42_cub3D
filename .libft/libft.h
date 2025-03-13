@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 09:40:58 by hduflos           #+#    #+#             */
-/*   Updated: 2025/01/14 11:31:17 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/11 17:11:24 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include "get_next_line.h"
 
 typedef struct s_list
 {
@@ -30,6 +31,7 @@ int		ft_isalnum(int c);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
 int		ft_atoi(const char *str);
+int		ft_isspace(int c);
 
 size_t	ft_strlen(const char *str);
 char	*ft_strchr(const char *str, int ch);

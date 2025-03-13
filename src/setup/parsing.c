@@ -6,25 +6,70 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:55:17 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/07 16:54:54 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/13 18:11:14 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-static int	is_map_valid(char *map_path)
+void	free_file_tab(char **file, size_t len)
 {
-	if (!map_path)
+	len++;
+	while (len--)
+		free(file[len]);
+	free(file);
+}
+
+int	check_cub_extension(char *filename)
+{
+	int	len;
+
+	if (!filename)
+		return (FALSE);
+	len = ft_strlen(filename);
+	if (len < 5)
+		return (FALSE);
+	if (ft_strncmp(filename + len - 4, ".cub", 4) != 0)
 		return (FALSE);
 	return (TRUE);
 }
 
+int	is_file_valid(char *filename)
+{
+	char	*file_inline;
+	char	**file;
+	size_t	len;
+	int		result;
+
+	file_inline = read_file(filename);
+	if (!file_inline)
+		return (FALSE);
+	file = convert_content(file_inline);
+	if (!file)
+		return (FALSE);
+	len = -1;
+	result = FALSE;
+	while (file[len])
+		++len;
+	if (len > 8)
+	{
+		if (file[0][0] == 'F' || file[0][0] == 'C')
+			result = check_file_when_colors_first(file, len);
+		else if (file[0][0] == 'S' || file[0][0] == 'N'
+			|| file[0][0] == 'E' || file[0][0] == 'W')
+			result = check_file_when_textures_first(file, len);
+	}
+	free_file_tab(file, len);
+	return (free(file_inline), result);
+}
+
 int	parsing(int ac, char **av)
 {
-	(void)av;
 	if (ac != 2)
 		return (msg(STR_PARSE1, TRUE, TRUE, ERROR));
-	if (is_map_valid(av[1]) == FALSE)
+	if (!check_cub_extension(av[1]))
+		return (msg("Error: Not a .cub file", TRUE, TRUE, ERROR));
+	if (!is_file_valid(av[1]))
 		return (msg(STR_PARSE2, TRUE, TRUE, ERROR));
-	return (SUCCES);
+	return (TRUE);
 }

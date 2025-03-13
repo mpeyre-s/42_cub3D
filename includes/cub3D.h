@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/11 13:16:53 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/13 18:04:24 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,11 @@ int		print_ascii_art(void);
 int		print_keycode_config(t_game *game);
 
 int		parsing(int ac, char **av);
+char	*read_file(char *file_path);
+int		is_empty_line(char *line);
+char	*extract_path(char *line);
+int		check_file_when_colors_first(char **file, size_t len);
+int		check_file_when_textures_first(char **file, size_t len);
 
 t_game	*init(char *map_path);
 
@@ -143,6 +148,8 @@ void	draw_line(t_game *game, int pixel_x, int pixel_y, int dir_end_x, int dir_en
 
 char	*ft_strstr(const char *haystack, const char *needle);
 t_os	detect_os(void);
+char	**convert_content(char *content);
+void	free_file_tab(char **file, size_t len);
 
 /* --------------------------- DEVELOPMENT MACROS ----------------------------*/
 # define TRUE 1
