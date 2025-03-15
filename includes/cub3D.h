@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
+/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/11 13:16:53 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/15 19:58:03 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,21 @@ typedef struct s_player
 	double	rotation;
 }				t_player;
 
+typedef struct s_data
+{
+	int		map_x;
+	int		map_y;
+	double	pos_x;
+	double	pos_y;
+	double	len_x;
+	double	len_y;
+	double	dir_x;
+	double	dir_y;
+	int		step_x;
+	int		step_y;
+	double	angle_increment;
+}				t_data;
+
 typedef struct s_keys
 {
 	int	forward;
@@ -143,6 +158,10 @@ void	draw_line(t_game *game, int pixel_x, int pixel_y, int dir_end_x, int dir_en
 
 char	*ft_strstr(const char *haystack, const char *needle);
 t_os	detect_os(void);
+
+
+void	raycast(t_game *game, t_player *player, int **grid);
+void	print_pixel(t_game *game, int x, int y, unsigned int color);
 
 /* --------------------------- DEVELOPMENT MACROS ----------------------------*/
 # define TRUE 1
