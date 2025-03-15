@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/12 19:18:47 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/15 20:10:47 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include <math.h>
 
 /* ----------------------------- PROGRAM MACROS ------------------------------*/
-# define WINDOW_WIDTH 854
-# define WINDOW_HEIGHT 480
+# define WINDOW_WIDTH 429
+# define WINDOW_HEIGHT 240
 # define CELL_LENGTH 64
 # define FOV 60
 # define MOVE_SPEED 0.01
@@ -68,21 +68,36 @@ typedef struct s_mlx
 	t_os	os;
 }				t_mlx;
 
-typedef struct s_print
+// typedef struct s_print
+// {
+// 	int		map_x;
+// 	int		map_y;
+// 	double	dir_x;
+// 	double	dir_y;
+// 	double	abs_dist_x;
+// 	double	abs_dist_y;
+// 	double	real_dist_x;
+// 	double	real_dist_y;
+// 	int		steps_x;
+// 	int		steps_y;
+// 	double	angle_increment;
+// 	double	correct_distance;
+// }				t_print;
+
+typedef struct s_data
 {
 	int		map_x;
 	int		map_y;
+	double	pos_x;
+	double	pos_y;
+	double	len_x;
+	double	len_y;
 	double	dir_x;
 	double	dir_y;
-	double	abs_dist_x;
-	double	abs_dist_y;
-	double	real_dist_x;
-	double	real_dist_y;
-	int		steps_x;
-	int		steps_y;
+	int		step_x;
+	int		step_y;
 	double	angle_increment;
-	double	correct_distance;
-}				t_print;
+}				t_data;
 
 typedef struct s_map
 {
