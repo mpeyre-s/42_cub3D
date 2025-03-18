@@ -6,11 +6,11 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 16:45:27 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/13 17:08:11 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/17 13:12:50 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3D.h"
+#include "../../../includes/cub3D.h"
 
 char	*read_file(char *file_path)
 {

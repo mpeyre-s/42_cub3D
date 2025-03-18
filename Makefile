@@ -6,14 +6,16 @@
 #    By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/07 09:35:02 by mathispeyre       #+#    #+#              #
-#    Updated: 2025/03/13 18:06:00 by mathispeyre      ###   ########.fr        #
+#    Updated: 2025/03/17 13:25:43 by mathispeyre      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC = main.c \
 	  exit/print.c exit/exit.c \
 	  game/game.c game/map.c game/player.c \
-	  setup/init.c setup/parsing.c setup/file_utils.c setup/checker.c \
+	  setup/initialization/init.c \
+	  setup/processing/parsing.c setup/processing/file_utils.c setup/processing/checker.c \
+	  setup/processing/color_lines.c setup/processing/texture_lines.c setup/processing/map_lines.c \
 	  window/hooks.c window/mlx.c window/draw.c \
 	  utils/ft.c utils/detection.c utils/conversion.c
 

@@ -6,11 +6,11 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:55:17 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/13 18:11:14 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/17 15:35:00 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3D.h"
+#include "../../../includes/cub3D.h"
 
 void	free_file_tab(char **file, size_t len)
 {
@@ -25,13 +25,13 @@ int	check_cub_extension(char *filename)
 	int	len;
 
 	if (!filename)
-		return (FALSE);
+		return (ERROR);
 	len = ft_strlen(filename);
 	if (len < 5)
-		return (FALSE);
+		return (ERROR);
 	if (ft_strncmp(filename + len - 4, ".cub", 4) != 0)
-		return (FALSE);
-	return (TRUE);
+		return (ERROR);
+	return (SUCCES);
 }
 
 int	is_file_valid(char *filename)
@@ -67,9 +67,9 @@ int	parsing(int ac, char **av)
 {
 	if (ac != 2)
 		return (msg(STR_PARSE1, TRUE, TRUE, ERROR));
-	if (!check_cub_extension(av[1]))
+	if (check_cub_extension(av[1]) == ERROR)
 		return (msg("Error: Not a .cub file", TRUE, TRUE, ERROR));
-	if (!is_file_valid(av[1]))
+	if (is_file_valid(av[1]) == ERROR)
 		return (msg(STR_PARSE2, TRUE, TRUE, ERROR));
-	return (TRUE);
+	return (SUCCES);
 }

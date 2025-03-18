@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/13 18:04:24 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/18 09:43:29 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,13 @@ int		parsing(int ac, char **av);
 char	*read_file(char *file_path);
 int		is_empty_line(char *line);
 char	*extract_path(char *line);
+
 int		check_file_when_colors_first(char **file, size_t len);
 int		check_file_when_textures_first(char **file, size_t len);
+
+int		process_color_lines(char **file);
+int		process_texture_lines(char **file);
+int		process_map_lines(char **file, size_t len);
 
 t_game	*init(char *map_path);
 
@@ -158,7 +163,7 @@ void	free_file_tab(char **file, size_t len);
 # define SUCCES 0
 
 # define STR_PARSE1 "Use ./cub3D map_name.cub for running the game"
-# define STR_PARSE2 "Invalid map, use .cub extension + check the map syntax"
+# define STR_PARSE2 "Invalid map file, use .cub extension + check error messages"
 
 /* ------------------------------- KEY MAPPING -------------------------------*/
 # define MAC_FORWARD_KEY 13
