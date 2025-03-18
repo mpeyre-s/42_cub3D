@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/15 20:10:47 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/17 19:28:07 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ typedef struct s_data
 	int		map_y;
 	double	pos_x;
 	double	pos_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
 	double	len_x;
 	double	len_y;
 	double	dir_x;
@@ -98,6 +100,7 @@ typedef struct s_data
 	int		step_y;
 	double	angle_increment;
 }				t_data;
+
 
 typedef struct s_map
 {

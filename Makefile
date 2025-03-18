@@ -6,7 +6,7 @@
 #    By: spike <spike@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/07 09:35:02 by mathispeyre       #+#    #+#              #
-#    Updated: 2025/03/11 18:11:16 by spike            ###   ########.fr        #
+#    Updated: 2025/03/17 14:10:16 by spike            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRCS = $(addprefix $(SRCDIR), $(SRC))
 OBJS = $(patsubst $(SRCDIR)%.c, $(OBJDIR)%.o, $(SRCS))
 NAME = cub3D
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 RM = rm -f
 
 LIBFT_DIR = .libft/
