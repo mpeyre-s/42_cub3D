@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/15 19:58:03 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/19 14:15:23 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,9 @@ typedef struct s_data
 	double	dir_y;
 	int		step_x;
 	int		step_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	int		hit_side;
 	double	angle_increment;
 }				t_data;
 
