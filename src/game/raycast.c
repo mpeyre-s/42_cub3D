@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 17:10:33 by spike             #+#    #+#             */
-/*   Updated: 2025/03/19 20:08:01 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/19 20:49:05 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,18 +167,18 @@ double dda_algo(t_player *player, t_data *algo, int **grid)
 	if (algo->hit_side == 0)
 	{
 		if (algo->step_x > 0)
-			algo->pos_x = algo->map_x;
+			algo->pos_x = algo->map_x; // il tape a gauche
 		else
-			algo->pos_x = algo->map_x + 1;
+			algo->pos_x = algo->map_x + 1; // il tape a droite
 
 		algo->pos_y = player->y + (algo->pos_x - player->x) * algo->dir_y / algo->dir_x;
 	}
 	else
 	{
 		if (algo->step_y > 0)
-			algo->pos_y = algo->map_y;
+			algo->pos_y = algo->map_y; // il tape en haut
 		else
-			algo->pos_y = algo->map_y + 1;
+			algo->pos_y = algo->map_y + 1; // il tape en bas
 
 		algo->pos_x = player->x + (algo->pos_y - player->y) * algo->dir_x / algo->dir_y;
 	}
