@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/18 09:43:29 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/19 11:50:34 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define MOVE_SPEED 0.01
 # define ROTATION_SPEED 0.001
 # define PI 3.1415926535897932384626437872
+# define TEXTURE_EXT ".xpm"
 
 /* ------------------------------- STRUCTURES --------------------------------*/
 typedef enum e_os

@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 13:22:02 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/18 09:59:18 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/19 11:59:34 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ int	process_color_lines(char **file)
 	c_flag = 0;
 	f_flag = 0;
 	if (check_line(file[0]) == ERROR)
-		return (msg("Map file, first color line, check ID (C/F) + RGB format",
+		return (msg("Map file 1st color line, check ID (C/F) + RGB",
 			TRUE, TRUE, ERROR));
 	if (check_line(file[1]) == ERROR)
-		return (msg("Map file, second color line, check ID (C/F) + RGB format",
+		return (msg("Map file 2nd color line, check ID (C/F) + RGB",
 			TRUE, TRUE, ERROR));
 	if (file[0][0] == 'F')
 		f_flag++;
@@ -77,5 +77,7 @@ int	process_color_lines(char **file)
 		c_flag++;
 	if (c_flag == 1 && f_flag == 1)
 		return (SUCCES);
+	msg("Map file, Invalid textures IDs, must be only 'C' & 'F'",
+		TRUE, TRUE, ERROR);
 	return (ERROR);
 }
