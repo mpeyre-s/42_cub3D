@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/17 19:28:07 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/19 13:57:28 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include <math.h>
 
 /* ----------------------------- PROGRAM MACROS ------------------------------*/
-# define WINDOW_WIDTH 429
-# define WINDOW_HEIGHT 240
+# define WINDOW_WIDTH 1220
+# define WINDOW_HEIGHT 650
 # define CELL_LENGTH 64
 # define FOV 60
 # define MOVE_SPEED 0.01
@@ -98,6 +98,9 @@ typedef struct s_data
 	double	dir_y;
 	int		step_x;
 	int		step_y;
+	int		hit_side;
+	int		hit_direction;
+	int		current_ray;
 	double	angle_increment;
 }				t_data;
 
