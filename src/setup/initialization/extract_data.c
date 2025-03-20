@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 11:31:20 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/20 13:03:32 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/20 16:32:12 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,33 @@ static char	**process_extraction(char *path)
 
 static int	data_checkup(t_init	*data)
 {
-	(void)data;
+	if (!data->floor || !data->ceiling || !data->south_texture
+		|| !data->north_texture || !data->east_texture
+		|| !data->west_texture || !data->grid)
+		return (msg("Data checkup", TRUE, TRUE, ERROR));
 	return (SUCCES);
 }
 
-static int	free_init(t_init *data)
+int	free_init(t_init *data)
 {
-	free(data->floor);
-	free(data->ceiling);
-	free(data->south_texture);
-	free(data->north_texture);
-	free(data->east_texture);
-	free(data->west_texture);
-	free_split(data->grid);
+	if (!data)
+		return (ERROR);
+	if (data->floor)
+		free(data->floor);
+	if (data->ceiling)
+		free(data->ceiling);
+	if (data->north_texture)
+		free(data->north_texture);
+	if (data->south_texture)
+		free(data->south_texture);
+	if (data->east_texture)
+		free(data->east_texture);
+	if (data->west_texture)
+		free(data->west_texture);
+	if (data->grid)
+		free_split(data->grid);
 	free(data);
-	return (0);
+	return (SUCCES);
 }
 
 t_init	*init_data(char *path)
@@ -73,6 +85,8 @@ t_init	*init_data(char *path)
 	data->east_texture = get_east_texture(file);
 	data->west_texture = get_west_texture(file);
 	data->grid = get_map_grid(file);
+	data->width = get_map_width(file);
+	data->height = get_map_height(file);
 	if (data_checkup(data) == ERROR)
 		return (free_init(data), free_split(file), NULL);
 	return (free_split(file), data);

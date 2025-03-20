@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/20 14:44:22 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/20 16:00:21 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,13 @@ typedef enum e_action
 	TURN_RIGHT
 }				t_action;
 
+typedef struct s_rgb
+{
+	uint8_t	red;
+	uint8_t	green;
+	uint8_t	blue;
+}				t_rgb;
+
 typedef struct s_mlx
 {
 	void	*mlx;
@@ -71,7 +78,8 @@ typedef struct s_map
 	int		cell_height;
 	int		px_width;
 	int		px_height;
-	int		ceiling_color[3];
+	t_rgb	*floor;
+	t_rgb	*ceiling;
 	int		floor_color[3];
 	char	*NO_path;
 	char	*SO_path;
@@ -107,13 +115,6 @@ typedef struct s_game
 	t_keys		*keys;
 }				t_game;
 
-typedef struct s_rgb
-{
-	uint8_t	red;
-	uint8_t	green;
-	uint8_t	blue;
-}				t_rgb;
-
 typedef struct s_init
 {
 	t_rgb	*floor;
@@ -123,6 +124,8 @@ typedef struct s_init
 	char	*east_texture;
 	char	*west_texture;
 	char	**grid;
+	int		width;
+	int		height;
 }				t_init;
 
 /* -------------------------- FUNCTIONS PROTOTYPES ---------------------------*/
@@ -152,6 +155,8 @@ char	*get_north_texture(char **file);
 char	*get_east_texture(char **file);
 char	*get_west_texture(char **file);
 char	**get_map_grid(char **file);
+int		get_map_width(char **file);
+int		get_map_height(char **file);
 
 t_game	*init(char *map_path);
 
@@ -186,6 +191,7 @@ t_os	detect_os(void);
 char	**convert_content(char *content);
 void	free_file_tab(char **file, size_t len);
 void	free_split(char **split);
+int		free_init(t_init *data);
 uint8_t	ft_atouint8(char *str);
 
 /* --------------------------- DEVELOPMENT MACROS ----------------------------*/
