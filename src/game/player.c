@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
+/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 16:26:26 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/11 11:10:47 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/20 13:50:29 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ void	move_player(t_game *game, t_action action)
 void	rotate_player(t_game *game, t_action action)
 {
 	if (action == TURN_LEFT)
-		game->player->rotation -= (180 / PI) * ROTATION_SPEED;
+		game->player->rotation -= ROTATION_SPEED;
 	else if (action == TURN_RIGHT)
-		game->player->rotation += (180 / PI) * ROTATION_SPEED;
+		game->player->rotation += ROTATION_SPEED;
 	game->player->dir_x = cos(game->player->rotation);
 	game->player->dir_y = sin(game->player->rotation);
 	update_map(game);
