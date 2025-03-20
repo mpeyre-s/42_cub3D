@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:55:12 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/20 16:32:35 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/20 16:45:00 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,7 @@ t_mlx	*init_mlx(void)
 t_map	*init_map(t_init *data)
 {
 	t_map	*map;
-	int		i;
-	int		j;
 
-	(void)data;
 	map = malloc(sizeof(t_map) * 1);
 	if (!map)
 		return (NULL);
@@ -50,23 +47,9 @@ t_map	*init_map(t_init *data)
 	map->SO_path = ft_strdup(data->south_texture);
 	map->WE_path = ft_strdup(data->west_texture);
 	map->EA_path = ft_strdup(data->east_texture);
-	map->grid = malloc(sizeof(int *) * map->height);
+	map->grid = init_grid(data, map->width, map->height);
 	if (!map->grid)
 		return (NULL);
-	i = 0;
-	while (i < map->height)
-	{
-		map->grid[i] = malloc(sizeof(int) * map->width);
-		if (!map->grid[i])
-			return (NULL);
-		j = 0;
-		while (j < map->width)
-		{
-			map->grid[i][j] = data->grid[i][j] - '0';
-			j++;
-		}
-		i++;
-	}
 	return (map);
 }
 

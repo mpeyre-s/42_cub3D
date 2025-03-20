@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/20 16:00:21 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/20 17:00:12 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,7 @@ int		get_map_width(char **file);
 int		get_map_height(char **file);
 
 t_game	*init(char *map_path);
+int		**init_grid(t_init *data, int width, int height);
 
 int		start_game(t_game *game);
 void	update_map(t_game *game);

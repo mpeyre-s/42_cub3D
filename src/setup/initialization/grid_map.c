@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 11:51:42 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/20 16:33:45 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/20 16:45:09 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,30 @@ int	get_map_height(char **file)
 	if (i == tab_len)
 		return (0);
 	return ((int)tab_len - i);
+}
+
+int	**init_grid(t_init *data, int width, int height)
+{
+	int	**grid;
+	int	i;
+	int	j;
+
+	grid = malloc(sizeof(int *) * height);
+	if (!grid)
+		return (NULL);
+	i = 0;
+	while (i < height)
+	{
+		grid[i] = malloc(sizeof(int) * width);
+		if (!grid[i])
+			return (NULL);
+		j = 0;
+		while (j < width)
+		{
+			grid[i][j] = data->grid[i][j] - '0';
+			j++;
+		}
+		i++;
+	}
+	return (grid);
 }
