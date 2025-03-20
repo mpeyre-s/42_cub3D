@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/19 11:50:34 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/20 14:44:22 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,24 @@ typedef struct s_game
 	t_keys		*keys;
 }				t_game;
 
+typedef struct s_rgb
+{
+	uint8_t	red;
+	uint8_t	green;
+	uint8_t	blue;
+}				t_rgb;
+
+typedef struct s_init
+{
+	t_rgb	*floor;
+	t_rgb	*ceiling;
+	char	*south_texture;
+	char	*north_texture;
+	char	*east_texture;
+	char	*west_texture;
+	char	**grid;
+}				t_init;
+
 /* -------------------------- FUNCTIONS PROTOTYPES ---------------------------*/
 int		msg(char *msg, int endl, int is_error, int value);
 int		print_ascii_art(void);
@@ -123,6 +141,17 @@ int		check_file_when_textures_first(char **file, size_t len);
 int		process_color_lines(char **file);
 int		process_texture_lines(char **file);
 int		process_map_lines(char **file, size_t len);
+
+size_t	tab_of_tab_len(char **tab);
+
+t_init	*init_data(char *path);
+t_rgb	*get_floor_rgb(char **file);
+t_rgb	*get_ceiling_rgb(char **file);
+char	*get_south_texture(char **file);
+char	*get_north_texture(char **file);
+char	*get_east_texture(char **file);
+char	*get_west_texture(char **file);
+char	**get_map_grid(char **file);
 
 t_game	*init(char *map_path);
 
@@ -156,6 +185,8 @@ char	*ft_strstr(const char *haystack, const char *needle);
 t_os	detect_os(void);
 char	**convert_content(char *content);
 void	free_file_tab(char **file, size_t len);
+void	free_split(char **split);
+uint8_t	ft_atouint8(char *str);
 
 /* --------------------------- DEVELOPMENT MACROS ----------------------------*/
 # define TRUE 1

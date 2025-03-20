@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:55:12 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/17 13:12:33 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/20 12:54:35 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ t_mlx	*init_mlx(void)
 	return (mlx);
 }
 
-t_map	*init_map(char *map_path)
+t_map	*init_map(t_init *data)
 {
 	t_map	*map;
 	int		i;
 
-	(void)map_path;
+	(void)data;
 	map = malloc(sizeof(t_map) * 1);
 	if (!map)
 		return (NULL);
@@ -118,16 +118,46 @@ t_keys	*init_keys(void)
 	return (keys);
 }
 
+void	print_tdata(t_init *data)
+{
+	printf("\n----- Map Data -----\n");
+	printf("Floor RGB: %d, %d, %d\n", data->floor->red, data->floor->green, data->floor->blue);
+	printf("Ceiling RGB: %d, %d, %d\n", data->ceiling->red, data->ceiling->green, data->ceiling->blue);
+	printf("Textures:\n");
+	printf("  North: %s\n", data->north_texture ? data->north_texture : "NULL");
+	printf("  South: %s\n", data->south_texture ? data->south_texture : "NULL");
+	printf("  East: %s\n", data->east_texture ? data->east_texture : "NULL");
+	printf("  West: %s\n", data->west_texture ? data->west_texture : "NULL");
+
+	printf("\nMap Grid:\n");
+	if (data->grid)
+	{
+		int i = 0;
+		while (data->grid[i])
+		{
+			printf("  %s\n", data->grid[i]);
+			i++;
+		}
+	}
+	else
+		printf("  Grid is NULL\n");
+	printf("-------------------\n");
+}
+
 t_game	*init(char *map_path)
 {
 	t_game	*game;
+	t_init	*data;
 
 	msg("Program initialization has started", TRUE, FALSE, SUCCES);
 	game = malloc(sizeof(t_game) * 1);
+	data = NULL;
 	if (!game)
 		return (NULL);
+	data = init_data(map_path);
+	print_tdata(data);
 	game->mlx = init_mlx();
-	game->map = init_map(map_path);
+	game->map = init_map(data);
 	game->player = init_player(game->map->width, game->map->height);
 	game->keys = init_keys();
 	if (!game->mlx || !game->map || !game->player || !game->keys)
