@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/20 17:00:12 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/20 17:13:52 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,11 @@ typedef struct s_init
 	char	**grid;
 	int		width;
 	int		height;
+	double	x;
+	double	y;
+	double	dir_x;
+	double	dir_y;
+	double	rotation;
 }				t_init;
 
 /* -------------------------- FUNCTIONS PROTOTYPES ---------------------------*/
@@ -157,6 +162,11 @@ char	*get_west_texture(char **file);
 char	**get_map_grid(char **file);
 int		get_map_width(char **file);
 int		get_map_height(char **file);
+double	get_x_pos(char **file);
+double	get_y_pos(char **file);
+double	get_dirx(char **file);
+double	get_diry(char **file);
+double	get_rotation(char **file);
 
 t_game	*init(char *map_path);
 int		**init_grid(t_init *data, int width, int height);

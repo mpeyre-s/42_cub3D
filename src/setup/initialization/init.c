@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:55:12 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/20 16:45:00 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/20 17:29:01 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,18 @@ t_map	*init_map(t_init *data)
 	return (map);
 }
 
-t_player	*init_player(int map_width, int map_height)
+t_player	*init_player(t_init *data)
 {
 	t_player	*player;
 
 	player = malloc(sizeof(t_player) * 1);
 	if (!player)
 		return (NULL);
-	player->x = map_width / 2;
-	player->y = map_height / 2;
-	player->rotation = 0;
-	player->dir_x = 1.0;
-	player->dir_y = 0.0;
+	player->x = data->x;
+	player->y = data->y;
+	player->rotation = data->rotation;
+	player->dir_x = data->dir_x;
+	player->dir_y = data->dir_y;
 	return (player);
 }
 
@@ -84,6 +84,32 @@ t_keys	*init_keys(void)
 	return (keys);
 }
 
+// void	print_tdata(t_init *data)
+// {
+// 	if (!data)
+// 	{
+// 		printf("t_init structure is NULL\n");
+// 		return;
+// 	}
+// 	printf("t_init structure:\n");
+// 	printf("  Floor RGB: (%d, %d, %d)\n", data->floor->red, data->floor->green, data->floor->blue);
+// 	printf("  Ceiling RGB: (%d, %d, %d)\n", data->ceiling->red, data->ceiling->green, data->ceiling->blue);
+// 	printf("  South Texture: %s\n", data->south_texture);
+// 	printf("  North Texture: %s\n", data->north_texture);
+// 	printf("  East Texture: %s\n", data->east_texture);
+// 	printf("  West Texture: %s\n", data->west_texture);
+// 	printf("  Map Grid:\n");
+// 	for (int i = 0; data->grid[i]; i++)
+// 		printf("    %s\n", data->grid[i]);
+// 	printf("  Map Width: %d\n", data->width);
+// 	printf("  Map Height: %d\n", data->height);
+// 	printf("  Player X: %.2f\n", data->x);
+// 	printf("  Player Y: %.2f\n", data->y);
+// 	printf("  Player Direction X: %.2f\n", data->dir_x);
+// 	printf("  Player Direction Y: %.2f\n", data->dir_y);
+// 	printf("  Player Rotation: %.2f\n", data->rotation);
+// }
+
 t_game	*init(char *map_path)
 {
 	t_game	*game;
@@ -97,7 +123,7 @@ t_game	*init(char *map_path)
 	data = init_data(map_path);
 	game->mlx = init_mlx();
 	game->map = init_map(data);
-	game->player = init_player(game->map->width, game->map->height);
+	game->player = init_player(data);
 	game->keys = init_keys();
 	free_init(data);
 	return (game);

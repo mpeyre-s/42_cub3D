@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 11:31:20 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/20 16:32:12 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/20 17:18:01 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ static int	data_checkup(t_init	*data)
 {
 	if (!data->floor || !data->ceiling || !data->south_texture
 		|| !data->north_texture || !data->east_texture
-		|| !data->west_texture || !data->grid)
+		|| !data->west_texture || !data->grid || !data->width
+		|| !data->height)
 		return (msg("Data checkup", TRUE, TRUE, ERROR));
 	return (SUCCES);
 }
@@ -87,6 +88,11 @@ t_init	*init_data(char *path)
 	data->grid = get_map_grid(file);
 	data->width = get_map_width(file);
 	data->height = get_map_height(file);
+	data->x = get_x_pos(file + 6);
+	data->y = get_y_pos(file + 6);
+	data->dir_x = get_dirx(file + 6);
+	data->dir_y = get_diry(file + 6);
+	data->rotation = get_rotation(file + 6);
 	if (data_checkup(data) == ERROR)
 		return (free_init(data), free_split(file), NULL);
 	return (free_split(file), data);
