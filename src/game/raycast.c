@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 17:10:33 by spike             #+#    #+#             */
-/*   Updated: 2025/03/19 20:49:05 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/20 10:32:55 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void print_colonne(t_game *game, int x, double wall_height, t_data *algo)
 
     // Déterminer la couleur du mur en fonction de la direction du rayon
     if (algo->hit_side == 0) // Mur vertical (Est/Ouest)
-        color = 0x00FF0000; // Rouge pour les murs Est/Ouest
+        color = 0x008D0000; // Rouge pour les murs Est/Ouest
     else // Mur horizontal (Nord/Sud)
         color = 0x000000FF; // Bleu pour les murs Nord/Sud
 
@@ -139,6 +139,7 @@ double dda_algo(t_player *player, t_data *algo, int **grid)
 
 	while (1)
 	{
+		//print_algo_data(algo);
 		if (algo->len_x < algo->len_y)
 		{
 			algo->hit_side = 0;
@@ -154,7 +155,7 @@ double dda_algo(t_player *player, t_data *algo, int **grid)
 			algo->hit_side = 1;
 			algo->map_y += algo->step_y;
 			algo->len_y += algo->delta_dist_y;
-			if (algo->step_x > 0)
+			if (algo->step_y > 0)
 				algo->hit_direction = 1;
 			else
 				algo->hit_direction = 0; // 1 = Sud, 0 = Nord
@@ -208,6 +209,8 @@ void raycast(t_game *game, t_player *player, int **grid)
 		algo.dir_y = sin(ray_angle);
 
 		length = dda_algo(player, &algo, grid);
+		if (x == WINDOW_WIDTH / 2)
+			printf("\n\n length from wall = %f\n", length);
 		wall_height = (WINDOW_HEIGHT / length);
 		print_colonne(game, x, wall_height, &algo);
 		x++;

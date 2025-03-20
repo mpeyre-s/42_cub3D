@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:55:12 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/13 16:49:22 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/19 20:58:53 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,8 @@ t_player	*init_player(int map_width, int map_height)
 	player = malloc(sizeof(t_player) * 1);
 	if (!player)
 		return (NULL);
-	player->x = 1;
-	player->y = 1;
+	player->x = 2;
+	player->y = 2;
 	player->rotation = 0;
 	player->dir_x = 1.0;
 	player->dir_y = 0.0;

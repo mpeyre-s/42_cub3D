@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/19 19:57:25 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/19 21:04:45 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include <math.h>
 
 /* ----------------------------- PROGRAM MACROS ------------------------------*/
-# define WINDOW_WIDTH 1280
-# define WINDOW_HEIGHT 720
+# define WINDOW_WIDTH 640
+# define WINDOW_HEIGHT 360
 # define CELL_LENGTH 64
 # define FOV 60
 # define MOVE_SPEED 0.01
