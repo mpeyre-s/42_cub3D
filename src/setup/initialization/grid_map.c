@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 11:51:42 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/20 16:45:09 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/20 17:48:43 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	**init_grid(t_init *data, int width, int height)
 	int	i;
 	int	j;
 
-	grid = malloc(sizeof(int *) * height);
+	grid = malloc(sizeof(int *) * (height + 1));
 	if (!grid)
 		return (NULL);
 	i = 0;
@@ -92,5 +92,6 @@ int	**init_grid(t_init *data, int width, int height)
 		}
 		i++;
 	}
+	grid[i] = NULL;
 	return (grid);
 }

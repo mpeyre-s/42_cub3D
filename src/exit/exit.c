@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:39:35 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/07 18:02:04 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/20 17:49:03 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static void	free_map(t_game *game)
 {
+	int	i;
+
 	if (game->map->NO_path)
 		free(game->map->NO_path);
 	if (game->map->SO_path)
@@ -22,7 +24,20 @@ static void	free_map(t_game *game)
 		free(game->map->WE_path);
 	if (game->map->EA_path)
 		free(game->map->EA_path);
-	//here free grid
+	if (game->map->floor)
+		free(game->map->floor);
+	if (game->map->ceiling)
+		free(game->map->ceiling);
+	if (game->map->grid)
+	{
+		i = 0;
+		while (game->map->grid[i])
+		{
+			free(game->map->grid[i]);
+			i++;
+		}
+		free(game->map->grid);
+	}
 	free(game->map);
 }
 
