@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/21 00:28:09 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/21 14:12:02 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,14 @@ typedef struct s_mlx
 	t_os	os;
 }				t_mlx;
 
+
+typedef struct s_txt
+{
+	void	*img;
+	void	*addr;
+}				t_txt;
+
+
 typedef struct s_map
 {
 	int		width;
@@ -77,6 +85,11 @@ typedef struct s_map
 	char	*WE_path;
 	char	*EA_path;
 	int		**grid;
+
+	t_txt	north;
+	t_txt	south;
+	t_txt	east;
+	t_txt	west;
 }				t_map;
 
 typedef struct s_player

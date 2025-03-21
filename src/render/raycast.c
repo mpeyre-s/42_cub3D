@@ -6,66 +6,66 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 12:24:32 by spike             #+#    #+#             */
-/*   Updated: 2025/03/21 09:46:20 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/21 13:54:17 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-
+typedef struct s_text
+{
+	void	*img;
+	void	*addr;
+}				t_text;
 
 void print_colonne(t_game *game, int x, t_ray *ray)
 {
-    int start;
-    int end;
-    int color;
+	int start;
+	int end;
+	int color;
 
-    start = ray->wall_start;
+	start = ray->wall_start;
 	end = ray->wall_end;
-    // Choisir la couleur selon l'orientation du mur (hit_side)
-    switch (ray->hit_side)
-    {
-        case 1:  // EST
-            color = 0xFF0000;  // Rouge
-            break;
-        case 2:  // OUEST
-            color = 0xCC0000;  // Rouge foncé
-            break;
-        case -1: // NORD
-            color = 0x0000FF;  // Bleu
-            break;
-        case -2: // SUD
-            color = 0x0000CC;  // Bleu foncé
-            break;
-        default:
-            color = 0xFFFFFF;  // Blanc par défaut
-    }
 
-    // Dessiner le plafond (partie supérieure)
-    int y = 0;
-    while (y < start)
-    {
-        // Couleur du plafond (ex: gris clair)
-        print_pixel(game, x, y, 0x333333);
-        y++;
-    }
+	switch (ray->hit_side)
+	{
+		case 1:  // EST
+			color = 0xFF0000;  // Rouge
+			break;
+		case 2:  // OUEST
+			color = 0xCC0000;  // Rouge foncé
+			break;
+		case -1: // NORD
+			color = 0x0000FF;  // Bleu
+			break;
+		case -2: // SUD
+			color = 0x0000CC;  // Bleu foncé
+			break;
+		default:
+			color = 0xFFFFFF;  // Blanc par défaut
+	}
 
-    // Dessiner le mur
-    y = start;
-    while (y < end)
-    {
-        print_pixel(game, x, y, color);
-        y++;
-    }
+	int y = 0;
+	while (y < start)
+	{
+		print_pixel(game, x, y, 0x333333);
+		y++;
+	}
 
-    // Dessiner le sol (partie inférieure)
-    y = end;
-    while (y < WINDOW_HEIGHT)
-    {
-        // Couleur du sol (ex: gris foncé)
-        print_pixel(game, x, y, 0x222222);
-        y++;
-    }
+	y = start;
+	while (y < end)
+	{
+		print_pixel(game, x, y, color);
+		y++;
+	}
+
+	y = end;
+	while (y < WINDOW_HEIGHT)
+	{
+
+		print_pixel(game, x, y, 0x222222);
+		y++;
+	}
 }
 
 
@@ -168,7 +168,8 @@ void	wall_ray_size(t_ray *ray, t_player *player)
 
 void raycast(t_game *game, t_player *player, int **grid)
 {
-	t_ray ray;
+	t_ray	ray;
+	t_text	txt;
 	int x;
 
 	x = 0;
@@ -178,6 +179,7 @@ void raycast(t_game *game, t_player *player, int **grid)
 		dda_algo(&ray, grid);
 		wall_ray_size(&ray, player);
 		print_colonne(game, x, &ray);
+		render_with_text(game, &txt, &ray);
 		x++;
 	}
 }
