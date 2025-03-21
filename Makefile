@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+         #
+#    By: spike <spike@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/07 09:35:02 by mathispeyre       #+#    #+#              #
-#    Updated: 2025/03/10 16:00:52 by mathispeyre      ###   ########.fr        #
+#    Updated: 2025/03/20 15:12:07 by spike            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC = main.c \
 	  exit/print.c exit/exit.c \
-	  game/game.c game/map.c game/player.c \
+	  game/game.c game/map.c game/player.c game/raycast.c \
 	  setup/init.c setup/parsing.c \
 	  window/hooks.c window/mlx.c window/draw.c \
 	  utils/ft.c utils/detection.c

@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 16:26:26 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/20 13:50:29 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/20 13:56:03 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,9 @@ void	rotate_player(t_game *game, t_action action)
 		game->player->rotation += ROTATION_SPEED;
 	game->player->dir_x = cos(game->player->rotation);
 	game->player->dir_y = sin(game->player->rotation);
+
+	game->player->plane_x = -sin(game->player->rotation);
+	game->player->plane_y = cos(game->player->rotation);
+
 	update_map(game);
 }

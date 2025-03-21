@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/18 18:06:24 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/21 00:28:09 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define CELL_LENGTH 64
 # define FOV 60
 # define MOVE_SPEED 0.01
-# define ROTATION_SPEED 0.001
+# define ROTATION_SPEED 0.01
 # define PI 3.1415926535897932384626437872
 
 /* ------------------------------- STRUCTURES --------------------------------*/
@@ -81,12 +81,36 @@ typedef struct s_map
 
 typedef struct s_player
 {
+	char	direction;
 	double	x;
 	double	y;
 	double	dir_x;
 	double	dir_y;
+	double	plane_x;
+	double	plane_y;
 	double	rotation;
 }				t_player;
+
+typedef struct s_ray
+{
+	int		map_x;
+	int		map_y;
+	double	camera_x;
+	double	dir_x;
+	double	dir_y;
+	double	len_x;
+	double	len_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	int		step_x;
+	int		step_y;
+	int		hit_side;
+	double	wall_dist;
+	int		pxl_height;
+	int		wall_start;
+	int		wall_end;
+	double	wall_hit;
+}				t_ray;
 
 typedef struct s_keys
 {
@@ -143,6 +167,9 @@ void	draw_line(t_game *game, int pixel_x, int pixel_y, int dir_end_x, int dir_en
 
 char	*ft_strstr(const char *haystack, const char *needle);
 t_os	detect_os(void);
+
+
+void raycast(t_game *game, t_player *player, int **grid);
 
 /* --------------------------- DEVELOPMENT MACROS ----------------------------*/
 # define TRUE 1
