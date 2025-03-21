@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
+/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 16:26:26 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/11 11:10:47 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/21 15:25:52 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,21 +51,21 @@ int	is_move_possible(t_game *game)
 
 void	move_player(t_game *game, t_action action)
 {
-	double	old_x;
-	double	old_y;
-	double	new_x;
+	// double	old_x;
+	// double	old_y;
+	// double	new_x;
 
-	old_x = game->player->x;
-	old_y = game->player->y;
+	// old_x = game->player->x;
+	// old_y = game->player->y;
 	calculate_move(game, action);
-	new_x = game->player->x;
-	if (is_move_possible(game) == FALSE)
-		game->player->x = old_x;
-	if (is_move_possible(game) == FALSE)
-	{
-		game->player->x = new_x;
-		game->player->y = old_y;
-	}
+	// new_x = game->player->x;
+	//if (is_move_possible(game) == FALSE)
+		//game->player->x = old_x;
+	// //if (is_move_possible(game) == FALSE)
+	// {
+	// 	game->player->x = new_x;
+	// 	game->player->y = old_y;
+	// }
 	update_map(game);
 }
 
