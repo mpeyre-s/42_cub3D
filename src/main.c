@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:43:29 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/09 19:17:58 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/17 14:32:18 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	main(int ac, char **av)
 	print_ascii_art();
 	if (parsing(ac, av) == ERROR)
 		return (EXIT_FAILURE);
+	msg("Map file has been analyzed and is complete/valid", TRUE, FALSE, 0);
 	game = init(av[1]);
 	if (!game)
 		return (msg("Error while initializing the game", TRUE, TRUE, 1));

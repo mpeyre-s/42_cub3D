@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/07 13:55:17 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/07 16:54:54 by mathispeyre      ###   ########.fr       */
+/*   Created: 2025/03/20 12:45:09 by mathispeyre       #+#    #+#             */
+/*   Updated: 2025/03/20 12:45:48 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-static int	is_map_valid(char *map_path)
+void	free_split(char **split)
 {
-	if (!map_path)
-		return (FALSE);
-	return (TRUE);
-}
+	size_t	i;
 
-int	parsing(int ac, char **av)
-{
-	(void)av;
-	if (ac != 2)
-		return (msg(STR_PARSE1, TRUE, TRUE, ERROR));
-	if (is_map_valid(av[1]) == FALSE)
-		return (msg(STR_PARSE2, TRUE, TRUE, ERROR));
-	return (SUCCES);
+	if (!split)
+		return ;
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
 }

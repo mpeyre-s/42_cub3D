@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/18 18:06:24 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/20 17:13:52 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define MOVE_SPEED 0.01
 # define ROTATION_SPEED 0.001
 # define PI 3.1415926535897932384626437872
+# define TEXTURE_EXT ".xpm"
 
 /* ------------------------------- STRUCTURES --------------------------------*/
 typedef enum e_os
@@ -49,6 +50,13 @@ typedef enum e_action
 	TURN_LEFT,
 	TURN_RIGHT
 }				t_action;
+
+typedef struct s_rgb
+{
+	uint8_t	red;
+	uint8_t	green;
+	uint8_t	blue;
+}				t_rgb;
 
 typedef struct s_mlx
 {
@@ -70,7 +78,8 @@ typedef struct s_map
 	int		cell_height;
 	int		px_width;
 	int		px_height;
-	int		ceiling_color[3];
+	t_rgb	*floor;
+	t_rgb	*ceiling;
 	int		floor_color[3];
 	char	*NO_path;
 	char	*SO_path;
@@ -106,14 +115,61 @@ typedef struct s_game
 	t_keys		*keys;
 }				t_game;
 
+typedef struct s_init
+{
+	t_rgb	*floor;
+	t_rgb	*ceiling;
+	char	*south_texture;
+	char	*north_texture;
+	char	*east_texture;
+	char	*west_texture;
+	char	**grid;
+	int		width;
+	int		height;
+	double	x;
+	double	y;
+	double	dir_x;
+	double	dir_y;
+	double	rotation;
+}				t_init;
+
 /* -------------------------- FUNCTIONS PROTOTYPES ---------------------------*/
 int		msg(char *msg, int endl, int is_error, int value);
 int		print_ascii_art(void);
 int		print_keycode_config(t_game *game);
 
 int		parsing(int ac, char **av);
+char	*read_file(char *file_path);
+int		is_empty_line(char *line);
+char	*extract_path(char *line);
+
+int		check_file_when_colors_first(char **file, size_t len);
+int		check_file_when_textures_first(char **file, size_t len);
+
+int		process_color_lines(char **file);
+int		process_texture_lines(char **file);
+int		process_map_lines(char **file, size_t len);
+
+size_t	tab_of_tab_len(char **tab);
+
+t_init	*init_data(char *path);
+t_rgb	*get_floor_rgb(char **file);
+t_rgb	*get_ceiling_rgb(char **file);
+char	*get_south_texture(char **file);
+char	*get_north_texture(char **file);
+char	*get_east_texture(char **file);
+char	*get_west_texture(char **file);
+char	**get_map_grid(char **file);
+int		get_map_width(char **file);
+int		get_map_height(char **file);
+double	get_x_pos(char **file);
+double	get_y_pos(char **file);
+double	get_dirx(char **file);
+double	get_diry(char **file);
+double	get_rotation(char **file);
 
 t_game	*init(char *map_path);
+int		**init_grid(t_init *data, int width, int height);
 
 int		start_game(t_game *game);
 void	update_map(t_game *game);
@@ -143,6 +199,11 @@ void	draw_line(t_game *game, int pixel_x, int pixel_y, int dir_end_x, int dir_en
 
 char	*ft_strstr(const char *haystack, const char *needle);
 t_os	detect_os(void);
+char	**convert_content(char *content);
+void	free_file_tab(char **file, size_t len);
+void	free_split(char **split);
+int		free_init(t_init *data);
+uint8_t	ft_atouint8(char *str);
 
 /* --------------------------- DEVELOPMENT MACROS ----------------------------*/
 # define TRUE 1
@@ -151,7 +212,7 @@ t_os	detect_os(void);
 # define SUCCES 0
 
 # define STR_PARSE1 "Use ./cub3D map_name.cub for running the game"
-# define STR_PARSE2 "Invalid map, use .cub extension + check the map syntax"
+# define STR_PARSE2 "Invalid map file, use .cub extension + check error messages"
 
 /* ------------------------------- KEY MAPPING -------------------------------*/
 # define MAC_FORWARD_KEY 13
