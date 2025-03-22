@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
+/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:55:12 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/20 17:30:53 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/22 15:53:34 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ t_player	*init_player(t_init *data)
 	player->x = data->x;
 	player->y = data->y;
 	player->rotation = data->rotation;
-	player->dir_x = data->dir_x;
-	player->dir_y = data->dir_y;
+	player->direction = data->side;
+	init_player_direction(player);
 	return (player);
 }
 

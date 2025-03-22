@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/20 17:13:52 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/22 16:46:55 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@
 # define WINDOW_HEIGHT 650
 # define CELL_LENGTH 64
 # define FOV 60
+# define FOV_SCALE 0.66
 # define MOVE_SPEED 0.01
-# define ROTATION_SPEED 0.001
+# define ROTATION_SPEED 0.005
 # define PI 3.1415926535897932384626437872
 # define TEXTURE_EXT ".xpm"
 
@@ -90,12 +91,36 @@ typedef struct s_map
 
 typedef struct s_player
 {
+	char	direction;
 	double	x;
 	double	y;
 	double	dir_x;
 	double	dir_y;
+	double	plane_x;
+	double	plane_y;
 	double	rotation;
 }				t_player;
+
+typedef struct s_ray
+{
+	int		map_x;
+	int		map_y;
+	double	camera_x;
+	double	dir_x;
+	double	dir_y;
+	double	len_x;
+	double	len_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	int		step_x;
+	int		step_y;
+	int		hit_side;
+	double	wall_dist;
+	int		pxl_height;
+	int		wall_start;
+	int		wall_end;
+	double	wall_hit;
+}				t_ray;
 
 typedef struct s_keys
 {
@@ -131,6 +156,7 @@ typedef struct s_init
 	double	dir_x;
 	double	dir_y;
 	double	rotation;
+	char	side;
 }				t_init;
 
 /* -------------------------- FUNCTIONS PROTOTYPES ---------------------------*/
@@ -204,6 +230,10 @@ void	free_file_tab(char **file, size_t len);
 void	free_split(char **split);
 int		free_init(t_init *data);
 uint8_t	ft_atouint8(char *str);
+
+void	raycast(t_game *game, t_player *player, int **grid);
+void	init_player_direction(t_player *player);
+char	get_player_side(char **file);
 
 /* --------------------------- DEVELOPMENT MACROS ----------------------------*/
 # define TRUE 1
