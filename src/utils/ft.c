@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:58:28 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/24 12:50:58 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/24 12:52:30 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,5 @@ u_int8_t	ft_atouint8(char *str)
 		return (0);
 	if (num > 255)
 		return (255);
-	return ((uint8_t)num);
+	return ((u_int8_t)num);
 }
