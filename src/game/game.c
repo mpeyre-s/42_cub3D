@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 16:18:21 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/22 15:54:34 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/23 13:57:49 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,6 @@ int	start_game(t_game *game)
 
 void	update_map(t_game *game)
 {
-	//color_fill(game, 0xFFFFFF);
-	//print_grid(game);
-	//fill_grid_with_map(game);
-	//spawn_player(game);
 	raycast(game, game->player, game->map->grid);
 	mlx_put_image_to_window(game->mlx->mlx, game->mlx->win,
 		game->mlx->img, 0, 0);

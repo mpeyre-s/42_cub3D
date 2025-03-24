@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 11:31:20 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/22 15:52:50 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/23 13:51:04 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,6 @@ t_init	*init_data(char *path)
 	data->x = get_x_pos(file + 6);
 	data->y = get_y_pos(file + 6);
 	data->side = get_player_side(file + 6);
-	//data->dir_x = get_dirx(file + 6);
-	//data->dir_y = get_diry(file + 6);
 	data->rotation = get_rotation(file + 6);
 	if (data_checkup(data) == ERROR)
 		return (free_init(data), free_split(file), NULL);

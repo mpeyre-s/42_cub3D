@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
+/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:43:29 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/17 14:32:18 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/24 12:01:18 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	main(int ac, char **av)
 	game = init(av[1]);
 	if (!game)
 		return (msg("Error while initializing the game", TRUE, TRUE, 1));
+	//init_textures(game->map, game);
 	start_game(game);
 	return (msg("Exit...", TRUE, FALSE, EXIT_SUCCESS));
 }

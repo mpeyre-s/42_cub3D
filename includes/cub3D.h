@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/22 16:46:55 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/24 12:00:43 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,21 @@ typedef struct s_mlx
 	t_os	os;
 }				t_mlx;
 
+typedef struct s_txt
+{
+	void	*img;
+	void	*addr;
+	int		width; // width de la texture
+	int		height; // height de la texture
+	int		bpp;
+	int		line_length;
+	int		endian;
+	double	step;
+	int		tex_x;
+	int		tex_y;
+	int		color;
+}				t_txt;
+
 typedef struct s_map
 {
 	int		width;
@@ -81,13 +96,20 @@ typedef struct s_map
 	int		px_height;
 	t_rgb	*floor;
 	t_rgb	*ceiling;
+	int		ceiling_color[3];
 	int		floor_color[3];
 	char	*NO_path;
 	char	*SO_path;
 	char	*WE_path;
 	char	*EA_path;
 	int		**grid;
+
+	t_txt	north;
+	t_txt	south;
+	t_txt	east;
+	t_txt	west;
 }				t_map;
+
 
 typedef struct s_player
 {
@@ -119,7 +141,8 @@ typedef struct s_ray
 	int		pxl_height;
 	int		wall_start;
 	int		wall_end;
-	double	wall_hit;
+	double	wall_norm_x;
+	double	wall_norm_y;
 }				t_ray;
 
 typedef struct s_keys
@@ -234,6 +257,8 @@ uint8_t	ft_atouint8(char *str);
 void	raycast(t_game *game, t_player *player, int **grid);
 void	init_player_direction(t_player *player);
 char	get_player_side(char **file);
+// void	init_textures(t_map *map, t_game *game);
+void	handle_txt(int x, t_map *map, t_game *game, t_ray *ray);
 
 /* --------------------------- DEVELOPMENT MACROS ----------------------------*/
 # define TRUE 1

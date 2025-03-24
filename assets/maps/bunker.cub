@@ -2,10 +2,9 @@
 F 76, 76,76
 C 999,999,9999
 
-
+EA assets/textures/mossy.xpm
 SO assets/textures/mossy.xpm
 NO assets/textures/wood.xpm
-EA assets/textures/stone.xpm
 WE assets/textures/brick.xpm
 
 

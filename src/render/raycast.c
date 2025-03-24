@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 14:19:56 by spike             #+#    #+#             */
-/*   Updated: 2025/03/22 18:00:03 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/24 11:59:48 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	info(t_ray *ray, t_player *player)
 	printf("		Wall distance : %f\n", ray->wall_dist);
 	printf("		Pixel height : %d\n", ray->pxl_height);
 	printf("		Wall start/end : (%d, %d)\n", ray->wall_start, ray->wall_end);
-	printf("		Wall hit position : %f\n", ray->wall_hit);
+	printf("		Wall hit position : %f\n", ray->wall_norm_x);
 	printf("		Hit side : %d\n", ray->hit_side);
 }
 
@@ -54,7 +54,7 @@ void	set_to_zero(t_ray *ray)
 	ray->pxl_height = 0;
 	ray->wall_start = 0;
 	ray->wall_end = 0;
-	ray->wall_hit = 0.0;
+	ray->wall_norm_x = 0.0;
 }
 
 void print_colonne(t_game *game, int x, t_ray *ray)
@@ -164,9 +164,9 @@ void	dda_algo(t_ray *ray, int **grid)
 			ray->map_x += ray->step_x;
 			ray->len_x += ray->delta_dist_x;
 			if (ray->step_x > 0)
-				ray->hit_side = 1; // EST
+				ray->hit_side = 1; // WEST
 			else
-				ray->hit_side = 2; // WEST
+				ray->hit_side = 2; // EAST
 		}
 		else
 		{
@@ -177,9 +177,9 @@ void	dda_algo(t_ray *ray, int **grid)
 			else
 				ray->hit_side = -2; // North
 		}
-		if (ray->map_y < 0.25 || ray->map_x < 0.25
-			|| ray->map_y > 20 - 0.25
-			|| ray->map_x > 20 - 1.25)
+		if (ray->map_y < 0 || ray->map_x < 0
+			|| ray->map_y > 100
+			|| ray->map_x > 100)
 			break ;
 		if (grid[ray->map_y][ray->map_x] == 1)
 			break;
@@ -204,11 +204,11 @@ void	wall_ray_size(t_ray *ray, t_player *player)
 		ray->wall_end = WINDOW_HEIGHT - 1;
 
 	if (ray->hit_side == 1 || ray->hit_side == 2) // Mur Est/Ouest
-		ray->wall_hit = player->y + ray->wall_dist * ray->dir_y;
+		ray->wall_norm_x = player->y + ray->wall_dist * ray->dir_y;
 	else // Mur Nord/Sud
-		ray->wall_hit = player->x + ray->wall_dist * ray->dir_x;
+		ray->wall_norm_x = player->x + ray->wall_dist * ray->dir_x;
 
-	ray->wall_hit -= floor(ray->wall_hit);
+	ray->wall_norm_x -= floor(ray->wall_norm_x);
 }
 
 void raycast(t_game *game, t_player *player, int **grid)
@@ -217,7 +217,6 @@ void raycast(t_game *game, t_player *player, int **grid)
 	int x;
 
 	x = 0;
-	info(&ray, player);
 	while (x < WINDOW_WIDTH)
 	{
 		init_ray(x, &ray, player);
@@ -226,6 +225,7 @@ void raycast(t_game *game, t_player *player, int **grid)
 		if (x == 1)
 			info(&ray, player);
 		print_colonne(game, x, &ray);
+		//handle_txt(x, game->map, game, &ray);
 		x++;
 	}
 }
