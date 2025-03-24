@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/23 12:51:02 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/24 12:27:52 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include <math.h>
 
 /* ----------------------------- PROGRAM MACROS ------------------------------*/
-# define WINDOW_WIDTH 1920
-# define WINDOW_HEIGHT 1080
+# define WINDOW_WIDTH 1080
+# define WINDOW_HEIGHT 720
 # define CELL_LENGTH 64
 # define FOV 60
 # define MOVE_SPEED 0.01
@@ -68,6 +68,7 @@ typedef struct s_mlx
 	int		line_length;
 	int		endian;
 	t_os	os;
+	size_t	frames;
 }				t_mlx;
 
 typedef struct s_map

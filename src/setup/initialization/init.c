@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:55:12 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/20 17:30:53 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/24 12:28:18 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_mlx	*init_mlx(void)
 	mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bits_per_pixel,
 			&mlx->line_length, &mlx->endian);
 	mlx->os = detect_os();
+	mlx->frames = 1;
 	return (mlx);
 }
 

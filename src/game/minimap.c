@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:46:30 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/23 13:00:18 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/23 13:33:45 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,68 @@ static void	print_player(t_game *game)
 	print_player_direction(game, start_dir, end_dir);
 }
 
+static int	get_cell_color(t_game *game, int grid_x, int grid_y)
+{
+	if (grid_x >= 0 && grid_x < game->map->width &&
+		grid_y >= 0 && grid_y < game->map->height &&
+		game->map->grid[grid_y][grid_x] == 1)
+		return (0x1A3246);
+	return (0x4A7A99);
+}
+
+static void	draw_cell(t_game *game, int grid_x, int grid_y, int cell_size)
+{
+	int		coords[2];
+	float	player_x;
+	float	player_y;
+	float	offset_x;
+	float	offset_y;
+
+	player_x = game->player->x;
+	player_y = game->player->y;
+	offset_x = player_x - floor(player_x) - 0.5;
+	offset_y = player_y - floor(player_y) - 0.5;
+
+	coords[0] = (WINDOW_WIDTH / 50) + ((grid_x - floor(player_x)) - offset_x + 2) * cell_size;
+	coords[1] = (WINDOW_WIDTH / 50) + ((grid_y - floor(player_y)) - offset_y + 2) * cell_size;
+	draw_square(game, coords, cell_size, get_cell_color(game, grid_x, grid_y));
+}
+
+static void	draw_minimap_grid(t_game *game, int cell_size)
+{
+	int		i;
+	int		j;
+	float	player_x;
+	float	player_y;
+	int		grid_x;
+	int		grid_y;
+
+	player_x = game->player->x;
+	player_y = game->player->y;
+	i = -3;
+	while (++i <= 2)
+	{
+		j = -3;
+		while (++j <= 2)
+		{
+			grid_x = floor(player_x) + j;
+			grid_y = floor(player_y) + i;
+			draw_cell(game, grid_x, grid_y, cell_size);
+		}
+	}
+}
+
 void	print_minimap(t_game *game)
 {
 	int	coords[2];
+	int	cell_size;
 
 	coords[0] = WINDOW_WIDTH / 50;
 	coords[1] = WINDOW_WIDTH / 50;
 	draw_square(game, coords, WINDOW_WIDTH / 6, 0x32506C);
-	// print squares (5x5 : 4 cells around player + center)
+
+	cell_size = (WINDOW_WIDTH / 6) / 5;
+	draw_minimap_grid(game, cell_size);
+
 	print_player(game);
 }
