@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/24 12:27:52 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/24 12:49:54 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ typedef enum e_action
 
 typedef struct s_rgb
 {
-	uint8_t	red;
-	uint8_t	green;
-	uint8_t	blue;
+	u_int8_t	red;
+	u_int8_t	green;
+	u_int8_t	blue;
 }				t_rgb;
 
 typedef struct s_mlx
@@ -254,7 +254,7 @@ char	**convert_content(char *content);
 void	free_file_tab(char **file, size_t len);
 void	free_split(char **split);
 int		free_init(t_init *data);
-uint8_t	ft_atouint8(char *str);
+u_int8_t	ft_atouint8(char *str);
 
 void	raycast(t_game *game, t_player *player, int **grid);
 void	init_player_direction(t_player *player);
