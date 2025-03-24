@@ -260,7 +260,7 @@ u_int8_t	ft_atouint8(char *str);
 void	raycast(t_game *game, t_player *player, int **grid);
 void	init_player_direction(t_player *player);
 char	get_player_side(char **file);
-// void	init_textures(t_map *map, t_game *game);
+void	init_textures(t_map *map, t_game *game);
 void	handle_txt(int x, t_map *map, t_game *game, t_ray *ray);
 
 /* --------------------------- DEVELOPMENT MACROS ----------------------------*/

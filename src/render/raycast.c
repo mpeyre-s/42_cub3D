@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 14:19:56 by spike             #+#    #+#             */
-/*   Updated: 2025/03/24 11:59:48 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/24 13:43:16 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,57 +56,6 @@ void	set_to_zero(t_ray *ray)
 	ray->wall_end = 0;
 	ray->wall_norm_x = 0.0;
 }
-
-void print_colonne(t_game *game, int x, t_ray *ray)
-{
-	int start;
-	int end;
-	int color;
-
-	start = ray->wall_start;
-	end = ray->wall_end;
-
-	switch (ray->hit_side)
-	{
-		case 1:  // EST
-			color = 0xFF0000;  // Rouge
-			break;
-		case 2:  // OUEST
-			color = 0xCC0000;  // Rouge foncé
-			break;
-		case -1: // NORD
-			color = 0x0000FF;  // Bleu
-			break;
-		case -2: // SUD
-			color = 0x0000CC;  // Bleu foncé
-			break;
-		default:
-			color = 0xFFFFFF;  // Blanc par défaut
-	}
-
-	int y = 0;
-	while (y < start)
-	{
-		print_pixel(game, x, y, 0x333333);
-		y++;
-	}
-
-	y = start;
-	while (y < end)
-	{
-		print_pixel(game, x, y, color);
-		y++;
-	}
-
-	y = end;
-	while (y < WINDOW_HEIGHT)
-	{
-
-		print_pixel(game, x, y, 0x222222);
-		y++;
-	}
-}
-
 
 void	init_len_ray(t_ray *ray, t_player *player)
 {
@@ -224,8 +173,8 @@ void raycast(t_game *game, t_player *player, int **grid)
 		wall_ray_size(&ray, player);
 		if (x == 1)
 			info(&ray, player);
-		print_colonne(game, x, &ray);
-		//handle_txt(x, game->map, game, &ray);
+		//print_colonne(game, x, &ray);
+		handle_txt(x, game->map, game, &ray);
 		x++;
 	}
 }

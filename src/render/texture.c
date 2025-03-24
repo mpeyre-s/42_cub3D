@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 14:21:29 by spike             #+#    #+#             */
-/*   Updated: 2025/03/24 11:56:04 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/24 13:38:47 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,50 @@ void	init_tex_x(t_map *map, t_ray *ray)
 		map->west.tex_x = (int)(ray->wall_norm_x * map->west.width);
 }
 
+int	get_pixel_from_texture(t_txt *texture, int x, int y)
+{
+	char	*pixel;
+	int		color;
+
+	if (x < 0 || x >= texture->width || y < 0 || y >= texture->height)
+		return (0);
+
+	pixel = (char *)texture->addr + (y * texture->line_length + x * (texture->bpp / 8));
+	color = *(int *)pixel;
+
+	return (color);
+}
+
+int	select_texture_pixel(int y, t_txt *texture, t_ray *ray)
+{
+	int	pixel_x;
+	int	pixel_y;
+	int	color;
+
+	pixel_x = (int)(ray->wall_norm_x * texture->width);
+	if (pixel_x < 0)
+		pixel_x = 0;
+	if (pixel_x >= texture->width)
+		pixel_x = texture->width - 1;
+
+	pixel_y = (int)(((float)(y - ray->wall_start) / ray->pxl_height) * texture->height);
+	if (pixel_y < 0)
+		pixel_y = 0;
+	if (pixel_y >= texture->height)
+		pixel_y = texture->height - 1;
+
+	// Accéder à la couleur dans la texture (tableau 1D)
+	color = get_pixel_from_texture(texture, pixel_x, pixel_y);
+
+	return color;
+}
+
 void	render_texture(int x, t_game *game, t_txt *texture, t_ray *ray)
 {
-	//double	step;
 	int		y;
-	//double	tex_pos;
+	int		color;
 
-	//step = texture->height / ray->pxl_height;
-	(void)texture;
 	y = 0;
-	//tex_pos = 0;
 	while (y < ray->wall_start)
 	{
 		print_pixel(game, x, y, 0x333333);
@@ -43,7 +77,8 @@ void	render_texture(int x, t_game *game, t_txt *texture, t_ray *ray)
 	y = ray->wall_start;
 	while (y < ray->wall_end)
 	{
-		print_pixel(game, x, y, 0x0000CC);
+		color = select_texture_pixel(y, texture, ray);
+		print_pixel(game, x, y, color);
 		y++;
 	}
 
