@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/24 12:49:54 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/24 13:34:07 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,6 +220,7 @@ double	get_rotation(char **file);
 
 t_game	*init(char *map_path);
 int		**init_grid(t_init *data, int width, int height);
+t_map	*init_map(t_init *data);
 
 int		start_game(t_game *game);
 void	update_map(t_game *game);

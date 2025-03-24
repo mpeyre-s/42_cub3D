@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:55:12 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/22 15:53:34 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/24 13:31:34 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,31 +27,6 @@ t_mlx	*init_mlx(void)
 	mlx->os = detect_os();
 	mlx->frames = 1;
 	return (mlx);
-}
-
-t_map	*init_map(t_init *data)
-{
-	t_map	*map;
-
-	map = malloc(sizeof(t_map) * 1);
-	if (!map)
-		return (NULL);
-	map->width = data->width;
-	map->height = data->height;
-	map->cell_width = CELL_LENGTH;
-	map->cell_height = CELL_LENGTH;
-	map->px_width = map->width * map->cell_width;
-	map->px_height = map->height * map->cell_height;
-	map->ceiling = data->ceiling;
-	map->floor = data->floor;
-	map->NO_path = ft_strdup(data->north_texture);
-	map->SO_path = ft_strdup(data->south_texture);
-	map->WE_path = ft_strdup(data->west_texture);
-	map->EA_path = ft_strdup(data->east_texture);
-	map->grid = init_grid(data, map->width, map->height);
-	if (!map->grid)
-		return (NULL);
-	return (map);
 }
 
 t_player	*init_player(t_init *data)
