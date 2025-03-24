@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/24 12:00:43 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/24 12:20:41 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,7 +257,7 @@ uint8_t	ft_atouint8(char *str);
 void	raycast(t_game *game, t_player *player, int **grid);
 void	init_player_direction(t_player *player);
 char	get_player_side(char **file);
-// void	init_textures(t_map *map, t_game *game);
+void	init_textures(t_map *map, t_game *game);
 void	handle_txt(int x, t_map *map, t_game *game, t_ray *ray);
 
 /* --------------------------- DEVELOPMENT MACROS ----------------------------*/
