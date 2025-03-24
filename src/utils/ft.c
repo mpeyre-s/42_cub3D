@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:58:28 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/20 14:53:21 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/24 12:52:30 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ long	ft_strol(const char *str, char **endptr, int base)
  * @param str The string to convert
  * @return The converted unsigned 8-bit integer, or 0 if the conversion fails
  */
-uint8_t	ft_atouint8(char *str)
+u_int8_t	ft_atouint8(char *str)
 {
 	int		num;
 	char	*endptr;
@@ -99,5 +99,5 @@ uint8_t	ft_atouint8(char *str)
 		return (0);
 	if (num > 255)
 		return (255);
-	return ((uint8_t)num);
+	return ((u_int8_t)num);
 }

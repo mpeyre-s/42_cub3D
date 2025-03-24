@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:55:24 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/10 16:53:10 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/24 12:30:17 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	key_press(int keycode, t_game *game)
 		game->keys->rotate_left = 1;
 	else if (keycode == MAC_RIGHT_ARROW || keycode == LIN_RIGHT_ARROW)
 		game->keys->rotate_right = 1;
+	game->mlx->frames = 2;
 	return (SUCCES);
 }
 

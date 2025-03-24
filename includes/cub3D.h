@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/24 12:20:41 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/24 13:34:07 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include <math.h>
 
 /* ----------------------------- PROGRAM MACROS ------------------------------*/
-# define WINDOW_WIDTH 1220
-# define WINDOW_HEIGHT 650
+# define WINDOW_WIDTH 1080
+# define WINDOW_HEIGHT 720
 # define CELL_LENGTH 64
 # define FOV 60
 # define FOV_SCALE 0.66
@@ -54,9 +54,9 @@ typedef enum e_action
 
 typedef struct s_rgb
 {
-	uint8_t	red;
-	uint8_t	green;
-	uint8_t	blue;
+	u_int8_t	red;
+	u_int8_t	green;
+	u_int8_t	blue;
 }				t_rgb;
 
 typedef struct s_mlx
@@ -69,6 +69,7 @@ typedef struct s_mlx
 	int		line_length;
 	int		endian;
 	t_os	os;
+	size_t	frames;
 }				t_mlx;
 
 typedef struct s_txt
@@ -219,6 +220,7 @@ double	get_rotation(char **file);
 
 t_game	*init(char *map_path);
 int		**init_grid(t_init *data, int width, int height);
+t_map	*init_map(t_init *data);
 
 int		start_game(t_game *game);
 void	update_map(t_game *game);
@@ -242,9 +244,10 @@ int		destroy_mlx(t_game *game);
 
 void	print_pixel(t_game *game, int x, int y, unsigned int color);
 void	color_fill(t_game *game, unsigned int color);
-void	draw_ellipse(t_game *game, int start_x, int start_y, int size);
-void	draw_square(t_game *game, int start_x, int start_y, int size);
-void	draw_line(t_game *game, int pixel_x, int pixel_y, int dir_end_x, int dir_end_y, unsigned int color);
+void	draw_square(t_game *game, int *coords, int size, int color);
+void	draw_line(t_game *game, int *start, int *end);
+
+void	print_minimap(t_game *game);
 
 char	*ft_strstr(const char *haystack, const char *needle);
 t_os	detect_os(void);
@@ -252,7 +255,7 @@ char	**convert_content(char *content);
 void	free_file_tab(char **file, size_t len);
 void	free_split(char **split);
 int		free_init(t_init *data);
-uint8_t	ft_atouint8(char *str);
+u_int8_t	ft_atouint8(char *str);
 
 void	raycast(t_game *game, t_player *player, int **grid);
 void	init_player_direction(t_player *player);

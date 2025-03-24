@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_data.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 11:31:20 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/23 13:51:04 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/24 13:14:03 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,10 @@ int	free_init(t_init *data)
 		return (ERROR);
 	if (data->floor)
 		free(data->floor);
+	data->floor = NULL;
 	if (data->ceiling)
 		free(data->ceiling);
+	data->ceiling = NULL;
 	if (data->north_texture)
 		free(data->north_texture);
 	if (data->south_texture)
