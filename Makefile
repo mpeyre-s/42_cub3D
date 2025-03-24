@@ -12,7 +12,7 @@
 
 SRC = main.c \
 	  exit/print.c exit/exit.c \
-	  game/game.c game/map.c game/player.c \
+	  game/game.c game/minimap.c game/player.c \
 	  render/raycast.c render/texture.c \
 	  setup/initialization/init.c setup/initialization/extract_data.c setup/initialization/grid_map.c \
 	  setup/initialization/rgb.c setup/initialization/textures.c setup/initialization/player.c setup/initialization/init_player.c \

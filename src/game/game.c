@@ -24,6 +24,7 @@ int	start_game(t_game *game)
 void	update_map(t_game *game)
 {
 	raycast(game, game->player, game->map->grid);
+  print_minimap(game);
 	mlx_put_image_to_window(game->mlx->mlx, game->mlx->win,
 		game->mlx->img, 0, 0);
 }

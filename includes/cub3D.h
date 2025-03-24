@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/24 12:00:43 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/24 12:27:52 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include <math.h>
 
 /* ----------------------------- PROGRAM MACROS ------------------------------*/
-# define WINDOW_WIDTH 1220
-# define WINDOW_HEIGHT 650
+# define WINDOW_WIDTH 1080
+# define WINDOW_HEIGHT 720
 # define CELL_LENGTH 64
 # define FOV 60
 # define FOV_SCALE 0.66
@@ -69,6 +69,7 @@ typedef struct s_mlx
 	int		line_length;
 	int		endian;
 	t_os	os;
+	size_t	frames;
 }				t_mlx;
 
 typedef struct s_txt
@@ -242,9 +243,10 @@ int		destroy_mlx(t_game *game);
 
 void	print_pixel(t_game *game, int x, int y, unsigned int color);
 void	color_fill(t_game *game, unsigned int color);
-void	draw_ellipse(t_game *game, int start_x, int start_y, int size);
-void	draw_square(t_game *game, int start_x, int start_y, int size);
-void	draw_line(t_game *game, int pixel_x, int pixel_y, int dir_end_x, int dir_end_y, unsigned int color);
+void	draw_square(t_game *game, int *coords, int size, int color);
+void	draw_line(t_game *game, int *start, int *end);
+
+void	print_minimap(t_game *game);
 
 char	*ft_strstr(const char *haystack, const char *needle);
 t_os	detect_os(void);

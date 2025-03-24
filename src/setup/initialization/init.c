@@ -25,6 +25,7 @@ t_mlx	*init_mlx(void)
 	mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bits_per_pixel,
 			&mlx->line_length, &mlx->endian);
 	mlx->os = detect_os();
+	mlx->frames = 1;
 	return (mlx);
 }
 
