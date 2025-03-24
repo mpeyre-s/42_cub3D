@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
+/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 17:03:48 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/20 17:27:39 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/23 13:51:38 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,50 +50,6 @@ double	get_y_pos(char **file)
 	return (0);
 }
 
-double	get_dirx(char **file)
-{
-	size_t	i;
-	size_t	j;
-
-	i = -1;
-	while (file[++i])
-	{
-		j = -1;
-		while (file[i][++j])
-		{
-			if (file[i][j] == 'E')
-				return (1.0);
-			else if (file[i][j] == 'W')
-				return (-1.0);
-			else if (file[i][j] == 'N' || file[i][j] == 'S')
-				return (0.0);
-		}
-	}
-	return (0.0);
-}
-
-double	get_diry(char **file)
-{
-	size_t	i;
-	size_t	j;
-
-	i = -1;
-	while (file[++i])
-	{
-		j = -1;
-		while (file[i][++j])
-		{
-			if (file[i][j] == 'S')
-				return (1.0);
-			else if (file[i][j] == 'N')
-				return (-1.0);
-			else if (file[i][j] == 'E' || file[i][j] == 'W')
-				return (0.0);
-		}
-	}
-	return (0.0);
-}
-
 double	get_rotation(char **file)
 {
 	size_t	i;
@@ -116,4 +72,27 @@ double	get_rotation(char **file)
 		}
 	}
 	return (0.0);
+}
+char get_player_side(char **file)
+{
+	size_t	i;
+	size_t	j;
+
+	i = -1;
+	while (file[++i])
+	{
+		j = -1;
+		while (file[i][++j])
+		{
+			if (file[i][j] == 'N')
+				return ('N');
+			else if (file[i][j] == 'S')
+				return ('S');
+			else if (file[i][j] == 'E')
+				return ('E');
+			else if (file[i][j] == 'W')
+				return ('W');
+		}
+	}
+	return ('z');
 }

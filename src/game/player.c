@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
+/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 16:26:26 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/11 11:10:47 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/22 17:55:05 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,22 @@ void	move_player(t_game *game, t_action action)
 void	rotate_player(t_game *game, t_action action)
 {
 	if (action == TURN_LEFT)
-		game->player->rotation -= (180 / PI) * ROTATION_SPEED;
+		game->player->rotation -= ROTATION_SPEED;
 	else if (action == TURN_RIGHT)
-		game->player->rotation += (180 / PI) * ROTATION_SPEED;
+		game->player->rotation += ROTATION_SPEED;
+
+	// Normalisation de l'angle entre 0 et 2π
+	if (game->player->rotation < 0)
+		game->player->rotation += 2 * M_PI;
+	else if (game->player->rotation >= 2 * M_PI)
+		game->player->rotation -= 2 * M_PI;
+
+	// Mise à jour de la direction du joueur
 	game->player->dir_x = cos(game->player->rotation);
 	game->player->dir_y = sin(game->player->rotation);
+
+	// Mise à jour du plan caméra (perpendiculaire à dir_x, dir_y)
+	game->player->plane_x = -sin(game->player->rotation) * FOV_SCALE;
+	game->player->plane_y = cos(game->player->rotation) * FOV_SCALE;
 	update_map(game);
 }
