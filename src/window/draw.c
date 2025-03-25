@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:49:26 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/25 15:13:28 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/25 15:25:26 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void	draw_line(t_game *game, int *start, int *end)
 	i = 0;
 	while (i <= steps)
 	{
-		print_pixel(game, x / 1000, y / 1000, 0xFFFFFF);
+		print_pixel(game, x / 1000, y / 1000, game->map->floor_color);
 		x += inc[0];
 		y += inc[1];
 		i++;
