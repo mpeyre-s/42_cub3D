@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_lines.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
+/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 13:22:02 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/19 11:59:34 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/25 14:31:01 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,3 +81,11 @@ int	process_color_lines(char **file)
 		TRUE, TRUE, ERROR);
 	return (ERROR);
 }
+
+void	init_color(t_map *map)
+{
+	map->sky_color = (map->floor->red << 16) | (map->floor->green << 8) | (map->floor->blue);
+	map->floor_color = (map->ceiling->red << 16) | (map->ceiling->green << 8) | (map->ceiling->blue);
+
+}
+
