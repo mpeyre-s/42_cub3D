@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 14:21:29 by spike             #+#    #+#             */
-/*   Updated: 2025/03/24 13:38:47 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/25 12:42:40 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@ int	get_pixel_from_texture(t_txt *texture, int x, int y)
 
 int	select_texture_pixel(int y, t_txt *texture, t_ray *ray)
 {
-	int	pixel_x;
-	int	pixel_y;
-	int	color;
+	int		pixel_x;
+	int		pixel_y;
+	int		color;
+	double	texture_offset;
 
 	pixel_x = (int)(ray->wall_norm_x * texture->width);
 	if (pixel_x < 0)
@@ -50,16 +51,16 @@ int	select_texture_pixel(int y, t_txt *texture, t_ray *ray)
 	if (pixel_x >= texture->width)
 		pixel_x = texture->width - 1;
 
-	pixel_y = (int)(((float)(y - ray->wall_start) / ray->pxl_height) * texture->height);
+	texture_offset = (ray->wall_start - (WINDOW_HEIGHT / 2) + (ray->pxl_height / 2));
+	pixel_y = (int)((texture_offset + (y - ray->wall_start)) / ray->pxl_height * texture->height);
 	if (pixel_y < 0)
 		pixel_y = 0;
 	if (pixel_y >= texture->height)
 		pixel_y = texture->height - 1;
 
-	// Accéder à la couleur dans la texture (tableau 1D)
 	color = get_pixel_from_texture(texture, pixel_x, pixel_y);
 
-	return color;
+	return (color);
 }
 
 void	render_texture(int x, t_game *game, t_txt *texture, t_ray *ray)
