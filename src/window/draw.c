@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:49:26 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/23 12:50:28 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/25 15:13:28 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	print_pixel(t_game *game, int x, int y, unsigned int color)
 	}
 }
 
-void	draw_square(t_game *game, int *coords, int size, int color)
+void	draw_square_minimap(t_game *game, int *coords, int size, int color)
 {
 	int		x;
 	int		y;
@@ -38,6 +38,27 @@ void	draw_square(t_game *game, int *coords, int size, int color)
 		x = coords[0];
 		end_x = coords[0] + size;
 		while (x < end_x)
+		{
+			if ((x > WINDOW_WIDTH / 50 && x <  WINDOW_WIDTH / 50
+				+ WINDOW_WIDTH / 6) && (y > WINDOW_WIDTH / 50
+				&& y <  WINDOW_WIDTH / 50 +  WINDOW_WIDTH / 6))
+				print_pixel(game, x, y, color);
+			x++;
+		}
+		y++;
+	}
+}
+
+void	draw_rectangle(t_game *game, int *start, int *end, int color)
+{
+	int x;
+	int y;
+
+	y = start[1];
+	while (y <= end[1])
+	{
+		x = start[0];
+		while (x <= end[0])
 		{
 			print_pixel(game, x, y, color);
 			x++;

@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/25 11:57:50 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/25 14:59:43 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,8 +244,9 @@ int		destroy_mlx(t_game *game);
 
 void	print_pixel(t_game *game, int x, int y, unsigned int color);
 void	color_fill(t_game *game, unsigned int color);
-void	draw_square(t_game *game, int *coords, int size, int color);
+void	draw_square_minimap(t_game *game, int *coords, int size, int color);
 void	draw_line(t_game *game, int *start, int *end);
+void	draw_rectangle(t_game *game, int *start, int *end, int color);
 
 void	print_minimap(t_game *game);
 
