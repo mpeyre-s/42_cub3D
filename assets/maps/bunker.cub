@@ -3,10 +3,10 @@ F 255,255,255
 C 119,181,254
 
 
-EA assets/textures/mossy.xpm
-SO assets/textures/mossy.xpm
-NO assets/textures/wood.xpm
-WE assets/textures/brick.xpm
+EA assets/textures/portal_wall.xpm
+SO assets/textures/portal_wall.xpm
+NO assets/textures/portal_wall.xpm
+WE assets/textures/portal_wall.xpm
 
 
 1111111111111111111

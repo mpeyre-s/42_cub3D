@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:46:30 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/23 13:33:45 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/25 15:19:38 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static void	print_player_direction(t_game *game, int *start_dir, int *end_dir)
 static void	print_player(t_game *game)
 {
 	int	player_pos[2];
+	int	player_end[2];
 	int	player_size;
 	int	start_dir[2];
 	int	end_dir[2];
@@ -47,7 +48,9 @@ static void	print_player(t_game *game)
 		- (player_size / 2);
 	player_pos[1] = (WINDOW_WIDTH / 50) + ((WINDOW_WIDTH / 6) / 2)
 		- (player_size / 2);
-	draw_square(game, player_pos, player_size, 0xFFFFFF);
+	player_end[0] = player_pos[0] + player_size - 1;
+	player_end[1] = player_pos[1] + player_size - 1;
+	draw_rectangle(game, player_pos, player_end, 0xFFFFFF);
 	start_dir[0] = player_pos[0] + (player_size / 2);
 	start_dir[1] = player_pos[1] + (player_size / 2);
 	end_dir[0] = start_dir[0] + (game->player->dir_x * 20);
@@ -61,9 +64,10 @@ static int	get_cell_color(t_game *game, int grid_x, int grid_y)
 	if (grid_x >= 0 && grid_x < game->map->width &&
 		grid_y >= 0 && grid_y < game->map->height &&
 		game->map->grid[grid_y][grid_x] == 1)
-		return (0x1A3246);
-	return (0x4A7A99);
+		return (0x000000);
+	return (game->map->floor_color);
 }
+
 
 static void	draw_cell(t_game *game, int grid_x, int grid_y, int cell_size)
 {
@@ -80,7 +84,7 @@ static void	draw_cell(t_game *game, int grid_x, int grid_y, int cell_size)
 
 	coords[0] = (WINDOW_WIDTH / 50) + ((grid_x - floor(player_x)) - offset_x + 2) * cell_size;
 	coords[1] = (WINDOW_WIDTH / 50) + ((grid_y - floor(player_y)) - offset_y + 2) * cell_size;
-	draw_square(game, coords, cell_size, get_cell_color(game, grid_x, grid_y));
+	draw_square_minimap(game, coords, cell_size, get_cell_color(game, grid_x, grid_y));
 }
 
 static void	draw_minimap_grid(t_game *game, int cell_size)
@@ -94,11 +98,11 @@ static void	draw_minimap_grid(t_game *game, int cell_size)
 
 	player_x = game->player->x;
 	player_y = game->player->y;
-	i = -3;
-	while (++i <= 2)
+	i = -4;
+	while (++i <= 3)
 	{
-		j = -3;
-		while (++j <= 2)
+		j = -4;
+		while (++j <= 3)
 		{
 			grid_x = floor(player_x) + j;
 			grid_y = floor(player_y) + i;
@@ -109,12 +113,7 @@ static void	draw_minimap_grid(t_game *game, int cell_size)
 
 void	print_minimap(t_game *game)
 {
-	int	coords[2];
 	int	cell_size;
-
-	coords[0] = WINDOW_WIDTH / 50;
-	coords[1] = WINDOW_WIDTH / 50;
-	draw_square(game, coords, WINDOW_WIDTH / 6, 0x32506C);
 
 	cell_size = (WINDOW_WIDTH / 6) / 5;
 	draw_minimap_grid(game, cell_size);
