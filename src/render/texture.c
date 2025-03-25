@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 14:21:29 by spike             #+#    #+#             */
-/*   Updated: 2025/03/25 14:20:11 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/25 15:35:06 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	render_texture(int x, t_game *game, t_txt *texture, t_ray *ray)
 	y = 0;
 	while (y < ray->wall_start)
 	{
-		print_pixel(game, x, y, game->map->floor_color);
+		print_pixel(game, x, y, game->map->sky_color);
 		y++;
 	}
 
@@ -74,7 +74,7 @@ void	render_texture(int x, t_game *game, t_txt *texture, t_ray *ray)
 	y = ray->wall_end;
 	while (y < WINDOW_HEIGHT)
 	{
-		print_pixel(game, x, y, game->map->sky_color);
+		print_pixel(game, x, y, game->map->floor_color);
 		y++;
 	}
 }

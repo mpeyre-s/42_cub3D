@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 13:22:02 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/25 14:31:01 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/25 15:34:36 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ int	process_color_lines(char **file)
 
 void	init_color(t_map *map)
 {
-	map->sky_color = (map->floor->red << 16) | (map->floor->green << 8) | (map->floor->blue);
-	map->floor_color = (map->ceiling->red << 16) | (map->ceiling->green << 8) | (map->ceiling->blue);
+	map->floor_color = (map->floor->red << 16) | (map->floor->green << 8) | (map->floor->blue);
+	map->sky_color = (map->ceiling->red << 16) | (map->ceiling->green << 8) | (map->ceiling->blue);
 
 }
 
