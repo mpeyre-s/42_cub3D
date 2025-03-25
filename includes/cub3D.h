@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/24 13:34:07 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/25 11:57:50 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define FOV 60
 # define FOV_SCALE 0.66
 # define MOVE_SPEED 0.01
-# define ROTATION_SPEED 0.005
+# define ROTATION_SPEED 0.010
 # define PI 3.1415926535897932384626437872
 # define TEXTURE_EXT ".xpm"
 
