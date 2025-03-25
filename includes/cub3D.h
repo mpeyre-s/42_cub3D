@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
+/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
 /*   Updated: 2025/03/25 14:59:43 by mathispeyre      ###   ########.fr       */
@@ -97,13 +97,13 @@ typedef struct s_map
 	int		px_height;
 	t_rgb	*floor;
 	t_rgb	*ceiling;
-	int		ceiling_color[3];
-	int		floor_color[3];
 	char	*NO_path;
 	char	*SO_path;
 	char	*WE_path;
 	char	*EA_path;
 	int		**grid;
+	unsigned int	floor_color;
+	unsigned int	sky_color;
 
 	t_txt	north;
 	t_txt	south;
@@ -263,6 +263,7 @@ void	init_player_direction(t_player *player);
 char	get_player_side(char **file);
 void	init_textures(t_map *map, t_game *game);
 void	handle_txt(int x, t_map *map, t_game *game, t_ray *ray);
+void	init_color(t_map *map);
 
 /* --------------------------- DEVELOPMENT MACROS ----------------------------*/
 # define TRUE 1

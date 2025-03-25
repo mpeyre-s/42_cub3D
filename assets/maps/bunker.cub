@@ -1,6 +1,7 @@
 
-F 76, 76,76
-C 999,999,9999
+F 255,255,255
+C 119,181,254
+
 
 EA assets/textures/portal_wall.xpm
 SO assets/textures/portal_wall.xpm

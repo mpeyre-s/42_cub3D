@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:43:29 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/24 12:28:25 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/25 13:58:20 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(int ac, char **av)
 	if (!game)
 		return (msg("Error while initializing the game", TRUE, TRUE, 1));
 	init_textures(game->map, game);
+	init_color(game->map);
 	start_game(game);
 	return (msg("Exit...", TRUE, FALSE, EXIT_SUCCESS));
 }
