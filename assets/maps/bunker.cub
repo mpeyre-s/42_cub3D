@@ -1,12 +1,12 @@
 
-F 255,255,255
+F 117, 114, 110
 C 119,181,254
 
 
-EA assets/textures/bedrock.xpm
-SO assets/textures/cobblestone.xpm
-NO assets/textures/stone_bricks.xpm
-WE assets/textures/oak_planks.xpm
+WE assets/textures/bedrock.xpm
+NO assets/textures/cobblestone.xpm
+SO assets/textures/stone_bricks.xpm
+EA assets/textures/oak_planks.xpm
 
 
 1111111111111111111
