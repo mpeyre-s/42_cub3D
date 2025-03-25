@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 17:08:14 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/13 17:33:32 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/25 18:39:18 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,16 @@ char	**convert_content(char *content)
 	}
 	result[j] = NULL;
 	return (result);
+}
+
+unsigned int	invert_color(unsigned int color)
+{
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
+
+	r = 255 - ((color >> 16) & 0xFF);
+	g = 255 - ((color >> 8) & 0xFF);
+	b = 255 - (color & 0xFF);
+	return ((r << 16) | (g << 8) | b);
 }

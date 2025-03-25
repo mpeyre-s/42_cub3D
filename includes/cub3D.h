@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/25 14:59:43 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/25 18:39:14 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,6 +257,7 @@ void	free_file_tab(char **file, size_t len);
 void	free_split(char **split);
 int		free_init(t_init *data);
 u_int8_t	ft_atouint8(char *str);
+unsigned int	invert_color(unsigned int color);
 
 void	raycast(t_game *game, t_player *player, int **grid);
 void	init_player_direction(t_player *player);

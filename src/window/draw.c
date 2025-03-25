@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:49:26 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/25 15:38:00 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/25 18:42:03 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ void	draw_rectangle(t_game *game, int *start, int *end, int color)
 
 void	color_fill(t_game *game, unsigned int color)
 {
-	int		x;
-	int		y;
+	int	x;
+	int	y;
 
 	y = 0;
 	while (y < WINDOW_HEIGHT)
@@ -103,19 +103,19 @@ static int	get_steps_and_increments(int *start, int *end, int *inc)
 
 void	draw_line(t_game *game, int *start, int *end)
 {
-	static int		inc[2];
-	int				x;
-	int				y;
-	int				steps;
-	int				i;
+	int	inc[2];
+	int	x;
+	int	y;
+	int	steps;
+	int	i;
 
 	steps = get_steps_and_increments(start, end, inc);
 	x = start[0] * 1000;
 	y = start[1] * 1000;
 	i = 0;
-	while (i <= steps)
+	while (i <= steps * 0.9)
 	{
-		print_pixel(game, x / 1000, y / 1000, game->map->sky_color);
+		print_pixel(game, x / 1000, y / 1000, invert_color(game->map->floor_color));
 		x += inc[0];
 		y += inc[1];
 		i++;

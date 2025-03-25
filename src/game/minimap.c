@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:46:30 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/25 15:37:41 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/25 18:39:56 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ static void	print_player(t_game *game)
 	int	start_dir[2];
 	int	end_dir[2];
 
-	player_size = WINDOW_WIDTH / 200;
+	player_size = WINDOW_WIDTH / 100;
 	player_pos[0] = (WINDOW_WIDTH / 50) + ((WINDOW_WIDTH / 6) / 2)
 		- (player_size / 2);
 	player_pos[1] = (WINDOW_WIDTH / 50) + ((WINDOW_WIDTH / 6) / 2)
 		- (player_size / 2);
 	player_end[0] = player_pos[0] + player_size - 1;
 	player_end[1] = player_pos[1] + player_size - 1;
-	draw_rectangle(game, player_pos, player_end, game->map->sky_color);
+	draw_rectangle(game, player_pos, player_end, invert_color(game->map->floor_color));
 	start_dir[0] = player_pos[0] + (player_size / 2);
 	start_dir[1] = player_pos[1] + (player_size / 2);
 	end_dir[0] = start_dir[0] + (game->player->dir_x * 20);
