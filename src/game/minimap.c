@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:46:30 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/25 15:23:29 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/25 15:37:41 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	print_player(t_game *game)
 		- (player_size / 2);
 	player_end[0] = player_pos[0] + player_size - 1;
 	player_end[1] = player_pos[1] + player_size - 1;
-	draw_rectangle(game, player_pos, player_end, game->map->floor_color);
+	draw_rectangle(game, player_pos, player_end, game->map->sky_color);
 	start_dir[0] = player_pos[0] + (player_size / 2);
 	start_dir[1] = player_pos[1] + (player_size / 2);
 	end_dir[0] = start_dir[0] + (game->player->dir_x * 20);
@@ -65,7 +65,7 @@ static int	get_cell_color(t_game *game, int grid_x, int grid_y)
 		grid_y >= 0 && grid_y < game->map->height &&
 		game->map->grid[grid_y][grid_x] == 1)
 		return (0x000000);
-	return (game->map->sky_color);
+	return (game->map->floor_color);
 }
 
 
