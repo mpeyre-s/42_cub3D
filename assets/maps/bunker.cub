@@ -3,10 +3,10 @@ F 255,255,255
 C 119,181,254
 
 
-EA assets/textures/portal_wall.xpm
-SO assets/textures/portal_wall.xpm
-NO assets/textures/portal_wall.xpm
-WE assets/textures/portal_wall.xpm
+EA assets/textures/bedrock.xpm
+SO assets/textures/cobblestone.xpm
+NO assets/textures/stone_bricks.xpm
+WE assets/textures/oak_planks.xpm
 
 
 1111111111111111111
