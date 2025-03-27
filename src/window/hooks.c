@@ -69,8 +69,8 @@ int	loop_hook(t_game *game)
 		rotate_player(game, TURN_LEFT);
 	if (game->keys->rotate_right)
 		rotate_player(game, TURN_RIGHT);
-	if (game->keys->attack)
-		attack_player();
+	//if (game->keys->attack)
+	//	attack_player();
 	return (SUCCES);
 }
 
