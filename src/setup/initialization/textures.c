@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 12:58:48 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/24 12:33:12 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/25 17:58:23 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	init_textures(t_map *map, t_game *game)
 	map->south.img = mlx_xpm_file_to_image(game->mlx->mlx, map->SO_path, &map->south.width, &map->south.height);
 	map->east.img = mlx_xpm_file_to_image(game->mlx->mlx, map->EA_path, &map->east.width, &map->east.height);
 	map->west.img = mlx_xpm_file_to_image(game->mlx->mlx, map->WE_path, &map->west.width, &map->west.height);
+
 	if (!map->north.img || !map->south.img || !map->east.img || !map->west.img)
 	{
 		printf("Erreur : Impossible de charger l'une des textures.\n");
@@ -76,3 +77,18 @@ void	init_textures(t_map *map, t_game *game)
 	map->east.addr = mlx_get_data_addr(map->east.img, &map->east.bpp, &map->east.line_length, &map->east.endian);
 	map->west.addr = mlx_get_data_addr(map->west.img, &map->west.bpp, &map->west.line_length, &map->west.endian);
 }
+int	init_gun(t_game *game)
+{
+	game->gun_texture.img = mlx_xpm_file_to_image(game->mlx->mlx, "assets/textures/portal_gun.xpm",
+		&game->gun_texture.width, &game->gun_texture.height);
+	if (!game->gun_texture.img)
+	{
+		printf("Erreur: Impossible de charger l'image XPM !\n");
+		return (1);
+	}
+	game->gun_texture.addr = mlx_get_data_addr(game->gun_texture.img,
+		&game->gun_texture.bpp, &game->gun_texture.line_length, &game->gun_texture.endian);
+	return (0);
+}
+
+

@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/25 14:59:43 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/25 18:17:49 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # include <math.h>
 
 /* ----------------------------- PROGRAM MACROS ------------------------------*/
+// # define WINDOW_WIDTH 1920
+// # define WINDOW_HEIGHT 1080
 # define WINDOW_WIDTH 1080
 # define WINDOW_HEIGHT 720
 # define CELL_LENGTH 64
@@ -81,7 +83,6 @@ typedef struct s_txt
 	int		bpp;
 	int		line_length;
 	int		endian;
-	double	step;
 	int		tex_x;
 	int		tex_y;
 	int		color;
@@ -162,6 +163,7 @@ typedef struct s_game
 	t_map		*map;
 	t_player	*player;
 	t_keys		*keys;
+	t_txt	gun_texture;
 }				t_game;
 
 typedef struct s_init
@@ -264,6 +266,7 @@ char	get_player_side(char **file);
 void	init_textures(t_map *map, t_game *game);
 void	handle_txt(int x, t_map *map, t_game *game, t_ray *ray);
 void	init_color(t_map *map);
+int		init_gun(t_game *game);
 
 /* --------------------------- DEVELOPMENT MACROS ----------------------------*/
 # define TRUE 1
