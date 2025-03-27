@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 12:58:48 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/27 13:42:52 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/27 19:12:00 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	init_textures(t_map *map, t_game *game)
 }
 void	init_minecraft(t_game *game)
 {
-	game->minecraft.img = mlx_xpm_file_to_image(game->mlx->mlx, "assets/textures/pickaxe.xpm", &game->minecraft.width, &game->minecraft.height);
+	game->minecraft.img = mlx_xpm_file_to_image(game->mlx->mlx, "assets/textures/pickaxe_hud.xpm", &game->minecraft.width, &game->minecraft.height);
 	if (!game->minecraft.img)
 	{
 		printf("Erreur : Impossible de charger l'une des textures.\n");

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/27 15:10:45 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/27 19:12:26 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include <math.h>
 
 /* ----------------------------- PROGRAM MACROS ------------------------------*/
-# define WINDOW_WIDTH 1080
-# define WINDOW_HEIGHT 720
+# define WINDOW_WIDTH 1280
+# define WINDOW_HEIGHT 800
 # define CELL_LENGTH 64
 # define FOV 60
 # define FOV_SCALE 0.66
