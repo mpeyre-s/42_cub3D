@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:55:17 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/19 16:09:38 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/27 14:14:00 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	is_file_valid(char *filename)
 	file = convert_content(file_inline);
 	if (!file)
 		return (free(file_inline), ERROR);
+	print_tab_of_char_tab(file);
 	len = 0;
 	result = ERROR;
 	while (file[len])

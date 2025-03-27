@@ -6,7 +6,7 @@
 #    By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/07 09:35:02 by mathispeyre       #+#    #+#              #
-#    Updated: 2025/03/24 13:34:32 by mathispeyre      ###   ########.fr        #
+#    Updated: 2025/03/27 15:10:03 by mathispeyre      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRC = main.c \
 	  setup/processing/parsing.c setup/processing/file_utils.c setup/processing/checker.c \
 	  setup/processing/color_lines.c setup/processing/texture_lines.c setup/processing/map_lines.c \
 	  window/hooks.c window/mlx.c window/draw.c \
-	  utils/ft.c utils/detection.c utils/conversion.c utils/free.c
+	  utils/ft.c utils/detection.c utils/conversion.c utils/conversion2.c utils/free.c
 
 SRCDIR = src/
 OBJDIR = objects/

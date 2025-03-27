@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/27 14:50:22 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/27 15:10:45 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define CELL_LENGTH 64
 # define FOV 60
 # define FOV_SCALE 0.66
-# define MOVE_SPEED 0.01
+# define MOVE_SPEED 0.02
 # define ROTATION_SPEED 0.010
 # define PI 3.1415926535897932384626437872
 # define TEXTURE_EXT ".xpm"
@@ -253,8 +253,11 @@ void	draw_rectangle(t_game *game, int *start, int *end, int color);
 void	print_minimap(t_game *game);
 
 char	*ft_strstr(const char *haystack, const char *needle);
+char	*ft_strcpy(char *dest, const char *src);
 t_os	detect_os(void);
 char	**convert_content(char *content);
+int		process_line(char **result, char **line, int j);
+void	normalize_map_width(char **result, int j);
 void	free_file_tab(char **file, size_t len);
 void	free_split(char **split);
 int		free_init(t_init *data);
@@ -268,6 +271,9 @@ void	init_textures(t_map *map, t_game *game);
 void	handle_txt(int x, t_map *map, t_game *game, t_ray *ray);
 void	init_color(t_map *map);
 void	init_minecraft(t_game *game);
+
+// sup
+void	print_tab_of_char_tab(char **tab);
 
 /* --------------------------- DEVELOPMENT MACROS ----------------------------*/
 # define TRUE 1
