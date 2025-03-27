@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
+/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
 /*   Updated: 2025/03/27 15:10:45 by mathispeyre      ###   ########.fr       */
@@ -154,6 +154,7 @@ typedef struct s_keys
 	int	right;
 	int	rotate_left;
 	int	rotate_right;
+	int	attack;
 }				t_keys;
 
 typedef struct s_game
@@ -162,6 +163,7 @@ typedef struct s_game
 	t_map		*map;
 	t_player	*player;
 	t_keys		*keys;
+	t_txt		minecraft;
 }				t_game;
 
 typedef struct s_init
@@ -268,6 +270,7 @@ char	get_player_side(char **file);
 void	init_textures(t_map *map, t_game *game);
 void	handle_txt(int x, t_map *map, t_game *game, t_ray *ray);
 void	init_color(t_map *map);
+void	init_minecraft(t_game *game);
 
 // sup
 void	print_tab_of_char_tab(char **tab);
@@ -289,6 +292,7 @@ void	print_tab_of_char_tab(char **tab);
 # define MAC_ESC_KEY 53
 # define MAC_LEFT_ARROW 123
 # define MAC_RIGHT_ARROW 124
+# define MAC_LEFT_CLICK 1
 
 # define LIN_FORWARD_KEY 119
 # define LIN_BACKWARD_KEY 115
@@ -297,6 +301,7 @@ void	print_tab_of_char_tab(char **tab);
 # define LIN_ESC_KEY 65307
 # define LIN_LEFT_ARROW 65361
 # define LIN_RIGHT_ARROW 65363
+# define LIN_LEFT_CLICK 1
 
 /* --------------------------- ASCII ART / COLORS ----------------------------*/
 # define RESET_COLOR "\033[0m"
