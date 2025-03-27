@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+ /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
@@ -28,6 +28,8 @@ int	key_press(int keycode, t_game *game)
 		game->keys->rotate_left = 1;
 	else if (keycode == MAC_RIGHT_ARROW || keycode == LIN_RIGHT_ARROW)
 		game->keys->rotate_right = 1;
+	else if (keycode == MAC_LEFT_CLICK || keycode == LIN_LEFT_CLICK)
+		game->keys->attack = 1;
 	game->mlx->frames = 2;
 	return (SUCCES);
 }
@@ -48,6 +50,8 @@ int	key_release(int keycode, t_game *game)
 		game->keys->rotate_left = 0;
 	else if (keycode == MAC_RIGHT_ARROW || keycode == LIN_RIGHT_ARROW)
 		game->keys->rotate_right = 0;
+	else if (keycode == MAC_LEFT_CLICK || keycode == LIN_LEFT_CLICK)
+		game->keys->attack = 0;
 	return (SUCCES);
 }
 
@@ -65,6 +69,8 @@ int	loop_hook(t_game *game)
 		rotate_player(game, TURN_LEFT);
 	if (game->keys->rotate_right)
 		rotate_player(game, TURN_RIGHT);
+	if (game->keys->attack)
+		attack_player();
 	return (SUCCES);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
+/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 16:26:26 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/25 13:10:52 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/27 15:14:49 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,3 +75,4 @@ void	rotate_player(t_game *game, t_action action)
 	game->player->plane_y = cos(game->player->rotation) * FOV_SCALE;
 	update_map(game);
 }
+
