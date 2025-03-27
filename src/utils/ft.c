@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:58:28 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/24 12:52:30 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/27 14:30:34 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,4 +100,21 @@ u_int8_t	ft_atouint8(char *str)
 	if (num > 255)
 		return (255);
 	return ((u_int8_t)num);
+}
+
+/**
+ * Copies the string pointed to by src to the buffer pointed to by dest
+ * @param dest The destination buffer
+ * @param src The source string
+ * @return A pointer to the destination buffer
+ */
+char	*ft_strcpy(char *dest, const char *src)
+{
+	char *start;
+
+	start = dest;
+	while (*src)
+		*dest++ = *src++;
+	*dest = '\0';
+	return (start);
 }

@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:41:30 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/20 12:53:15 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/27 14:13:27 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,18 @@ int	print_ascii_art(void)
 	printf("%s", ASCII_L6);
 	printf("%s", RESET_COLOR);
 	return (738);
+}
+
+void	print_tab_of_char_tab(char **tab)
+{
+	int	i;
+
+	i = 0;
+	if (!tab)
+		return ;
+	while (tab[i])
+	{
+		printf("%s\n", tab[i]);
+		i++;
+	}
 }
