@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:55:12 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/24 13:31:34 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/28 08:35:11 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ t_player	*init_player(t_init *data)
 	player->y = data->y;
 	player->rotation = data->rotation;
 	player->direction = data->side;
+	player->inventory = PICKAXE;
 	init_player_direction(player);
 	return (player);
 }

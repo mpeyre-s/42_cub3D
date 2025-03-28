@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 16:26:26 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/27 15:14:49 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/28 08:56:44 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	move_player(t_game *game, t_action action)
 		game->player->x = old_x;
 	if (!is_move_possible(game, old_x, game->player->y))
 		game->player->y = old_y;
-	update_map(game);
+		update_window(game);
 }
 
 void	rotate_player(t_game *game, t_action action)
@@ -73,6 +73,6 @@ void	rotate_player(t_game *game, t_action action)
 	game->player->dir_y = sin(game->player->rotation);
 	game->player->plane_x = -sin(game->player->rotation) * FOV_SCALE;
 	game->player->plane_y = cos(game->player->rotation) * FOV_SCALE;
-	update_map(game);
+	update_window(game);
 }
 

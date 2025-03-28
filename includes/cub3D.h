@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/27 19:12:26 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/28 08:56:19 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@ typedef enum e_os
 	MACOS,
 	UNKNOWN
 }				t_os;
+
+typedef enum e_inventory
+{
+	PICKAXE,
+	BLOCK
+}				t_inventory;
 
 typedef enum e_action
 {
@@ -114,14 +120,15 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	char	direction;
-	double	x;
-	double	y;
-	double	dir_x;
-	double	dir_y;
-	double	plane_x;
-	double	plane_y;
-	double	rotation;
+	char		direction;
+	double		x;
+	double		y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
+	double		rotation;
+	t_inventory	inventory;
 }				t_player;
 
 typedef struct s_ray
@@ -163,7 +170,8 @@ typedef struct s_game
 	t_map		*map;
 	t_player	*player;
 	t_keys		*keys;
-	t_txt		minecraft;
+	t_txt		pickaxe_hud;
+	t_txt		block_hud;
 }				t_game;
 
 typedef struct s_init
@@ -225,7 +233,7 @@ int		**init_grid(t_init *data, int width, int height);
 t_map	*init_map(t_init *data);
 
 int		start_game(t_game *game);
-void	update_map(t_game *game);
+void	update_window(t_game *game);
 
 void	print_grid(t_game *game);
 void	fill_grid_with_map(t_game *game);
@@ -270,7 +278,8 @@ char	get_player_side(char **file);
 void	init_textures(t_map *map, t_game *game);
 void	handle_txt(int x, t_map *map, t_game *game, t_ray *ray);
 void	init_color(t_map *map);
-void	init_minecraft(t_game *game);
+void	init_pickaxe_hud(t_game *game);
+void	init_block_hud(t_game *game);
 
 // sup
 void	print_tab_of_char_tab(char **tab);
@@ -293,6 +302,8 @@ void	print_tab_of_char_tab(char **tab);
 # define MAC_LEFT_ARROW 123
 # define MAC_RIGHT_ARROW 124
 # define MAC_LEFT_CLICK 1
+# define MAC_1_EXCLA 18
+# define MAC_2_AROBAS 19
 
 # define LIN_FORWARD_KEY 119
 # define LIN_BACKWARD_KEY 115
@@ -302,6 +313,8 @@ void	print_tab_of_char_tab(char **tab);
 # define LIN_LEFT_ARROW 65361
 # define LIN_RIGHT_ARROW 65363
 # define LIN_LEFT_CLICK 1
+# define LIN_1_EXCLA 49
+# define LIN_2_AROBAS 50
 
 /* --------------------------- ASCII ART / COLORS ----------------------------*/
 # define RESET_COLOR "\033[0m"

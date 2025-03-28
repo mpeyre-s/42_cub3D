@@ -30,6 +30,13 @@ int	key_press(int keycode, t_game *game)
 		game->keys->rotate_right = 1;
 	else if (keycode == MAC_LEFT_CLICK || keycode == LIN_LEFT_CLICK)
 		game->keys->attack = 1;
+	else if (keycode == MAC_1_EXCLA || keycode == LIN_1_EXCLA)
+		game->player->inventory = PICKAXE;
+	else if (keycode == MAC_2_AROBAS || keycode == LIN_2_AROBAS)
+		game->player->inventory = BLOCK;
+	if (keycode == MAC_1_EXCLA || keycode == LIN_1_EXCLA
+		|| keycode == MAC_2_AROBAS || keycode == LIN_2_AROBAS)
+		update_window(game);
 	game->mlx->frames = 2;
 	return (SUCCES);
 }

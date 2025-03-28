@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 12:58:48 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/27 19:12:00 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/28 08:45:25 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,24 @@ void	init_textures(t_map *map, t_game *game)
 	map->east.addr = mlx_get_data_addr(map->east.img, &map->east.bpp, &map->east.line_length, &map->east.endian);
 	map->west.addr = mlx_get_data_addr(map->west.img, &map->west.bpp, &map->west.line_length, &map->west.endian);
 }
-void	init_minecraft(t_game *game)
+void	init_pickaxe_hud(t_game *game)
 {
-	game->minecraft.img = mlx_xpm_file_to_image(game->mlx->mlx, "assets/textures/pickaxe_hud.xpm", &game->minecraft.width, &game->minecraft.height);
-	if (!game->minecraft.img)
+	game->pickaxe_hud.img = mlx_xpm_file_to_image(game->mlx->mlx, "assets/textures/pickaxe_hud.xpm", &game->pickaxe_hud.width, &game->pickaxe_hud.height);
+	if (!game->pickaxe_hud.img)
 	{
 		printf("Erreur : Impossible de charger l'une des textures.\n");
 		exit(1);
 	}
-	game->minecraft.addr = mlx_get_data_addr(game->minecraft.img, &game->minecraft.bpp, &game->minecraft.line_length, &game->minecraft.endian);
+	game->pickaxe_hud.addr = mlx_get_data_addr(game->pickaxe_hud.img, &game->pickaxe_hud.bpp, &game->pickaxe_hud.line_length, &game->pickaxe_hud.endian);
+}
+
+void	init_block_hud(t_game *game)
+{
+	game->block_hud.img = mlx_xpm_file_to_image(game->mlx->mlx, "assets/textures/block_hud.xpm", &game->block_hud.width, &game->block_hud.height);
+	if (!game->block_hud.img)
+	{
+		printf("Erreur : Impossible de charger l'une des textures.\n");
+		exit(1);
+	}
+	game->block_hud.addr = mlx_get_data_addr(game->block_hud.img, &game->block_hud.bpp, &game->block_hud.line_length, &game->block_hud.endian);
 }
