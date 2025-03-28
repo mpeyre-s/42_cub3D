@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 14:19:56 by spike             #+#    #+#             */
-/*   Updated: 2025/03/24 13:43:16 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/28 08:29:41 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,8 +171,8 @@ void raycast(t_game *game, t_player *player, int **grid)
 		init_ray(x, &ray, player);
 		dda_algo(&ray, grid);
 		wall_ray_size(&ray, player);
-		if (x == 1)
-			info(&ray, player);
+		// if (x == 1)
+		// 	info(&ray, player);
 		//print_colonne(game, x, &ray);
 		handle_txt(x, game->map, game, &ray);
 		x++;
