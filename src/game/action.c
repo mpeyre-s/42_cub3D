@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 09:46:44 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/28 10:38:58 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/28 11:05:18 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,5 @@ void	do_action(t_game *game)
 		&& !(target_block[0] == 0 || target_block[0] == game->map->width - 1
 			|| target_block[1] == 0 || target_block[1] == game->map->height - 1))
 		game->map->grid[target_block[1]][target_block[0]] = 1;
+	update_window(game);
 }
