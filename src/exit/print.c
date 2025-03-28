@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:41:30 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/27 14:13:27 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/28 10:47:08 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,27 @@ void	print_tab_of_char_tab(char **tab)
 	while (tab[i])
 	{
 		printf("%s\n", tab[i]);
+		i++;
+	}
+}
+
+void	print_tab_of_tab_int(int **tab, int rows, int cols)
+{
+	int	i;
+	int	j;
+
+	if (!tab)
+		return ;
+	i = 0;
+	while (i < rows)
+	{
+		j = 0;
+		while (j < cols)
+		{
+			printf("%d ", tab[i][j]);
+			j++;
+		}
+		printf("\n");
 		i++;
 	}
 }

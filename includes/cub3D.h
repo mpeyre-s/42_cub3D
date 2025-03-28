@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/28 08:56:19 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/28 10:46:41 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define FOV 60
 # define FOV_SCALE 0.66
 # define MOVE_SPEED 0.02
-# define ROTATION_SPEED 0.010
+# define ROTATION_SPEED 0.020
 # define PI 3.1415926535897932384626437872
 # define TEXTURE_EXT ".xpm"
 
@@ -55,7 +55,8 @@ typedef enum e_action
 	LEFT,
 	RIGHT,
 	TURN_LEFT,
-	TURN_RIGHT
+	TURN_RIGHT,
+	ACTION
 }				t_action;
 
 typedef struct s_rgb
@@ -161,7 +162,7 @@ typedef struct s_keys
 	int	right;
 	int	rotate_left;
 	int	rotate_right;
-	int	attack;
+	int	action;
 }				t_keys;
 
 typedef struct s_game
@@ -249,6 +250,8 @@ int		key_release(int keycode, t_game *game);
 int		loop_hook(t_game *game);
 int		close_hook(t_game *game);
 
+void	do_action(t_game *game);
+
 int		start_mlx(t_game *game);
 int		destroy_mlx(t_game *game);
 
@@ -283,6 +286,7 @@ void	init_block_hud(t_game *game);
 
 // sup
 void	print_tab_of_char_tab(char **tab);
+void	print_tab_of_tab_int(int **tab, int rows, int cols);
 
 /* --------------------------- DEVELOPMENT MACROS ----------------------------*/
 # define TRUE 1
@@ -298,10 +302,10 @@ void	print_tab_of_char_tab(char **tab);
 # define MAC_BACKWARD_KEY 1
 # define MAC_LEFT_KEY 0
 # define MAC_RIGHT_KEY 2
+# define MAC_UP_KEY 126
 # define MAC_ESC_KEY 53
 # define MAC_LEFT_ARROW 123
 # define MAC_RIGHT_ARROW 124
-# define MAC_LEFT_CLICK 1
 # define MAC_1_EXCLA 18
 # define MAC_2_AROBAS 19
 
@@ -309,10 +313,10 @@ void	print_tab_of_char_tab(char **tab);
 # define LIN_BACKWARD_KEY 115
 # define LIN_LEFT_KEY 97
 # define LIN_RIGHT_KEY 100
+# define LIN_UP_KEY 65362
 # define LIN_ESC_KEY 65307
 # define LIN_LEFT_ARROW 65361
 # define LIN_RIGHT_ARROW 65363
-# define LIN_LEFT_CLICK 1
 # define LIN_1_EXCLA 49
 # define LIN_2_AROBAS 50
 

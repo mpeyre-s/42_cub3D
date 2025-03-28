@@ -6,13 +6,13 @@
 #    By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/07 09:35:02 by mathispeyre       #+#    #+#              #
-#    Updated: 2025/03/27 15:10:03 by mathispeyre      ###   ########.fr        #
+#    Updated: 2025/03/28 10:03:33 by mathispeyre      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC = main.c \
 	  exit/print.c exit/exit.c \
-	  game/game.c game/minimap.c game/player.c \
+	  game/game.c game/minimap.c game/player.c game/action.c \
 	  render/raycast.c render/texture.c \
 	  setup/initialization/init.c setup/initialization/extract_data.c setup/initialization/grid_map.c setup/initialization/init_map.c\
 	  setup/initialization/rgb.c setup/initialization/textures.c setup/initialization/player.c setup/initialization/init_player.c \

@@ -28,8 +28,8 @@ int	key_press(int keycode, t_game *game)
 		game->keys->rotate_left = 1;
 	else if (keycode == MAC_RIGHT_ARROW || keycode == LIN_RIGHT_ARROW)
 		game->keys->rotate_right = 1;
-	else if (keycode == MAC_LEFT_CLICK || keycode == LIN_LEFT_CLICK)
-		game->keys->attack = 1;
+	else if (keycode == MAC_UP_KEY || keycode == LIN_UP_KEY)
+		game->keys->action = 1;
 	else if (keycode == MAC_1_EXCLA || keycode == LIN_1_EXCLA)
 		game->player->inventory = PICKAXE;
 	else if (keycode == MAC_2_AROBAS || keycode == LIN_2_AROBAS)
@@ -57,8 +57,8 @@ int	key_release(int keycode, t_game *game)
 		game->keys->rotate_left = 0;
 	else if (keycode == MAC_RIGHT_ARROW || keycode == LIN_RIGHT_ARROW)
 		game->keys->rotate_right = 0;
-	else if (keycode == MAC_LEFT_CLICK || keycode == LIN_LEFT_CLICK)
-		game->keys->attack = 0;
+	else if (keycode == MAC_UP_KEY || keycode == LIN_UP_KEY)
+		game->keys->action = 0;
 	return (SUCCES);
 }
 
@@ -76,8 +76,8 @@ int	loop_hook(t_game *game)
 		rotate_player(game, TURN_LEFT);
 	if (game->keys->rotate_right)
 		rotate_player(game, TURN_RIGHT);
-	//if (game->keys->attack)
-	//	attack_player();
+	if (game->keys->action)
+		do_action(game);
 	return (SUCCES);
 }
 

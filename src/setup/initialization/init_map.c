@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 13:32:53 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/28 09:09:27 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/28 10:50:38 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,16 @@ static void	reinforce_walls(int **grid)
 	i = 0;
 	max_height = 0;
 	max_width = 0;
-	while (grid[0][max_width])
-		max_width++;
 	while (grid[max_height])
 		max_height++;
+	max_height--;
+	while (grid[0][max_width])
+		max_width++;
+	max_width--;
 	while (grid[i])
 	{
 		j = 0;
-		while (grid[i][j])
+		while (j <= max_width)
 		{
 			if (i == 0 || i == max_height || j == 0 || j == max_width)
 				grid[i][j] = 2;
