@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 13:32:53 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/24 13:33:58 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/28 09:09:27 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,33 @@ static void	fill_map_data(t_map *map, t_init *data)
 	map->grid = init_grid(data, map->width, map->height);
 }
 
+static void	reinforce_walls(int **grid)
+{
+	size_t	i;
+	size_t	j;
+	size_t	max_width;
+	size_t	max_height;
+
+	i = 0;
+	max_height = 0;
+	max_width = 0;
+	while (grid[0][max_width])
+		max_width++;
+	while (grid[max_height])
+		max_height++;
+	while (grid[i])
+	{
+		j = 0;
+		while (grid[i][j])
+		{
+			if (i == 0 || i == max_height || j == 0 || j == max_width)
+				grid[i][j] = 2;
+			j++;
+		}
+		i++;
+	}
+}
+
 t_map	*init_map(t_init *data)
 {
 	t_map	*map;
@@ -71,5 +98,6 @@ t_map	*init_map(t_init *data)
 		free(map);
 		return (NULL);
 	}
+	reinforce_walls(map->grid);
 	return (map);
 }

@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 16:26:26 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/28 08:56:44 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/28 09:10:45 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	calculate_move(t_game *game, t_action action)
 int	is_move_possible(t_game *game, double x, double y)
 {
 	if (game->map->grid[(int)floor(y)][(int)floor(x)] == 1)
+		return (FALSE);
+	else if (game->map->grid[(int)floor(y)][(int)floor(x)] == 2)
 		return (FALSE);
 	return (TRUE);
 }

@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 14:19:56 by spike             #+#    #+#             */
-/*   Updated: 2025/03/28 08:29:41 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/28 09:17:33 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,8 @@ void	dda_algo(t_ray *ray, int **grid)
 			|| ray->map_y > 100
 			|| ray->map_x > 100)
 			break ;
-		if (grid[ray->map_y][ray->map_x] == 1)
+		if (grid[ray->map_y][ray->map_x] == 1
+			|| grid[ray->map_y][ray->map_x] == 2)
 			break;
 	}
 }

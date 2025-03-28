@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 11:51:42 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/20 17:48:43 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/28 08:59:45 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 char	**get_map_grid(char **file)
 {
-	size_t  i;
-	size_t  j;
-	size_t  tab_len;
-	size_t  map_height;
-	char    **map_grid;
+	size_t	i;
+	size_t	j;
+	size_t	tab_len;
+	size_t	map_height;
+	char	**map_grid;
 
 	i = 0;
 	tab_len = tab_of_tab_len(file);

@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:46:30 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/25 18:39:56 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/28 09:14:16 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,10 @@ static void	print_player(t_game *game)
 
 static int	get_cell_color(t_game *game, int grid_x, int grid_y)
 {
-	if (grid_x >= 0 && grid_x < game->map->width &&
-		grid_y >= 0 && grid_y < game->map->height &&
-		game->map->grid[grid_y][grid_x] == 1)
+	if (grid_x >= 0 && grid_x < game->map->width
+		&& grid_y >= 0 && grid_y < game->map->height
+		&& (game->map->grid[grid_y][grid_x] == 1
+		|| game->map->grid[grid_y][grid_x] == 2))
 		return (0x000000);
 	return (game->map->floor_color);
 }
