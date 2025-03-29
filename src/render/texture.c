@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 14:21:29 by spike             #+#    #+#             */
-/*   Updated: 2025/03/25 15:35:06 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/29 09:18:36 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,28 @@ int	select_texture_pixel(int y, t_txt *texture, t_ray *ray)
 	return (color);
 }
 
+int	select_floor_txt(int y, int x, t_floor *floor, t_txt *texture, t_player *player)
+{
+	int	pxl_x;
+	int	pxl_y;
+	int color;
+
+	floor->dy = (P_SIZE * floor->dproj) / (y - (WINDOW_HEIGHT / 2));
+	floor->dir_x1 = player->dir_x - player->plane_x;
+	floor->dir_x2 = player->dir_x + player->plane_x;
+	floor->dir_y1 = player->dir_y - player->plane_y;
+	floor->dir_y2 = player->dir_y + player->plane_y;
+
+	floor->floor_x = player->x + floor->dy * (floor->dir_x1 + (x / (double)WINDOW_WIDTH) * (floor->dir_x2 - floor->dir_x1));
+	floor->floor_y = player->y + floor->dy * (floor->dir_y1 + (x / (double)WINDOW_WIDTH) * (floor->dir_y2 - floor->dir_y1));
+
+	pxl_x = (int)(floor->floor_x * 64) % 64;
+	pxl_y = (int)(floor->floor_y * 64) % 64;
+
+	color = get_pixel_from_texture(texture, pxl_x, pxl_y);
+	return (color);
+}
+
 void	render_texture(int x, t_game *game, t_txt *texture, t_ray *ray)
 {
 	int		y;
@@ -74,7 +96,8 @@ void	render_texture(int x, t_game *game, t_txt *texture, t_ray *ray)
 	y = ray->wall_end;
 	while (y < WINDOW_HEIGHT)
 	{
-		print_pixel(game, x, y, game->map->floor_color);
+		color = select_floor_txt(x, y, game->floor, &game->map->floors, game->player);
+		print_pixel(game, x, y, color);
 		y++;
 	}
 }

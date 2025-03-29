@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
+/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/28 10:46:41 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/29 09:16:21 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define MOVE_SPEED 0.02
 # define ROTATION_SPEED 0.020
 # define PI 3.1415926535897932384626437872
+# define P_SIZE 1.5
 # define TEXTURE_EXT ".xpm"
 
 /* ------------------------------- STRUCTURES --------------------------------*/
@@ -94,6 +95,18 @@ typedef struct s_txt
 	int		color;
 }				t_txt;
 
+typedef struct s_floor
+{
+	double	dproj;
+	double	dy;
+	double	dir_x1;
+	double	dir_x2;
+	double	dir_y1;
+	double	dir_y2;
+	double	floor_x;
+	double	floor_y;
+}				t_floor;
+
 typedef struct s_map
 {
 	int		width;
@@ -116,6 +129,7 @@ typedef struct s_map
 	t_txt	south;
 	t_txt	east;
 	t_txt	west;
+	t_txt	floors;
 }				t_map;
 
 
@@ -173,6 +187,7 @@ typedef struct s_game
 	t_keys		*keys;
 	t_txt		pickaxe_hud;
 	t_txt		block_hud;
+	t_floor		*floor;
 }				t_game;
 
 typedef struct s_init
