@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 12:58:48 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/29 09:34:55 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/31 14:58:38 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,13 @@ char	*get_west_texture(char **file)
 	return (ft_substr(file[i], 2, ft_strlen(file[i]) - 2));
 }
 
-void	init_textures(t_map *map, t_game *game)
+void	init_textures(t_map *map, t_game *game) // Attention a tout free !
 {
 	map->north.img = mlx_xpm_file_to_image(game->mlx->mlx, map->NO_path, &map->north.width, &map->north.height);
 	map->south.img = mlx_xpm_file_to_image(game->mlx->mlx, map->SO_path, &map->south.width, &map->south.height);
 	map->east.img = mlx_xpm_file_to_image(game->mlx->mlx, map->EA_path, &map->east.width, &map->east.height);
 	map->west.img = mlx_xpm_file_to_image(game->mlx->mlx, map->WE_path, &map->west.width, &map->west.height);
-	map->floors.img = mlx_xpm_file_to_image(game->mlx->mlx, map->WE_path, &map->west.width, &map->west.height);
+	map->floors.img = mlx_xpm_file_to_image(game->mlx->mlx, "assets/textures/mossy.xpm", &map->floors.width, &map->floors.height);
 	if (!map->north.img || !map->south.img || !map->east.img || !map->west.img || !map->floors.img)
 	{
 		printf("Erreur : Impossible de charger l'une des textures.\n");
@@ -76,7 +76,7 @@ void	init_textures(t_map *map, t_game *game)
 	map->south.addr = mlx_get_data_addr(map->south.img, &map->south.bpp, &map->south.line_length, &map->south.endian);
 	map->east.addr = mlx_get_data_addr(map->east.img, &map->east.bpp, &map->east.line_length, &map->east.endian);
 	map->west.addr = mlx_get_data_addr(map->west.img, &map->west.bpp, &map->west.line_length, &map->west.endian);
-	map->floors.addr = mlx_get_data_addr(map->west.img, &map->west.bpp, &map->west.line_length, &map->west.endian);
+	map->floors.addr = mlx_get_data_addr(map->floors.img, &map->floors.bpp, &map->floors.line_length, &map->floors.endian);
 }
 void	init_pickaxe_hud(t_game *game)
 {

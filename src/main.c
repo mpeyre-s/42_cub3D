@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
+/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:43:29 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/28 08:47:24 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/31 14:59:01 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	main(int ac, char **av)
 	init_color(game->map);
 	init_pickaxe_hud(game);
 	init_block_hud(game);
+	game->floor = malloc(sizeof(t_floor));
 	start_game(game);
 	return (msg("Exit...", TRUE, FALSE, EXIT_SUCCESS));
 }

@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/29 09:16:21 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/31 15:06:26 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,14 +97,21 @@ typedef struct s_txt
 
 typedef struct s_floor
 {
-	double	dproj;
-	double	dy;
-	double	dir_x1;
-	double	dir_x2;
-	double	dir_y1;
-	double	dir_y2;
-	double	floor_x;
-	double	floor_y;
+	float	rayDirX0;
+	float	rayDirY0;
+	float	rayDirX1;
+	float	rayDirY1;
+	int		p;
+	float	posZ;
+	float	rowDist;
+	float	floor_step_x;
+	float	floor_step_y;
+	float	floor_x;
+	float	floor_y;
+	int		cell_x;
+	int		cell_y;
+	int		tx;
+	int		ty;
 }				t_floor;
 
 typedef struct s_map
@@ -159,6 +166,7 @@ typedef struct s_ray
 	double	delta_dist_y;
 	int		step_x;
 	int		step_y;
+	int		hit;
 	int		hit_side;
 	double	wall_dist;
 	int		pxl_height;
