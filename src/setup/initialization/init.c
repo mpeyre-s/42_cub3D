@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
+/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:55:12 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/28 08:35:11 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/31 14:33:13 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,32 +60,6 @@ t_keys	*init_keys(void)
 	keys->rotate_right = 0;
 	return (keys);
 }
-
-// void	print_tdata(t_init *data)
-// {
-// 	if (!data)
-// 	{
-// 		printf("t_init structure is NULL\n");
-// 		return;
-// 	}
-// 	printf("t_init structure:\n");
-// 	printf("  Floor RGB: (%d, %d, %d)\n", data->floor->red, data->floor->green, data->floor->blue);
-// 	printf("  Ceiling RGB: (%d, %d, %d)\n", data->ceiling->red, data->ceiling->green, data->ceiling->blue);
-// 	printf("  South Texture: %s\n", data->south_texture);
-// 	printf("  North Texture: %s\n", data->north_texture);
-// 	printf("  East Texture: %s\n", data->east_texture);
-// 	printf("  West Texture: %s\n", data->west_texture);
-// 	printf("  Map Grid:\n");
-// 	for (int i = 0; data->grid[i]; i++)
-// 		printf("    %s\n", data->grid[i]);
-// 	printf("  Map Width: %d\n", data->width);
-// 	printf("  Map Height: %d\n", data->height);
-// 	printf("  Player X: %.2f\n", data->x);
-// 	printf("  Player Y: %.2f\n", data->y);
-// 	printf("  Player Direction X: %.2f\n", data->dir_x);
-// 	printf("  Player Direction Y: %.2f\n", data->dir_y);
-// 	printf("  Player Rotation: %.2f\n", data->rotation);
-// }
 
 t_game	*init(char *map_path)
 {

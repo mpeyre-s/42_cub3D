@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
+/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/28 10:46:41 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/03/31 15:17:29 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define MOVE_SPEED 0.02
 # define ROTATION_SPEED 0.020
 # define PI 3.1415926535897932384626437872
+# define P_SIZE 1.5
 # define TEXTURE_EXT ".xpm"
 
 /* ------------------------------- STRUCTURES --------------------------------*/
@@ -94,6 +95,25 @@ typedef struct s_txt
 	int		color;
 }				t_txt;
 
+typedef struct s_floor
+{
+	float	rayDirX0;
+	float	rayDirY0;
+	float	rayDirX1;
+	float	rayDirY1;
+	int		p;
+	float	posZ;
+	float	rowDist;
+	float	floor_step_x;
+	float	floor_step_y;
+	float	floor_x;
+	float	floor_y;
+	int		cell_x;
+	int		cell_y;
+	int		tx;
+	int		ty;
+}				t_floor;
+
 typedef struct s_map
 {
 	int		width;
@@ -116,6 +136,7 @@ typedef struct s_map
 	t_txt	south;
 	t_txt	east;
 	t_txt	west;
+	t_txt	floors;
 }				t_map;
 
 
@@ -134,8 +155,8 @@ typedef struct s_player
 
 typedef struct s_ray
 {
-	int		map_x;
-	int		map_y;
+	int		m_x;
+	int		m_y;
 	double	camera_x;
 	double	dir_x;
 	double	dir_y;
@@ -145,6 +166,7 @@ typedef struct s_ray
 	double	delta_dist_y;
 	int		step_x;
 	int		step_y;
+	int		hit;
 	int		hit_side;
 	double	wall_dist;
 	int		pxl_height;
@@ -173,6 +195,7 @@ typedef struct s_game
 	t_keys		*keys;
 	t_txt		pickaxe_hud;
 	t_txt		block_hud;
+	t_floor		*floor;
 }				t_game;
 
 typedef struct s_init
