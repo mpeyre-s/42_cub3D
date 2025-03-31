@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 12:58:48 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/31 14:58:38 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/31 15:21:02 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ char	*get_west_texture(char **file)
 
 void	init_textures(t_map *map, t_game *game) // Attention a tout free !
 {
+	game->floor = malloc(sizeof(t_floor));
 	map->north.img = mlx_xpm_file_to_image(game->mlx->mlx, map->NO_path, &map->north.width, &map->north.height);
 	map->south.img = mlx_xpm_file_to_image(game->mlx->mlx, map->SO_path, &map->south.width, &map->south.height);
 	map->east.img = mlx_xpm_file_to_image(game->mlx->mlx, map->EA_path, &map->east.width, &map->east.height);

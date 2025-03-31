@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/31 15:06:26 by spike            ###   ########.fr       */
+/*   Updated: 2025/03/31 15:17:29 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,8 +155,8 @@ typedef struct s_player
 
 typedef struct s_ray
 {
-	int		map_x;
-	int		map_y;
+	int		m_x;
+	int		m_y;
 	double	camera_x;
 	double	dir_x;
 	double	dir_y;
