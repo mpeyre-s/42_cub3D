@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 14:21:29 by spike             #+#    #+#             */
-/*   Updated: 2025/04/01 16:59:37 by spike            ###   ########.fr       */
+/*   Updated: 2025/04/01 17:06:33 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,40 +19,36 @@ int	get_pixel_from_texture(t_txt *texture, int x, int y)
 
 	if (x < 0 || x >= texture->width || y < 0 || y >= texture->height)
 		return (0);
-
-	pixel = (char *)texture->addr + (y * texture->line_length + x * (texture->bpp / 8));
+	pixel = (char *)texture->addr + (y * texture->line_length + x
+			* (texture->bpp / 8));
 	color = *(int *)pixel;
-
 	return (color);
 }
 
-int	select_texture_pixel(int y, t_txt *texture, t_ray *ray)
+int	select_texture_pixel(int y, t_txt *texture, t_ray *r)
 {
 	int		pixel_x;
 	int		pixel_y;
 	int		color;
-	double	texture_offset;
+	double	t_offset;
 
-	pixel_x = (int)(ray->wall_norm_x * texture->width);
+	pixel_x = (int)(r->wall_norm_x * texture->width);
 	if (pixel_x < 0)
 		pixel_x = 0;
 	if (pixel_x >= texture->width)
 		pixel_x = texture->width - 1;
-
-	texture_offset = (ray->wall_start - (WINDOW_HEIGHT / 2) + (ray->pxl_height / 2));
-	pixel_y = (int)((texture_offset + (y - ray->wall_start)) / ray->pxl_height * texture->height);
+	t_offset = (r->wall_start - (WINDOW_HEIGHT / 2) + (r->pxl_height / 2));
+	pixel_y = (int)((t_offset
+				+ (y - r->wall_start)) / r->pxl_height * texture->height);
 	if (pixel_y < 0)
 		pixel_y = 0;
 	if (pixel_y >= texture->height)
 		pixel_y = texture->height - 1;
-
 	color = get_pixel_from_texture(texture, pixel_x, pixel_y);
-
 	return (color);
 }
 
-
-int	select_floor_txt(int x, int y, t_floor *floor, t_txt *texture, t_player *player)
+int	select_floor_txt(int x, int y, t_floor *floor, t_txt *t, t_player *player)
 {
 	ft_memset(floor, 0, sizeof(t_floor));
 	if (y <= WINDOW_HEIGHT / 2)
@@ -64,15 +60,19 @@ int	select_floor_txt(int x, int y, t_floor *floor, t_txt *texture, t_player *pla
 	floor->p = y - WINDOW_HEIGHT / 2;
 	floor->pos = 0.5 * WINDOW_HEIGHT;
 	floor->row_dist = floor->pos / floor->p;
-	floor->floor_step_x = floor->row_dist * (floor->ray_dir_x1 - floor->ray_dir_x0) / WINDOW_WIDTH;
-	floor->floor_step_y = floor->row_dist * (floor->ray_dir_y1 - floor->ray_dir_y0) / WINDOW_WIDTH;
-	floor->floor_x = player->x + floor->row_dist * floor->ray_dir_x0 + floor->floor_step_x * x;
-	floor->floor_y = player->y + floor->row_dist * floor->ray_dir_y0 + floor->floor_step_y * x;
+	floor->floor_step_x = floor->row_dist
+		* (floor->ray_dir_x1 - floor->ray_dir_x0) / WINDOW_WIDTH;
+	floor->floor_step_y = floor->row_dist
+		* (floor->ray_dir_y1 - floor->ray_dir_y0) / WINDOW_WIDTH;
+	floor->floor_x = player->x + floor->row_dist
+		* floor->ray_dir_x0 + floor->floor_step_x * x;
+	floor->floor_y = player->y + floor->row_dist
+		* floor->ray_dir_y0 + floor->floor_step_y * x;
 	floor->cell_x = (int)(floor->floor_x);
 	floor->cell_y = (int)(floor->floor_y);
-	floor->tx = (int)(texture->width * (floor->floor_x - floor->cell_x)) & (texture->width - 1);
-	floor->ty = (int)(texture->height * (floor->floor_y - floor->cell_y)) & (texture->height - 1);
-	return (get_pixel_from_texture(texture, floor->tx, floor->ty));
+	floor->tx = (int)(t->width * (floor->floor_x - floor->cell_x)) & (t->width - 1);
+	floor->ty = (int)(t->height * (floor->floor_y - floor->cell_y)) & (t->height - 1);
+	return (get_pixel_from_texture(t, floor->tx, floor->ty));
 }
 
 void	render_texture(int x, t_game *game, t_txt *texture, t_ray *ray)

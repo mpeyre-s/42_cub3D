@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
+/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 16:26:26 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/28 09:46:37 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/04/01 17:12:39 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	move_player(t_game *game, t_action action)
 		game->player->x = old_x;
 	if (!is_move_possible(game, old_x, game->player->y))
 		game->player->y = old_y;
-		update_window(game);
+	update_window(game);
 }
 
 void	rotate_player(t_game *game, t_action action)

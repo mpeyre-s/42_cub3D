@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
+/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:46:30 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/28 09:14:16 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/04/01 17:16:49 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
-
 
 static void	print_player_direction(t_game *game, int *start_dir, int *end_dir)
 {
@@ -50,7 +49,8 @@ static void	print_player(t_game *game)
 		- (player_size / 2);
 	player_end[0] = player_pos[0] + player_size - 1;
 	player_end[1] = player_pos[1] + player_size - 1;
-	draw_rectangle(game, player_pos, player_end, invert_color(game->map->floor_color));
+	draw_rectangle(game, player_pos, player_end,
+		invert_color(game->map->floor_color));
 	start_dir[0] = player_pos[0] + (player_size / 2);
 	start_dir[1] = player_pos[1] + (player_size / 2);
 	end_dir[0] = start_dir[0] + (game->player->dir_x * 20);
@@ -69,7 +69,6 @@ static int	get_cell_color(t_game *game, int grid_x, int grid_y)
 	return (game->map->floor_color);
 }
 
-
 static void	draw_cell(t_game *game, int grid_x, int grid_y, int cell_size)
 {
 	int		coords[2];
@@ -82,10 +81,12 @@ static void	draw_cell(t_game *game, int grid_x, int grid_y, int cell_size)
 	player_y = game->player->y;
 	offset_x = player_x - floor(player_x) - 0.5;
 	offset_y = player_y - floor(player_y) - 0.5;
-
-	coords[0] = (WINDOW_WIDTH / 50) + ((grid_x - floor(player_x)) - offset_x + 2) * cell_size;
-	coords[1] = (WINDOW_WIDTH / 50) + ((grid_y - floor(player_y)) - offset_y + 2) * cell_size;
-	draw_square_minimap(game, coords, cell_size, get_cell_color(game, grid_x, grid_y));
+	coords[0] = (WINDOW_WIDTH / 50)
+		+ ((grid_x - floor(player_x)) - offset_x + 2) * cell_size;
+	coords[1] = (WINDOW_WIDTH / 50)
+		+ ((grid_y - floor(player_y)) - offset_y + 2) * cell_size;
+	draw_square_minimap(game, coords, cell_size,
+		get_cell_color(game, grid_x, grid_y));
 }
 
 static void	draw_minimap_grid(t_game *game, int cell_size)
@@ -118,6 +119,5 @@ void	print_minimap(t_game *game)
 
 	cell_size = (WINDOW_WIDTH / 6) / 5;
 	draw_minimap_grid(game, cell_size);
-
 	print_player(game);
 }

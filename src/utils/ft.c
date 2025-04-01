@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
+/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:58:28 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/27 14:30:34 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/04/01 17:19:38 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  * @return A pointer to the first occurrence of 'needle' in 'haystack',
  *         or NULL if 'needle' is not found
  */
-char *ft_strstr(const char *haystack, const char *needle)
+char	*ft_strstr(const char *haystack, const char *needle)
 {
 	size_t	i;
 	size_t	j;
@@ -41,7 +41,7 @@ char *ft_strstr(const char *haystack, const char *needle)
 
 static int	ft_get_digit(char c, int base)
 {
-	int digit;
+	int	digit;
 
 	if (c >= '0' && c <= '9')
 		digit = c - '0';
@@ -52,9 +52,10 @@ static int	ft_get_digit(char c, int base)
 	else
 		return (-1);
 	if (digit < base)
-		return digit;
-	return -1;
+		return (digit);
+	return (-1);
 }
+
 /**
  * Converts a string to a long integer
  * @param str The string to convert
@@ -110,7 +111,7 @@ u_int8_t	ft_atouint8(char *str)
  */
 char	*ft_strcpy(char *dest, const char *src)
 {
-	char *start;
+	char	*start;
 
 	start = dest;
 	while (*src)

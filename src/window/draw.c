@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
+/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:49:26 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/25 18:42:03 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/04/01 17:11:58 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	print_pixel(t_game *game, int x, int y, unsigned int color)
 
 	if (x >= 0 && x < WINDOW_WIDTH && y >= 0 && y < WINDOW_HEIGHT)
 	{
-		pixel = game->mlx->addr + (y * game->mlx->line_length + x *
-				(game->mlx->bits_per_pixel / 8));
+		pixel = game->mlx->addr + (y * game->mlx->line_length + x
+				* (game->mlx->bits_per_pixel / 8));
 		*(unsigned int *)pixel = color;
 	}
 }
@@ -39,9 +39,9 @@ void	draw_square_minimap(t_game *game, int *coords, int size, int color)
 		end_x = coords[0] + size;
 		while (x < end_x)
 		{
-			if ((x > WINDOW_WIDTH / 50 && x <  WINDOW_WIDTH / 50
-				+ WINDOW_WIDTH / 6) && (y > WINDOW_WIDTH / 50
-				&& y <  WINDOW_WIDTH / 50 +  WINDOW_WIDTH / 6))
+			if ((x > WINDOW_WIDTH / 50 && x < WINDOW_WIDTH / 50
+					+ WINDOW_WIDTH / 6) && (y > WINDOW_WIDTH / 50
+					&& y < WINDOW_WIDTH / 50 + WINDOW_WIDTH / 6))
 				print_pixel(game, x, y, color);
 			x++;
 		}
@@ -51,8 +51,8 @@ void	draw_square_minimap(t_game *game, int *coords, int size, int color)
 
 void	draw_rectangle(t_game *game, int *start, int *end, int color)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	y = start[1];
 	while (y <= end[1])
@@ -115,7 +115,8 @@ void	draw_line(t_game *game, int *start, int *end)
 	i = 0;
 	while (i <= steps * 0.9)
 	{
-		print_pixel(game, x / 1000, y / 1000, invert_color(game->map->floor_color));
+		print_pixel(game, x / 1000, y / 1000,
+			invert_color(game->map->floor_color));
 		x += inc[0];
 		y += inc[1];
 		i++;
