@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 17:03:48 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/23 13:51:38 by spike            ###   ########.fr       */
+/*   Updated: 2025/04/01 16:41:46 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ double	get_rotation(char **file)
 	}
 	return (0.0);
 }
-char get_player_side(char **file)
+
+char	get_player_side(char **file)
 {
 	size_t	i;
 	size_t	j;

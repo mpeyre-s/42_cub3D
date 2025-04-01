@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 13:22:02 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/25 15:34:36 by spike            ###   ########.fr       */
+/*   Updated: 2025/04/01 16:33:47 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ int	process_color_lines(char **file)
 	f_flag = 0;
 	if (check_line(file[0]) == ERROR)
 		return (msg("Map file 1st color line, check ID (C/F) + RGB",
-			TRUE, TRUE, ERROR));
+				TRUE, TRUE, ERROR));
 	if (check_line(file[1]) == ERROR)
 		return (msg("Map file 2nd color line, check ID (C/F) + RGB",
-			TRUE, TRUE, ERROR));
+				TRUE, TRUE, ERROR));
 	if (file[0][0] == 'F')
 		f_flag++;
 	if (file[1][0] == 'F')
@@ -84,8 +84,8 @@ int	process_color_lines(char **file)
 
 void	init_color(t_map *map)
 {
-	map->floor_color = (map->floor->red << 16) | (map->floor->green << 8) | (map->floor->blue);
-	map->sky_color = (map->ceiling->red << 16) | (map->ceiling->green << 8) | (map->ceiling->blue);
-
+	map->floor_color = (map->floor->red << 16)
+		| (map->floor->green << 8) | (map->floor->blue);
+	map->sky_color = (map->ceiling->red << 16)
+		| (map->ceiling->green << 8) | (map->ceiling->blue);
 }
-

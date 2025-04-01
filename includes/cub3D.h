@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/31 15:17:29 by spike            ###   ########.fr       */
+/*   Updated: 2025/04/01 17:00:04 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,13 +97,13 @@ typedef struct s_txt
 
 typedef struct s_floor
 {
-	float	rayDirX0;
-	float	rayDirY0;
-	float	rayDirX1;
-	float	rayDirY1;
+	float	ray_dir_x0;
+	float	ray_dir_y0;
+	float	ray_dir_x1;
+	float	ray_dir_y1;
 	int		p;
-	float	posZ;
-	float	rowDist;
+	float	pos;
+	float	row_dist;
 	float	floor_step_x;
 	float	floor_step_y;
 	float	floor_x;

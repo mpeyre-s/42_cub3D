@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_lines.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
+/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 13:23:26 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/19 11:51:31 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/04/01 16:34:23 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ static int	check_img_extension(char **file)
 	}
 	return (SUCCES);
 }
+
 static int	check_openability(char **file)
 {
 	size_t	i;
@@ -127,4 +128,3 @@ int	process_texture_lines(char **file)
 	}
 	return (SUCCES);
 }
-

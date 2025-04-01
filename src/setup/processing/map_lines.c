@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_lines.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
+/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 13:23:55 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/19 16:17:45 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/04/01 16:31:10 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,8 @@ static int	check_map_integrity(char **file, size_t tab_len)
 			return (ERROR);
 		i++;
 	}
-	if (i == 1 || !file[tab_len - 1] || is_full_of_char(file[tab_len - 1], '1') == FALSE)
+	if (i == 1 || !file[tab_len - 1]
+		|| is_full_of_char(file[tab_len - 1], '1') == FALSE)
 		return (ERROR);
 	return (SUCCES);
 }

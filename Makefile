@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+         #
+#    By: spike <spike@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/07 09:35:02 by mathispeyre       #+#    #+#              #
-#    Updated: 2025/03/28 10:03:33 by mathispeyre      ###   ########.fr        #
+#    Updated: 2025/04/01 16:40:20 by spike            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ SRC = main.c \
 	  game/game.c game/minimap.c game/player.c game/action.c \
 	  render/raycast.c render/texture.c \
 	  setup/initialization/init.c setup/initialization/extract_data.c setup/initialization/grid_map.c setup/initialization/init_map.c\
-	  setup/initialization/rgb.c setup/initialization/textures.c setup/initialization/player.c setup/initialization/init_player.c \
+	  setup/initialization/rgb.c setup/initialization/textures.c setup/initialization/player.c setup/initialization/init_player.c setup/initialization/init_textures.c\
 	  setup/processing/parsing.c setup/processing/file_utils.c setup/processing/checker.c \
 	  setup/processing/color_lines.c setup/processing/texture_lines.c setup/processing/map_lines.c \
 	  window/hooks.c window/mlx.c window/draw.c \

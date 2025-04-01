@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 14:21:29 by spike             #+#    #+#             */
-/*   Updated: 2025/03/31 15:25:00 by spike            ###   ########.fr       */
+/*   Updated: 2025/04/01 16:59:37 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,34 +55,23 @@ int	select_texture_pixel(int y, t_txt *texture, t_ray *ray)
 int	select_floor_txt(int x, int y, t_floor *floor, t_txt *texture, t_player *player)
 {
 	ft_memset(floor, 0, sizeof(t_floor));
-
 	if (y <= WINDOW_HEIGHT / 2)
 		return 0;
-
-	// Direction des rayons pour le bord gauche et droit
-	floor->rayDirX0 = player->dir_x - player->plane_x;
-	floor->rayDirY0 = player->dir_y - player->plane_y;
-	floor->rayDirX1 = player->dir_x + player->plane_x;
-	floor->rayDirY1 = player->dir_y + player->plane_y;
-
-	// Position verticale de la caméra
+	floor->ray_dir_x0 = player->dir_x - player->plane_x;
+	floor->ray_dir_y0 = player->dir_y - player->plane_y;
+	floor->ray_dir_x1 = player->dir_x + player->plane_x;
+	floor->ray_dir_y1 = player->dir_y + player->plane_y;
 	floor->p = y - WINDOW_HEIGHT / 2;
-	floor->posZ = 0.5 * WINDOW_HEIGHT;
-	floor->rowDist = floor->posZ / floor->p;
-
-	// Calcul des coordonnées du sol pour ce pixel spécifique (x,y)
-	floor->floor_step_x = floor->rowDist * (floor->rayDirX1 - floor->rayDirX0) / WINDOW_WIDTH;
-	floor->floor_step_y = floor->rowDist * (floor->rayDirY1 - floor->rayDirY0) / WINDOW_WIDTH;
-
-	floor->floor_x = player->x + floor->rowDist * floor->rayDirX0 + floor->floor_step_x * x;
-	floor->floor_y = player->y + floor->rowDist * floor->rayDirY0 + floor->floor_step_y * x;
-
-	// Calcul des coordonnées de texture
+	floor->pos = 0.5 * WINDOW_HEIGHT;
+	floor->row_dist = floor->pos / floor->p;
+	floor->floor_step_x = floor->row_dist * (floor->ray_dir_x1 - floor->ray_dir_x0) / WINDOW_WIDTH;
+	floor->floor_step_y = floor->row_dist * (floor->ray_dir_y1 - floor->ray_dir_y0) / WINDOW_WIDTH;
+	floor->floor_x = player->x + floor->row_dist * floor->ray_dir_x0 + floor->floor_step_x * x;
+	floor->floor_y = player->y + floor->row_dist * floor->ray_dir_y0 + floor->floor_step_y * x;
 	floor->cell_x = (int)(floor->floor_x);
 	floor->cell_y = (int)(floor->floor_y);
 	floor->tx = (int)(texture->width * (floor->floor_x - floor->cell_x)) & (texture->width - 1);
 	floor->ty = (int)(texture->height * (floor->floor_y - floor->cell_y)) & (texture->height - 1);
-
 	return (get_pixel_from_texture(texture, floor->tx, floor->ty));
 }
 
