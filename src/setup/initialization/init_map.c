@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
+/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 13:32:53 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/28 10:50:38 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/04/02 13:55:43 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ static void	fill_map_data(t_map *map, t_init *data)
 	map->floor->red = data->floor->red;
 	map->floor->green = data->floor->green;
 	map->floor->blue = data->floor->blue;
-	map->NO_path = ft_strdup(data->north_texture);
-	map->SO_path = ft_strdup(data->south_texture);
-	map->WE_path = ft_strdup(data->west_texture);
-	map->EA_path = ft_strdup(data->east_texture);
+	map->no_path = ft_strdup(data->north_texture);
+	map->so_path = ft_strdup(data->south_texture);
+	map->we_path = ft_strdup(data->west_texture);
+	map->ea_path = ft_strdup(data->east_texture);
 	map->grid = init_grid(data, map->width, map->height);
 }
 
@@ -93,10 +93,10 @@ t_map	*init_map(t_init *data)
 	{
 		free(map->ceiling);
 		free(map->floor);
-		free(map->NO_path);
-		free(map->SO_path);
-		free(map->WE_path);
-		free(map->EA_path);
+		free(map->no_path);
+		free(map->so_path);
+		free(map->we_path);
+		free(map->ea_path);
 		free(map);
 		return (NULL);
 	}

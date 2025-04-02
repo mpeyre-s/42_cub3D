@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:49:26 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/04/01 17:11:58 by spike            ###   ########.fr       */
+/*   Updated: 2025/04/02 14:06:42 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	print_pixel(t_game *game, int x, int y, unsigned int color)
 	}
 }
 
-void	draw_square_minimap(t_game *game, int *coords, int size, int color)
+void	draw_sqr_minmap(t_game *game, int *coords, int size, int color)
 {
 	int		x;
 	int		y;

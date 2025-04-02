@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
+/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:39:35 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/24 12:19:10 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/04/02 13:54:52 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ static void	free_map(t_game *game)
 {
 	int	i;
 
-	if (game->map->NO_path)
-		free(game->map->NO_path);
-	if (game->map->SO_path)
-		free(game->map->SO_path);
-	if (game->map->WE_path)
-		free(game->map->WE_path);
-	if (game->map->EA_path)
-		free(game->map->EA_path);
+	if (game->map->no_path)
+		free(game->map->no_path);
+	if (game->map->so_path)
+		free(game->map->so_path);
+	if (game->map->we_path)
+		free(game->map->we_path);
+	if (game->map->ea_path)
+		free(game->map->ea_path);
 	if (game->map->floor)
 		free(game->map->floor);
 	if (game->map->ceiling)

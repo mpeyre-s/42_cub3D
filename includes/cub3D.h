@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/04/01 17:00:04 by spike            ###   ########.fr       */
+/*   Updated: 2025/04/02 14:39:03 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,29 +116,27 @@ typedef struct s_floor
 
 typedef struct s_map
 {
-	int		width;
-	int		height;
-	int		cell_width;
-	int		cell_height;
-	int		px_width;
-	int		px_height;
-	t_rgb	*floor;
-	t_rgb	*ceiling;
-	char	*NO_path;
-	char	*SO_path;
-	char	*WE_path;
-	char	*EA_path;
-	int		**grid;
+	int				width;
+	int				height;
+	int				cell_width;
+	int				cell_height;
+	int				px_width;
+	int				px_height;
+	t_rgb			*floor;
+	t_rgb			*ceiling;
+	char			*no_path;
+	char			*so_path;
+	char			*we_path;
+	char			*ea_path;
+	int				**grid;
 	unsigned int	floor_color;
 	unsigned int	sky_color;
-
-	t_txt	north;
-	t_txt	south;
-	t_txt	east;
-	t_txt	west;
-	t_txt	floors;
+	t_txt			north;
+	t_txt			south;
+	t_txt			east;
+	t_txt			west;
+	t_txt			floors;
 }				t_map;
-
 
 typedef struct s_player
 {
@@ -218,98 +216,88 @@ typedef struct s_init
 }				t_init;
 
 /* -------------------------- FUNCTIONS PROTOTYPES ---------------------------*/
-int		msg(char *msg, int endl, int is_error, int value);
-int		print_ascii_art(void);
-int		print_keycode_config(t_game *game);
+int				msg(char *msg, int endl, int is_error, int value);
+int				print_ascii_art(void);
+int				print_keycode_config(t_game *game);
 
-int		parsing(int ac, char **av);
-char	*read_file(char *file_path);
-int		is_empty_line(char *line);
-char	*extract_path(char *line);
+int				parsing(int ac, char **av);
+char			*read_file(char *file_path);
+int				is_empty_line(char *line);
+char			*extract_path(char *line);
 
-int		check_file_when_colors_first(char **file, size_t len);
-int		check_file_when_textures_first(char **file, size_t len);
+int				check_file_when_colors_first(char **file, size_t len);
+int				check_file_when_textures_first(char **file, size_t len);
 
-int		process_color_lines(char **file);
-int		process_texture_lines(char **file);
-int		process_map_lines(char **file, size_t len);
+int				process_color_lines(char **file);
+int				process_texture_lines(char **file);
+int				process_map_lines(char **file, size_t len);
 
-size_t	tab_of_tab_len(char **tab);
+size_t			tab_of_tab_len(char **tab);
+t_init			*init_data(char *path);
+t_rgb			*get_floor_rgb(char **file);
+t_rgb			*get_ceiling_rgb(char **file);
+char			*get_south_texture(char **file);
+char			*get_north_texture(char **file);
+char			*get_east_texture(char **file);
+char			*get_west_texture(char **file);
+char			**get_map_grid(char **file);
+int				get_map_width(char **file);
+int				get_map_height(char **file);
+double			get_x_pos(char **file);
+double			get_y_pos(char **file);
+double			get_rotation(char **file);
 
-t_init	*init_data(char *path);
-t_rgb	*get_floor_rgb(char **file);
-t_rgb	*get_ceiling_rgb(char **file);
-char	*get_south_texture(char **file);
-char	*get_north_texture(char **file);
-char	*get_east_texture(char **file);
-char	*get_west_texture(char **file);
-char	**get_map_grid(char **file);
-int		get_map_width(char **file);
-int		get_map_height(char **file);
-double	get_x_pos(char **file);
-double	get_y_pos(char **file);
-double	get_dirx(char **file);
-double	get_diry(char **file);
-double	get_rotation(char **file);
+t_game			*init(char *map_path);
+int				**init_grid(t_init *data, int width, int height);
+t_map			*init_map(t_init *data);
 
-t_game	*init(char *map_path);
-int		**init_grid(t_init *data, int width, int height);
-t_map	*init_map(t_init *data);
+int				start_game(t_game *game);
+void			update_window(t_game *game);
 
-int		start_game(t_game *game);
-void	update_window(t_game *game);
+void			move_player(t_game *game, t_action action);
+void			rotate_player(t_game *game, t_action action);
 
-void	print_grid(t_game *game);
-void	fill_grid_with_map(t_game *game);
-void	spawn_player(t_game *game);
+void			exit_program(t_game *game);
 
-void	move_player(t_game *game, t_action action);
-void	rotate_player(t_game *game, t_action action);
+int				key_press(int keycode, t_game *game);
+int				key_release(int keycode, t_game *game);
+int				loop_hook(t_game *game);
+int				close_hook(t_game *game);
 
-void	exit_program(t_game *game);
+void			do_action(t_game *game);
 
-int		key_press(int keycode, t_game *game);
-int		key_release(int keycode, t_game *game);
-int		loop_hook(t_game *game);
-int		close_hook(t_game *game);
+int				start_mlx(t_game *game);
+int				destroy_mlx(t_game *game);
 
-void	do_action(t_game *game);
+void			print_pixel(t_game *game, int x, int y, unsigned int color);
+void			color_fill(t_game *game, unsigned int color);
+void			draw_sqr_minmap(t_game *game, int *coords, int size, int color);
+void			draw_line(t_game *game, int *start, int *end);
+void			draw_rectangle(t_game *game, int *start, int *end, int color);
 
-int		start_mlx(t_game *game);
-int		destroy_mlx(t_game *game);
-
-void	print_pixel(t_game *game, int x, int y, unsigned int color);
-void	color_fill(t_game *game, unsigned int color);
-void	draw_square_minimap(t_game *game, int *coords, int size, int color);
-void	draw_line(t_game *game, int *start, int *end);
-void	draw_rectangle(t_game *game, int *start, int *end, int color);
-
-void	print_minimap(t_game *game);
-
-char	*ft_strstr(const char *haystack, const char *needle);
-char	*ft_strcpy(char *dest, const char *src);
-t_os	detect_os(void);
-char	**convert_content(char *content);
-int		process_line(char **result, char **line, int j);
-void	normalize_map_width(char **result, int j);
-void	free_file_tab(char **file, size_t len);
-void	free_split(char **split);
-int		free_init(t_init *data);
-u_int8_t	ft_atouint8(char *str);
+void			print_minimap(t_game *game);
+int				get_pixel_from_texture(t_txt *texture, int x, int y);
+char			*ft_strstr(const char *haystack, const char *needle);
+char			*ft_strcpy(char *dest, const char *src);
+t_os			detect_os(void);
+char			**convert_content(char *content);
+int				process_line(char **result, char **line, int j);
+void			normalize_map_width(char **result, int j);
+void			free_file_tab(char **file, size_t len);
+void			free_split(char **split);
+int				free_init(t_init *data);
+u_int8_t		ft_atouint8(char *str);
 unsigned int	invert_color(unsigned int color);
-
-void	raycast(t_game *game, t_player *player, int **grid);
-void	init_player_direction(t_player *player);
-char	get_player_side(char **file);
-void	init_textures(t_map *map, t_game *game);
-void	handle_txt(int x, t_map *map, t_game *game, t_ray *ray);
-void	init_color(t_map *map);
-void	init_pickaxe_hud(t_game *game);
-void	init_block_hud(t_game *game);
+void			raycast(t_game *game, t_player *player, int **grid);
+void			init_player_direction(t_player *player);
+char			get_player_side(char **file);
+void			init_textures(t_map *map, t_game *game);
+void			handle_txt(int x, t_map *map, t_game *game, t_ray *ray);
+void			init_color(t_map *map);
 
 // sup
-void	print_tab_of_char_tab(char **tab);
-void	print_tab_of_tab_int(int **tab, int rows, int cols);
+void			print_tab_of_char_tab(char **tab);
+void			print_tab_of_tab_int(int **tab, int rows, int cols);
 
 /* --------------------------- DEVELOPMENT MACROS ----------------------------*/
 # define TRUE 1
@@ -318,7 +306,7 @@ void	print_tab_of_tab_int(int **tab, int rows, int cols);
 # define SUCCES 0
 
 # define STR_PARSE1 "Use ./cub3D map_name.cub for running the game"
-# define STR_PARSE2 "Invalid map file, use .cub extension + check error messages"
+# define STR_PARSE2 "Invalid map file, use .cub extension + check error msg"
 
 /* ------------------------------- KEY MAPPING -------------------------------*/
 # define MAC_FORWARD_KEY 13

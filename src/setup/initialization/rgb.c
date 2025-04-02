@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   rgb.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
+/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 11:52:21 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/20 14:55:24 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/04/02 14:36:08 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/cub3D.h"
+
+int	get_pixel_from_texture(t_txt *texture, int x, int y)
+{
+	char	*pixel;
+	int		color;
+
+	if (x < 0 || x >= texture->width || y < 0 || y >= texture->height)
+		return (0);
+	pixel = (char *)texture->addr + (y * texture->line_length + x
+			* (texture->bpp / 8));
+	color = *(int *)pixel;
+	return (color);
+}
 
 static int	fill_rgb_struct(t_rgb **rgb, char *line)
 {

@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:46:30 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/04/01 17:16:49 by spike            ###   ########.fr       */
+/*   Updated: 2025/04/02 14:06:57 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static void	draw_cell(t_game *game, int grid_x, int grid_y, int cell_size)
 		+ ((grid_x - floor(player_x)) - offset_x + 2) * cell_size;
 	coords[1] = (WINDOW_WIDTH / 50)
 		+ ((grid_y - floor(player_y)) - offset_y + 2) * cell_size;
-	draw_square_minimap(game, coords, cell_size,
+	draw_sqr_minmap(game, coords, cell_size,
 		get_cell_color(game, grid_x, grid_y));
 }
 

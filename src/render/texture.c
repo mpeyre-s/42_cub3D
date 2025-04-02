@@ -6,24 +6,11 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 14:21:29 by spike             #+#    #+#             */
-/*   Updated: 2025/04/01 17:06:33 by spike            ###   ########.fr       */
+/*   Updated: 2025/04/02 14:40:08 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
-
-int	get_pixel_from_texture(t_txt *texture, int x, int y)
-{
-	char	*pixel;
-	int		color;
-
-	if (x < 0 || x >= texture->width || y < 0 || y >= texture->height)
-		return (0);
-	pixel = (char *)texture->addr + (y * texture->line_length + x
-			* (texture->bpp / 8));
-	color = *(int *)pixel;
-	return (color);
-}
 
 int	select_texture_pixel(int y, t_txt *texture, t_ray *r)
 {
@@ -48,11 +35,8 @@ int	select_texture_pixel(int y, t_txt *texture, t_ray *r)
 	return (color);
 }
 
-int	select_floor_txt(int x, int y, t_floor *floor, t_txt *t, t_player *player)
+void	calculate_floor(int y, t_floor *floor, t_player *player)
 {
-	ft_memset(floor, 0, sizeof(t_floor));
-	if (y <= WINDOW_HEIGHT / 2)
-		return 0;
 	floor->ray_dir_x0 = player->dir_x - player->plane_x;
 	floor->ray_dir_y0 = player->dir_y - player->plane_y;
 	floor->ray_dir_x1 = player->dir_x + player->plane_x;
@@ -60,6 +44,19 @@ int	select_floor_txt(int x, int y, t_floor *floor, t_txt *t, t_player *player)
 	floor->p = y - WINDOW_HEIGHT / 2;
 	floor->pos = 0.5 * WINDOW_HEIGHT;
 	floor->row_dist = floor->pos / floor->p;
+}
+
+int	select_floor_txt(int x, int y, t_game *game, t_txt *t)
+{
+	t_player	*player;
+	t_floor		*floor;
+
+	player = game->player;
+	floor = game->floor;
+	ft_memset(floor, 0, sizeof(t_floor));
+	if (y <= WINDOW_HEIGHT / 2)
+		return (0);
+	calculate_floor(y, floor, player);
 	floor->floor_step_x = floor->row_dist
 		* (floor->ray_dir_x1 - floor->ray_dir_x0) / WINDOW_WIDTH;
 	floor->floor_step_y = floor->row_dist
@@ -70,8 +67,10 @@ int	select_floor_txt(int x, int y, t_floor *floor, t_txt *t, t_player *player)
 		* floor->ray_dir_y0 + floor->floor_step_y * x;
 	floor->cell_x = (int)(floor->floor_x);
 	floor->cell_y = (int)(floor->floor_y);
-	floor->tx = (int)(t->width * (floor->floor_x - floor->cell_x)) & (t->width - 1);
-	floor->ty = (int)(t->height * (floor->floor_y - floor->cell_y)) & (t->height - 1);
+	floor->tx = (int)(t->width * (floor->floor_x - floor->cell_x))
+		& (t->width - 1);
+	floor->ty = (int)(t->height * (floor->floor_y - floor->cell_y))
+		& (t->height - 1);
 	return (get_pixel_from_texture(t, floor->tx, floor->ty));
 }
 
@@ -96,7 +95,7 @@ void	render_texture(int x, t_game *game, t_txt *texture, t_ray *ray)
 	y = ray->wall_end;
 	while (y < WINDOW_HEIGHT)
 	{
-		color = select_floor_txt(x, y, game->floor, &game->map->floors, game->player);
+		color = select_floor_txt(x, y, game, &game->map->floors);
 		print_pixel(game, x, y, color);
 		y++;
 	}

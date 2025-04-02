@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:43:29 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/31 15:22:23 by spike            ###   ########.fr       */
+/*   Updated: 2025/04/02 14:17:48 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ int	main(int ac, char **av)
 		return (msg("Error while initializing the game", TRUE, TRUE, 1));
 	init_textures(game->map, game);
 	init_color(game->map);
-	init_pickaxe_hud(game);
-	init_block_hud(game);
 	start_game(game);
 	return (msg("Exit...", TRUE, FALSE, EXIT_SUCCESS));
 }
