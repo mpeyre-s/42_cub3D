@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:58:28 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/04/02 16:14:13 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/04/02 16:51:24 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ long	ft_strol(const char *str, char **endptr, int base)
 	{
 		result = result * base + digit;
 		str++;
+		digit = ft_get_digit(*str, base);
 	}
 	if (endptr)
 		*endptr = (char *)str;
