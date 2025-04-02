@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 16:39:08 by spike             #+#    #+#             */
-/*   Updated: 2025/04/02 14:41:01 by spike            ###   ########.fr       */
+/*   Updated: 2025/04/02 16:35:19 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	init_addr(t_game *game, t_map *map)
 			&game->block_hud.endian);
 }
 
-void	init_textures(t_map *map, t_game *game) // Attention a tout free !
+void	init_textures(t_map *map, t_game *game)
 {
 	game->floor = malloc(sizeof(t_floor));
 	map->north.img = mlx_xpm_file_to_image(game->mlx->mlx,
@@ -44,7 +44,8 @@ void	init_textures(t_map *map, t_game *game) // Attention a tout free !
 	map->west.img = mlx_xpm_file_to_image(game->mlx->mlx,
 			map->we_path, &map->west.width, &map->west.height);
 	map->floors.img = mlx_xpm_file_to_image(game->mlx->mlx,
-			"assets/textures/mossy.xpm", &map->floors.width, &map->floors.height); // il faudra renommer la map minecraft avec une seule lettre
+			"assets/textures/mossy.xpm", &map->floors.width,
+			&map->floors.height);
 	game->pickaxe_hud.img = mlx_xpm_file_to_image(game->mlx->mlx,
 			"assets/textures/pickaxe_hud.xpm",
 			&game->pickaxe_hud.width, &game->pickaxe_hud.height);
@@ -54,9 +55,6 @@ void	init_textures(t_map *map, t_game *game) // Attention a tout free !
 	if (!map->north.img || !map->south.img
 		|| !map->east.img || !map->west.img || !map->floors.img
 		|| !game->block_hud.img || !game->block_hud.img)
-	{
-		printf("Erreur : Impossible de charger l'une des textures.\n");
 		exit(1);
-	}
 	init_addr(game, map);
 }

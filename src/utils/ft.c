@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:58:28 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/04/01 17:19:38 by spike            ###   ########.fr       */
+/*   Updated: 2025/04/02 16:14:13 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,12 @@ long	ft_strol(const char *str, char **endptr, int base)
 	sign = 1;
 	while (ft_isspace(*str))
 		str++;
+	if (*str == '-')
+		sign = -1;
 	if (*str == '-' || *str == '+')
-		sign = (*str++ == '-') ? -1 : 1;
-	while ((digit = ft_get_digit(*str, base)) >= 0)
+		str++;
+	digit = ft_get_digit(*str, base);
+	while (digit >= 0)
 	{
 		result = result * base + digit;
 		str++;

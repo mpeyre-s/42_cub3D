@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:49:26 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/04/02 14:06:42 by spike            ###   ########.fr       */
+/*   Updated: 2025/04/02 16:15:42 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,22 +83,6 @@ void	color_fill(t_game *game, unsigned int color)
 		}
 		y++;
 	}
-}
-
-static int	get_steps_and_increments(int *start, int *end, int *inc)
-{
-	int	dx;
-	int	dy;
-	int	steps;
-
-	dx = end[0] - start[0];
-	dy = end[1] - start[1];
-	steps = abs(dx);
-	if (abs(dy) > steps)
-		steps = abs(dy);
-	inc[0] = (dx * 1000) / steps;
-	inc[1] = (dy * 1000) / steps;
-	return (steps);
 }
 
 void	draw_line(t_game *game, int *start, int *end)

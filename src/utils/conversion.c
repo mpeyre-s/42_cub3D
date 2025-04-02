@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 17:08:14 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/27 15:11:07 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/04/02 16:16:03 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,20 @@ unsigned int	invert_color(unsigned int color)
 	g = 255 - ((color >> 8) & 0xFF);
 	b = 255 - (color & 0xFF);
 	return ((r << 16) | (g << 8) | b);
+}
+
+int	get_steps_and_increments(int *start, int *end, int *inc)
+{
+	int	dx;
+	int	dy;
+	int	steps;
+
+	dx = end[0] - start[0];
+	dy = end[1] - start[1];
+	steps = abs(dx);
+	if (abs(dy) > steps)
+		steps = abs(dy);
+	inc[0] = (dx * 1000) / steps;
+	inc[1] = (dy * 1000) / steps;
+	return (steps);
 }

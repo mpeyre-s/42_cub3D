@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/04/02 14:39:03 by spike            ###   ########.fr       */
+/*   Updated: 2025/04/02 16:16:19 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -294,6 +294,7 @@ char			get_player_side(char **file);
 void			init_textures(t_map *map, t_game *game);
 void			handle_txt(int x, t_map *map, t_game *game, t_ray *ray);
 void			init_color(t_map *map);
+int				get_steps_and_increments(int *start, int *end, int *inc);
 
 // sup
 void			print_tab_of_char_tab(char **tab);

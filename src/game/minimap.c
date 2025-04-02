@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:46:30 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/04/02 14:06:57 by spike            ###   ########.fr       */
+/*   Updated: 2025/04/02 16:33:21 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,15 +89,15 @@ static void	draw_cell(t_game *game, int grid_x, int grid_y, int cell_size)
 		get_cell_color(game, grid_x, grid_y));
 }
 
-static void	draw_minimap_grid(t_game *game, int cell_size)
+void	print_minimap(t_game *game)
 {
+	int		cell_size;
 	int		i;
 	int		j;
 	float	player_x;
 	float	player_y;
-	int		grid_x;
-	int		grid_y;
 
+	cell_size = (WINDOW_WIDTH / 6) / 5;
 	player_x = game->player->x;
 	player_y = game->player->y;
 	i = -4;
@@ -106,18 +106,9 @@ static void	draw_minimap_grid(t_game *game, int cell_size)
 		j = -4;
 		while (++j <= 3)
 		{
-			grid_x = floor(player_x) + j;
-			grid_y = floor(player_y) + i;
-			draw_cell(game, grid_x, grid_y, cell_size);
+			draw_cell(game, floor(player_x) + j, floor(player_y) + i,
+				cell_size);
 		}
 	}
-}
-
-void	print_minimap(t_game *game)
-{
-	int	cell_size;
-
-	cell_size = (WINDOW_WIDTH / 6) / 5;
-	draw_minimap_grid(game, cell_size);
 	print_player(game);
 }

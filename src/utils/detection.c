@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:59:52 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/03/10 16:06:34 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/04/02 16:09:49 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ t_os	detect_os(void)
 		msg("Non-linux environment detected, assuming macOS", TRUE, FALSE, 0);
 		return (MACOS);
 	}
-	while ((bytes_read = read(fd, buffer, sizeof(buffer) - 1)) > 0)
+	bytes_read = read(fd, buffer, sizeof(buffer) - 1);
+	while (bytes_read > 0)
 	{
 		buffer[bytes_read] = '\0';
 		if (ft_strstr(buffer, "PRETTY_NAME"))
@@ -33,6 +34,7 @@ t_os	detect_os(void)
 			msg("Linux environment detected", TRUE, FALSE, 0);
 			return (LINUX);
 		}
+		bytes_read = read(fd, buffer, sizeof(buffer) - 1);
 	}
 	close(fd);
 	msg("Unknown environment detected, assuming linux", TRUE, FALSE, 0);
