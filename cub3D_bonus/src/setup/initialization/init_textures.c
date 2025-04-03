@@ -6,7 +6,7 @@
 /*   By: mathispeyre <mathispeyre@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 16:39:08 by spike             #+#    #+#             */
-/*   Updated: 2025/04/02 16:35:19 by mathispeyre      ###   ########.fr       */
+/*   Updated: 2025/04/03 20:42:03 by mathispeyre      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	init_textures(t_map *map, t_game *game)
 	map->west.img = mlx_xpm_file_to_image(game->mlx->mlx,
 			map->we_path, &map->west.width, &map->west.height);
 	map->floors.img = mlx_xpm_file_to_image(game->mlx->mlx,
-			"assets/textures/mossy.xpm", &map->floors.width,
+			"assets/textures/quartz_bricks.xpm", &map->floors.width,
 			&map->floors.height);
 	game->pickaxe_hud.img = mlx_xpm_file_to_image(game->mlx->mlx,
 			"assets/textures/pickaxe_hud.xpm",
