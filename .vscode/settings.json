@@ -1,9 +1,0 @@
-{
-	"files.associations": {
-		"cub3d.h": "c",
-		"mlx.h": "c",
-		"__node_handle": "c",
-		"ios": "c",
-		"bitset": "c"
-	}
-}
