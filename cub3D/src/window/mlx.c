@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 16:20:52 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/04/01 17:09:09 by spike            ###   ########.fr       */
+/*   Updated: 2025/04/04 13:46:52 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ int	destroy_mlx(t_game *game)
 		if (game->mlx->win)
 			mlx_destroy_window(game->mlx->mlx, game->mlx->win);
 	}
+	free_textures(game->map, game);
 	return (SUCCES);
 }
