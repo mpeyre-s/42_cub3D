@@ -6,7 +6,7 @@
 /*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 16:39:08 by spike             #+#    #+#             */
-/*   Updated: 2025/04/03 20:25:50 by spike            ###   ########.fr       */
+/*   Updated: 2025/04/04 13:33:19 by spike            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	init_addr(t_game *game, t_map *map)
 
 void	init_textures(t_map *map, t_game *game)
 {
-	game->floor = malloc(sizeof(t_floor));
 	map->north.img = mlx_xpm_file_to_image(game->mlx->mlx,
 			map->no_path, &map->north.width, &map->north.height);
 	map->south.img = mlx_xpm_file_to_image(game->mlx->mlx,
