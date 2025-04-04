@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mpeyre-s <mpeyre-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 14:19:56 by spike             #+#    #+#             */
-/*   Updated: 2025/04/01 16:43:37 by spike            ###   ########.fr       */
+/*   Updated: 2025/04/04 17:06:23 by mpeyre-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ void	wall_ray_size(t_ray *ray, t_player *player)
 		ray->wall_dist = (ray->len_x - ray->delta_dist_x);
 	else
 		ray->wall_dist = (ray->len_y - ray->delta_dist_y);
+	if (ray->wall_dist < 0.01)
+		ray->wall_dist = 0.01;
 	ray->pxl_height = (int)(WINDOW_HEIGHT / ray->wall_dist);
 	ray->wall_start = (int)((WINDOW_HEIGHT / 2) - (ray->pxl_height / 2));
 	if (ray->wall_start < 0)

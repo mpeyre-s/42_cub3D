@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: spike <spike@student.42.fr>                +#+  +:+       +#+         #
+#    By: mpeyre-s <mpeyre-s@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/07 09:35:02 by mathispeyre       #+#    #+#              #
-#    Updated: 2025/04/03 20:26:59 by spike            ###   ########.fr        #
+#    Updated: 2025/04/04 15:53:04 by mpeyre-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRCS = $(addprefix $(SRCDIR), $(SRC))
 OBJS = $(patsubst $(SRCDIR)%.c, $(OBJDIR)%.o, $(SRCS))
 NAME = cub3D_bonus
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -Wunused-result
 RM = rm -f
 
 LIBFT_DIR = .libft/

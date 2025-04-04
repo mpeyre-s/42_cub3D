@@ -6,7 +6,7 @@
 /*   By: mpeyre-s <mpeyre-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:39:35 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/04/04 15:31:49 by mpeyre-s         ###   ########.fr       */
+/*   Updated: 2025/04/04 17:52:11 by mpeyre-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	exit_program(t_game *game)
 	free_textures(game->map, game);
 	if (game->map)
 		free_map(game);
-
 	if (game->mlx)
 	{
 		destroy_mlx(game);

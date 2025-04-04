@@ -6,7 +6,7 @@
 /*   By: mpeyre-s <mpeyre-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 11:51:42 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/04/04 14:47:57 by mpeyre-s         ###   ########.fr       */
+/*   Updated: 2025/04/04 17:34:25 by mpeyre-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,11 @@ int	**init_grid(t_init *data, int width, int height)
 	int	i;
 	int	j;
 
-	grid = malloc(sizeof(int *) * (height));
+	grid = malloc(sizeof(int *) * (height + 1));
 	if (!grid)
 		return (NULL);
-	i = 0;
-	while (i < height)
+	i = -1;
+	while (++i < height)
 	{
 		grid[i] = malloc(sizeof(int) * width);
 		if (!grid[i])
@@ -87,11 +87,13 @@ int	**init_grid(t_init *data, int width, int height)
 		j = 0;
 		while (j < width)
 		{
-			if (data->grid[i][j] - '0' == 0 || data->grid[i][j] - '0' == 1)
-				grid[i][j] = data->grid[i][j] - '0';
+			if (data->grid[i][j] - '0' == 1)
+				grid[i][j] = 1;
+			else
+				grid[i][j] = 0;
 			j++;
 		}
-		i++;
 	}
+	data->grid[i] = NULL;
 	return (grid);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mpeyre-s <mpeyre-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 16:26:26 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/04/01 17:12:39 by spike            ###   ########.fr       */
+/*   Updated: 2025/04/04 17:30:10 by mpeyre-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,23 @@ int	calculate_move(t_game *game, t_action action)
 
 int	is_move_possible(t_game *game, double x, double y)
 {
-	if (game->map->grid[(int)floor(y)][(int)floor(x)] == 1)
+	int	floor_y;
+	int	floor_x;
+
+	if (!game)
 		return (FALSE);
-	else if (game->map->grid[(int)floor(y)][(int)floor(x)] == 2)
+	floor_y = (int)floor(y);
+	floor_x = (int)floor(x);
+	if (floor_x >= game->map->width - 1)
 		return (FALSE);
-	return (TRUE);
+	if (floor_y >= game->map->height - 1)
+		return (FALSE);
+	if (game->map->grid[floor_y][floor_x] == 1)
+		return (FALSE);
+	else if (game->map->grid[floor_y][floor_x] == 2)
+		return (FALSE);
+	else
+		return (TRUE);
 }
 
 void	move_player(t_game *game, t_action action)
