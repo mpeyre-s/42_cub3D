@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mpeyre-s <mpeyre-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:44:06 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/04/04 13:47:23 by spike            ###   ########.fr       */
+/*   Updated: 2025/04/04 15:29:25 by mpeyre-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 /* --------------------------- LIBRAIRIES INCLUDES ---------------------------*/
 # include "../.libft/libft.h"
-# include "../.minilibx_opengl/mlx.h"
-// # include "../.minilibx_linux/mlx.h"
+//# include "../.minilibx_opengl/mlx.h"
+# include "../.minilibx_linux/mlx.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
@@ -296,10 +296,9 @@ void			handle_txt(int x, t_map *map, t_game *game, t_ray *ray);
 void			init_color(t_map *map);
 int				get_steps_and_increments(int *start, int *end, int *inc);
 void			free_textures(t_map *map, t_game *game);
-// sup
+
 void			print_tab_of_char_tab(char **tab);
 void			print_tab_of_tab_int(int **tab, int rows, int cols);
-
 
 /* --------------------------- DEVELOPMENT MACROS ----------------------------*/
 # define TRUE 1

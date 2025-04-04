@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mpeyre-s <mpeyre-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 16:20:52 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/04/04 13:46:52 by spike            ###   ########.fr       */
+/*   Updated: 2025/04/04 15:28:13 by mpeyre-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,14 @@ int	start_mlx(t_game *game)
 
 int	destroy_mlx(t_game *game)
 {
-	if (game->mlx->frames != 1)
+	if (game->mlx->img)
+		mlx_destroy_image(game->mlx->mlx, game->mlx->img);
+	if (game->mlx->win)
+		mlx_destroy_window(game->mlx->mlx, game->mlx->win);
+	if (game->mlx->mlx)
 	{
-		if (game->mlx->img)
-			mlx_destroy_image(game->mlx->mlx, game->mlx->img);
-		if (game->mlx->win)
-			mlx_destroy_window(game->mlx->mlx, game->mlx->win);
+		mlx_destroy_display(game->mlx->mlx);
+		free(game->mlx->mlx);
 	}
-	free_textures(game->map, game);
 	return (SUCCES);
 }

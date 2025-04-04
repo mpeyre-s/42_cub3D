@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mpeyre-s <mpeyre-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 13:32:53 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/04/02 13:55:43 by spike            ###   ########.fr       */
+/*   Updated: 2025/04/04 15:08:20 by mpeyre-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	fill_map_data(t_map *map, t_init *data)
 	map->grid = init_grid(data, map->width, map->height);
 }
 
-static void	reinforce_walls(int **grid)
+static void	reinforce_walls(int **grid, int height, int width)
 {
 	size_t	i;
 	size_t	j;
@@ -60,15 +60,9 @@ static void	reinforce_walls(int **grid)
 	size_t	max_height;
 
 	i = 0;
-	max_height = 0;
-	max_width = 0;
-	while (grid[max_height])
-		max_height++;
-	max_height--;
-	while (grid[0][max_width])
-		max_width++;
-	max_width--;
-	while (grid[i])
+	max_height = height - 1;
+	max_width = width - 1;
+	while (i <= max_height)
 	{
 		j = 0;
 		while (j <= max_width)
@@ -100,6 +94,6 @@ t_map	*init_map(t_init *data)
 		free(map);
 		return (NULL);
 	}
-	reinforce_walls(map->grid);
+	reinforce_walls(map->grid, map->height, map->width);
 	return (map);
 }

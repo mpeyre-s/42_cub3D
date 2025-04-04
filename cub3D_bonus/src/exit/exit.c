@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mpeyre-s <mpeyre-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:39:35 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/04/02 13:54:52 by spike            ###   ########.fr       */
+/*   Updated: 2025/04/04 15:36:52 by mpeyre-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	free_map(t_game *game)
 	if (game->map->grid)
 	{
 		i = 0;
-		while (game->map->grid[i])
+		while (i < game->map->height)
 		{
 			free(game->map->grid[i]);
 			i++;
@@ -41,16 +41,41 @@ static void	free_map(t_game *game)
 	free(game->map);
 }
 
+void	free_textures(t_map *map, t_game *game)
+{
+	if (map->north.img)
+		mlx_destroy_image(game->mlx->mlx, map->north.img);
+	if (map->south.img)
+		mlx_destroy_image(game->mlx->mlx, map->south.img);
+	if (map->east.img)
+		mlx_destroy_image(game->mlx->mlx, map->east.img);
+	if (map->west.img)
+		mlx_destroy_image(game->mlx->mlx, map->west.img);
+	if(map->floors.img)
+		mlx_destroy_image(game->mlx->mlx, map->floors.img);
+	if (game->pickaxe_hud.img)
+		mlx_destroy_image(game->mlx->mlx, game->pickaxe_hud.img);
+	if (game->block_hud.img)
+		mlx_destroy_image(game->mlx->mlx, game->block_hud.img);
+}
+
 void	exit_program(t_game *game)
 {
 	if (!game)
 		return ;
+	free(game->floor);
+	free_textures(game->map, game);
 	if (game->map)
 		free_map(game);
+
 	if (game->mlx)
 	{
 		destroy_mlx(game);
 		free(game->mlx);
 	}
+	if (game->keys)
+		free(game->keys);
+	if (game->player)
+		free(game->player);
 	free(game);
 }

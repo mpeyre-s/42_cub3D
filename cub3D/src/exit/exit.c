@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spike <spike@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mpeyre-s <mpeyre-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:39:35 by mathispeyre       #+#    #+#             */
-/*   Updated: 2025/04/04 13:36:44 by spike            ###   ########.fr       */
+/*   Updated: 2025/04/04 15:31:49 by mpeyre-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	free_map(t_game *game)
 	if (game->map->grid)
 	{
 		i = 0;
-		while (game->map->grid[i])
+		while (i < game->map->height)
 		{
 			free(game->map->grid[i]);
 			i++;
@@ -57,14 +57,18 @@ void	exit_program(t_game *game)
 {
 	if (!game)
 		return ;
+	free_textures(game->map, game);
 	if (game->map)
 		free_map(game);
 
 	if (game->mlx)
 	{
 		destroy_mlx(game);
-		free_textures(game->map, game);
 		free(game->mlx);
 	}
+	if (game->keys)
+		free(game->keys);
+	if (game->player)
+		free(game->player);
 	free(game);
 }
